@@ -1,21 +1,22 @@
-# HTML
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [HTML](#html)
-  - [HTML5 的新特性](#html5-的新特性)
-  - [localStorage，sessionStorage，cookie 的区别](#localstoragesessionstoragecookie-的区别)
-  - [DOCTYPE的作用是什么](#doctype的作用是什么)
-  - [语义化标签的作用](#语义化标签的作用)
-  - [行内元素 块级元素](#行内元素-块级元素)
-  - [canvas与SVG](#canvas与svg)
+- [HTML5 的新特性](#html5-%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7)
+- [DOCTYPE 的作用是什么](#doctype-%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E4%BB%80%E4%B9%88)
+- [语义化标签的作用](#%E8%AF%AD%E4%B9%89%E5%8C%96%E6%A0%87%E7%AD%BE%E7%9A%84%E4%BD%9C%E7%94%A8)
+- [行内元素 块级元素](#%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0-%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0)
+- [canvas 与 SVG](#canvas-%E4%B8%8E-svg)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## HTML5 的新特性
 
 [参考链接](https://www.cnblogs.com/ainyi/p/9777841.html)
 
 1. 语义化标签:header、footer、section、nav、aside、article
-2. 增强型表单：input的多个type(color, date, datetime, email, month, number, range, search, tel, time, url, week)
+2. 增强型表单：input 的多个 type(color, date, datetime, email, month, number, range, search, tel, time, url, week)
 3. 新增表单元素：datalist、keygen、output
-4. 新增表单属性：placehoder, required, min和max, step, height 和 width, autofocus, multiple
+4. 新增表单属性：placehoder, required, min 和 max, step, height 和 width, autofocus, multiple
 5. 音频视频：audio、video
 6. canvas
 7. 地理定位：
@@ -24,27 +25,7 @@
 10. 新事件：onresize、ondrag、onscroll、onmousewheel、onerror、onplay、onpause
 11. WebSocket
 
-## localStorage，sessionStorage，cookie 的区别
-
-```js
-共同点：都是保存在浏览器端。
-区别：
-(1) cookie数据始终在同源的http请求中携带（即使不需要），即cookie在浏览器和服务器间来回传递
-    sessionStorage和localStorage不会自动把数据发给服务器，仅在本地保存
-(2) 存储大小限制也不同
-    cookie数据不能超过4k
-    sessionStorage和localStorage 虽然也有存储大小的限制，但比cookie大得多，可以达到5M或更大
-(3) 数据有效期不同
-    sessionStorage：仅在当前浏览器窗口关闭前有效，自然也就不可能持久保持；
-    localStorage：始终有效，窗口或浏览器关闭也一直保存，因此用作持久数据；
-    cookie只在设置的cookie过期时间之前一直有效，即使窗口或浏览器关闭;
-(4) 作用域不同
-    sessionStorage不在不同的浏览器窗口中共享，即使是同一个页面；
-    localStorage 在所有同源窗口中都是共享的；
-    cookie也是在所有同源窗口中都是共享的
-```
-
-## DOCTYPE的作用是什么
+## DOCTYPE 的作用是什么
 
 ```js
 (1) <!DOCTYPE>声明一般位于第一行，处于 <html> 标签前。作用：告诉浏览器以什么样的模式来解析文档。DOCTYPE 不存在或格式不正确会导致文档以兼容模式呈现。
@@ -53,11 +34,11 @@
 
 ## 语义化标签的作用
 
-- 即使在没有CSS样式的条件下，也能很好地呈现出内容结构、代码结构。
+- 即使在没有 CSS 样式的条件下，也能很好地呈现出内容结构、代码结构。
 - 方便其他设备解析（如屏幕阅读器、盲人阅读器、移动设备）以意义的方式来渲染网页
-- 语义化标签会使HTML页面的内容结构更加清晰，有利于维护代码和添加样式
-- 有利于SEO
-- 便于团队开发和维护，遵循W3C标准，可以减少差异化
+- 语义化标签会使 HTML 页面的内容结构更加清晰，有利于维护代码和添加样式
+- 有利于 SEO
+- 便于团队开发和维护，遵循 W3C 标准，可以减少差异化
 
 ## 行内元素 块级元素
 
@@ -71,9 +52,9 @@ HTML4中，元素被分成两大类：inline （内联元素）与 block （块�
 
 ```
 
-## canvas与SVG
+## canvas 与 SVG
 
-- canvas与svg都是可以在浏览器上创建图形
+- canvas 与 svg 都是可以在浏览器上创建图形
 - HTML5 的 canvas 元素使用 JavaScript 在网页上绘制图像。画布是一个矩形区域，您可以控制其每一像素。canvas 拥有多种绘制路径、矩形、圆形、字符以及添加图像、动画的方法
-- canvas绘制位图,绘制出来的每一个图形的元素都是独立的DOM节点，能够方便的绑定事件或用来修改。canvas复杂度高会减慢渲染速度（任何过度使用 DOM 的应用都不快）。canvas输出的是一整幅画布，就像一张图片一样，放大会失真。canvas不适合游戏应用。
-- svg输出的图形是矢量图形，后期可以修改参数来自由放大缩小，SVG 图像在放大或改变尺寸的情况下其图形质量不会有所损失。svg最适合图像密集型的游戏，其中的许多对象会被频繁重绘
+- canvas 绘制位图,绘制出来的每一个图形的元素都是独立的 DOM 节点，能够方便的绑定事件或用来修改。canvas 复杂度高会减慢渲染速度（任何过度使用 DOM 的应用都不快）。canvas 输出的是一整幅画布，就像一张图片一样，放大会失真。canvas 不适合游戏应用。
+- svg 输出的图形是矢量图形，后期可以修改参数来自由放大缩小，SVG 图像在放大或改变尺寸的情况下其图形质量不会有所损失。svg 最适合图像密集型的游戏，其中的许多对象会被频繁重绘
