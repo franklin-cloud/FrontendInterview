@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>利用canvas画一个动态背景</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: #000;
+        overflow: hidden;
+        position: relative;
+      }
+      .title {
+        width: 100%;
+        position: absolute;
+        z-index: 100;
+        left: 0;
+        top: 10%;
+        color: #fff;
+        font-size: 20px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="title">
+      Canvas动画的实现RequestAnimationFrame需要再回调函数中清空画布重新画
+    </div>
+    <canvas id="cvs-smile">
+      <!--不支持时替换内容-->
+      <img src="./images/曲线角度说明.png" alt="" />
+    </canvas>
+    <script>
+      // 获取canvas元素
+      const cvs = document.getElementById("cvs-smile");
+      // 设置canvas宽高
+      cvs.width = window.innerWidth;
+      cvs.height = window.innerHeight;
+
+      // 获取绘图上下文
+      const ctx = cvs.getContext("2d");
+
+      // 点的数量
+      const point_num = 20;
+      // 连线的范围
+      const maxDistance = 300;
+
+      // 获取某个区间的随机数
+      const getRandom = (min, max) => {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+      };
+
+      // 点
+      class RandomPoint {
+        constructor() {
+          this.r = 6;
+          this.x = getRandom(0, cvs.width - this.r / 2);
+          this.y = getRandom(0, cvs.height - this.r / 2);
+          this.color = "rgb(200, 200, 200)";
+          this.xSpeed = getRandom(0, 50);
+          this.ySpeed = getRandom(0, 50);
+          this.lastDrawTime = 0;
+        }
+
+        draw() {
+          const currentTime = Date.now();
+          if (this.lastDrawTime) {
+            const duration = (currentTime - this.lastDrawTime) / 1000;
+            let x = this.x + this.xSpeed * duration;
+            let y = this.y + this.ySpeed * duration;
+            // x边界
+            if (this.x > cvs.width - this.r / 2) {
+              x = cvs.width - this.r / 2;
+              this.xSpeed = -this.xSpeed;
+            } else if (this.x < this.r / 2) {
+              x = this.r / 2;
+              this.xSpeed = -this.xSpeed;
+            }
+            // y边界
+            if (this.y > cvs.height - this.r / 2) {
+              y = cvs.height - this.r / 2;
+              this.ySpeed = -this.ySpeed;
+            } else if (this.y < this.r / 2) {
+              y = this.r / 2;
+              this.ySpeed = -this.ySpeed;
+            }
+            this.x = x;
+            this.y = y;
+          }
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
+          ctx.fillStyle = this.color;
+          ctx.fill();
+          // 记录本次画的时间
+          this.lastDrawTime = currentTime;
+        }
+      }
+      // 线
+      class Gragh {
+        constructor() {
+          this.points = new Array(point_num)
+            .fill(0)
+            .map(() => new RandomPoint());
+        }
+
+        draw() {
+          requestAnimationFrame(() => {
+            this.draw();
+          });
+          // requestAnimationFrame每次回调都清空画布重新画就实现了动画
+          ctx.clearRect(0, 0, cvs.width, cvs.height);
+          // 开始画图
+          for (let i = 0; i < this.points.length; i++) {
+            const point_i = this.points[i];
+            // 画i点
+            point_i.draw();
+            for (let j = i + 1; j < this.points.length; j++) {
+              const point_j = this.points[j];
+              // 画j点
+              point_j.draw();
+              // 两点间的距离
+              const distance = Math.sqrt(
+                Math.pow(point_i.x - point_j.x, 2) +
+                  Math.pow(point_i.y - point_j.y, 2)
+              );
+              // 判断是否在范围内
+              if (distance > maxDistance) {
+                continue;
+              }
+              ctx.beginPath();
+              ctx.moveTo(point_i.x, point_i.y);
+              ctx.lineTo(point_j.x, point_j.y);
+              ctx.closePath();
+              ctx.strokeStyle = `rgba(200,200,200,${
+                1 - distance / maxDistance
+              })`;
+              ctx.stroke();
+            }
+          }
+        }
+      }
+      // 执行
+      const gragh = new Gragh();
+      gragh.draw();
+    </script>
+  </body>
+</html>

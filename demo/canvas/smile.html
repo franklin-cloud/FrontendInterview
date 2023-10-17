@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>利用canvas画一个微笑表情</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="cvs-smile">
+      <!--不支持时替换内容-->
+      <img src="./images/曲线角度说明.png" alt="" />
+    </canvas>
+    <script>
+      // 获取canvas元素
+      const cvs = document.getElementById("cvs-smile");
+      // 设置canvas宽高
+      cvs.width = 500;
+      cvs.height = 400;
+
+      // 获取绘图上下文
+      const ctx = cvs.getContext("2d");
+
+      ctx.beginPath();
+      ctx.arc(75, 75, 50, 0, Math.PI * 2, true); // 绘制
+      ctx.stroke();
+      ctx.closePath();
+
+      ctx.beginPath();
+      ctx.moveTo(110, 75);
+      ctx.arc(75, 75, 35, 0, Math.PI, false); // 口 (顺时针)
+      ctx.stroke();
+      ctx.closePath();
+
+      ctx.beginPath();
+      ctx.moveTo(65, 65);
+      ctx.arc(60, 65, 5, 0, Math.PI * 2, true); // 左眼
+      ctx.stroke();
+      ctx.closePath();
+
+      ctx.beginPath();
+      ctx.moveTo(95, 65);
+      ctx.arc(90, 65, 5, 0, Math.PI * 2, true); // 右眼
+      ctx.stroke();
+      ctx.closePath();
+    </script>
+  </body>
+</html>
