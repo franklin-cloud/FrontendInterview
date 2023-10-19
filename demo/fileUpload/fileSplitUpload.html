@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>文件分片上传</title>
+    <style>
+      .tips {
+        background: #ddd;
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tips">
+      <h3>文件分片上传</h3>
+      <ul>
+        <li>
+          File & Blob只是文件的一种储存类型, File存储着文件的name, size, type,
+          lastModified信息, 读取文件内容需要使用FileReader
+        </li>
+        <li>
+          <p>分片上传如何确定文件的唯一性呢？</p>
+          分片后递归生成文件哈希（spark-md5）
+        </li>
+        <li>
+          文件上传中断续传时,
+          将文件哈希为参数请求得到文件哪些chunks已经上传,然后上传剩余的chunks
+        </li>
+      </ul>
+    </div>
+    <input type="file" id="uploadFile" />
+    <script>
+      const generateChunks = (file, unitSize = 1024 * 1024) => {
+        const fileSize = file.size; // 文件大小
+        const chunks = [];
+        for (let i = 0; i < fileSize; i += unitSize) {
+          // 计算分片结束的位置
+          const end = Math.min(i + unitSize, fileSize);
+          const chunk = file.slice(i, end);
+          chunks.push(chunk);
+        }
+        return chunks;
+      };
+
+      const uploadFile = document.getElementById("uploadFile");
+      uploadFile.addEventListener("change", (e) => {
+        if (!e.target.files.length) {
+          console.log("您取消了选择文件，请选择文件进行上传");
+          return;
+        }
+        const file = e.target.files[0];
+        const chunks = generateChunks(file);
+        console.log(chunks);
+        // 分片上传
+        // chunks.forEach((chunk, index) => {
+        //   const formData = new FormData();
+        //   formData.append("chunk", chunk);
+        //   formData.append("index", index);
+        //   formData.append("fileName", file.name);
+        //   formData.append("fileSize", file.size);
+        //   formData.append("totalChunks", chunks.length);
+        //   fetch("http://localhost:3000/upload", {
+        //     method: "POST",
+        //     body: formData,
+        //   });
+        // });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>文件拖拽上传</title>
+    <style>
+      .tips {
+        background: #ddd;
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+      #dragUpload {
+        height: 200px;
+        background: #ddd;
+        border-radius: 5px;
+        text-align: center;
+        line-height: 200px;
+        color: #999;
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+      button {
+        position: relative;
+      }
+      button > input {
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tips">
+      <h3>文件上传</h3>
+      <ul>
+        <li>多文件上传: 给input添加multiple属性</li>
+        <li>
+          文件夹上传: 给input添加webkitdirectory属性,兼容属性mozdirectory &
+          odirectory
+        </li>
+        <li>
+          <a href="https://www.qiyuandi.com/zhanzhang/zonghe/9955.html"
+            >DataTransfer</a
+          >
+          对象用于保存拖动和放下（drag and
+          drop）过程中的数据。它可以保存一项或多项数据,
+          这些数据项可以是一种或者多种数据类型。
+        </li>
+        <li>
+          文件系统的使用必须运行在服务器, 本地打开无效, 可以使用VSCODE的插件Live
+          Server测试.
+        </li>
+        <li>
+          要实现文件投放效果,
+          需要禁用浏览器默认事件e.preventDefault()，不然拖拽后会直接打开文件
+        </li>
+        <li>
+          entry.createReader()与entry.file()读取文件时实际上是异步操作,
+          你需要返回的话最好放在Promise中进行处理。
+        </li>
+      </ul>
+    </div>
+    <div id="dragUpload">拖拽文件或者文件夹到这里上传</div>
+    <button>
+      选择文件
+      <input type="file" id="uploadFile" multiple />
+    </button>
+    <button>
+      选择文件夹
+      <input type="file" id="uploadDirectory" webkitdirectory />
+    </button>
+
+    <script>
+      const uploadFile = document.getElementById("uploadFile");
+      const uploadDirectory = document.getElementById("uploadDirectory");
+      const dragUpload = document.getElementById("dragUpload");
+
+      // 多文件上传
+      uploadFile.addEventListener("change", (event) => {
+        const files = event.target.files;
+        if (files.length) {
+          console.log(files);
+          // TODO 文件上传
+        }
+      });
+
+      // 文件夹上传
+      uploadDirectory.addEventListener("change", (event) => {
+        const files = event.target.files;
+        if (files.length) {
+          console.log("返回文件夹下的所有文件", files);
+          // TODO 文件上传
+        }
+      });
+
+      // 拖拽上传
+      dragUpload.addEventListener("dragenter", (event) => {
+        // 阻止默认行为以允许放置
+        event.preventDefault();
+      });
+      dragUpload.addEventListener("dragover", (event) => {
+        // 阻止默认行为以允许放置
+        event.preventDefault();
+      });
+      dragUpload.addEventListener("drop", async (event) => {
+        // 阻止默认行为以允许放置
+        event.preventDefault();
+        // 所有文件
+        let allFiles = [];
+        /*
+          文件数量；
+          读取到的文件entrys 累计得到fileNum，
+          每次文件读取完进行fileNum--,
+          当fileLength=0时文件读取完毕
+        */
+        let fileNum = 0;
+        // 更新文件数量，判断文件是否读取完
+        function updateFileNum() {
+          fileNum--;
+          console.log("文件数量", fileNum);
+          if (fileNum === 0) {
+            console.log("文件读取完成", allFiles);
+            // 输出所有文件
+            for (let i = 0; i < allFiles.length; i++) {
+              const file = allFiles[i];
+              // 文件上传
+              // uploadFile(file);
+            }
+          }
+        }
+        // 读取文件
+        function readeFile(entry) {
+          entry.file((file) => {
+            allFiles.push(file);
+            // 更新文件数量
+            updateFileNum();
+          });
+        }
+
+        // 读取文件夹
+        function readeDir(dirEntry) {
+          const dirReader = dirEntry.createReader();
+          dirReader.readEntries((entries) => {
+            if (entries.length) {
+              fileNum += entries.length;
+              for (let i = 0; i < entries.length; i++) {
+                const entry = entries[i];
+                if (entry.isFile) {
+                  readeFile(entry);
+                } else if (entry.isDirectory) {
+                  readeDir(entry);
+                }
+              }
+            }
+            updateFileNum();
+          });
+        }
+
+        // 读取所有文件
+        console.log("文件读取中");
+        const items = event.dataTransfer.items;
+        fileNum = items.length;
+        for (let i = 0; i < items.length; i++) {
+          const entry = items[i].webkitGetAsEntry();
+          if (entry.isFile) {
+            readeFile(entry);
+          } else if (entry.isDirectory) {
+            readeDir(entry);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
