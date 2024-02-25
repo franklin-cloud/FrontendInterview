@@ -1,3 +1,54 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [CSS](#css)
+  - [CSS3 新特性](#css3-%E6%96%B0%E7%89%B9%E6%80%A7)
+  - [CSS 盒模型](#css-%E7%9B%92%E6%A8%A1%E5%9E%8B)
+  - [设置一个元素的背景颜色，背景颜色会填充哪些区域](#%E8%AE%BE%E7%BD%AE%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0%E7%9A%84%E8%83%8C%E6%99%AF%E9%A2%9C%E8%89%B2%E8%83%8C%E6%99%AF%E9%A2%9C%E8%89%B2%E4%BC%9A%E5%A1%AB%E5%85%85%E5%93%AA%E4%BA%9B%E5%8C%BA%E5%9F%9F)
+  - [margin/padding 设置百分比是相对谁的](#marginpadding-%E8%AE%BE%E7%BD%AE%E7%99%BE%E5%88%86%E6%AF%94%E6%98%AF%E7%9B%B8%E5%AF%B9%E8%B0%81%E7%9A%84)
+  - [link 和 @import 的区别](#link-%E5%92%8C-import-%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [CSS 选择器的解析规则](#css-%E9%80%89%E6%8B%A9%E5%99%A8%E7%9A%84%E8%A7%A3%E6%9E%90%E8%A7%84%E5%88%99)
+  - [CSS 选择器优先级](#css-%E9%80%89%E6%8B%A9%E5%99%A8%E4%BC%98%E5%85%88%E7%BA%A7)
+  - [::before 和:after 中双冒号和单冒号有什么区别？解释一下这 2 个伪元素的作用](#before-%E5%92%8Cafter-%E4%B8%AD%E5%8F%8C%E5%86%92%E5%8F%B7%E5%92%8C%E5%8D%95%E5%86%92%E5%8F%B7%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E8%A7%A3%E9%87%8A%E4%B8%80%E4%B8%8B%E8%BF%99-2-%E4%B8%AA%E4%BC%AA%E5%85%83%E7%B4%A0%E7%9A%84%E4%BD%9C%E7%94%A8)
+  - [伪类与伪元素的区别](#%E4%BC%AA%E7%B1%BB%E4%B8%8E%E4%BC%AA%E5%85%83%E7%B4%A0%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [关于伪类 LVHA 的解释](#%E5%85%B3%E4%BA%8E%E4%BC%AA%E7%B1%BB-lvha-%E7%9A%84%E8%A7%A3%E9%87%8A)
+  - [CSS 中哪些属性可以继承](#css-%E4%B8%AD%E5%93%AA%E4%BA%9B%E5%B1%9E%E6%80%A7%E5%8F%AF%E4%BB%A5%E7%BB%A7%E6%89%BF)
+  - [CSS 清除浮动的方式](#css-%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E7%9A%84%E6%96%B9%E5%BC%8F)
+  - [清除浮动的原理](#%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E7%9A%84%E5%8E%9F%E7%90%86)
+  - [BFC 的概念, 哪些元素可以触发 BFC](#bfc-%E7%9A%84%E6%A6%82%E5%BF%B5-%E5%93%AA%E4%BA%9B%E5%85%83%E7%B4%A0%E5%8F%AF%E4%BB%A5%E8%A7%A6%E5%8F%91-bfc)
+  - [脱离文档流的方式](#%E8%84%B1%E7%A6%BB%E6%96%87%E6%A1%A3%E6%B5%81%E7%9A%84%E6%96%B9%E5%BC%8F)
+  - [position 的值定位原点是](#position-%E7%9A%84%E5%80%BC%E5%AE%9A%E4%BD%8D%E5%8E%9F%E7%82%B9%E6%98%AF)
+  - [display 有哪些值？说明他们的作用](#display-%E6%9C%89%E5%93%AA%E4%BA%9B%E5%80%BC%E8%AF%B4%E6%98%8E%E4%BB%96%E4%BB%AC%E7%9A%84%E4%BD%9C%E7%94%A8)
+  - [float 的元素，display 是什么](#float-%E7%9A%84%E5%85%83%E7%B4%A0display-%E6%98%AF%E4%BB%80%E4%B9%88)
+  - [inline-block、inline 和 block 的区别；为什么 img 是 inline 还可以设置宽高](#inline-blockinline-%E5%92%8C-block-%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%BA%E4%BB%80%E4%B9%88-img-%E6%98%AF-inline-%E8%BF%98%E5%8F%AF%E4%BB%A5%E8%AE%BE%E7%BD%AE%E5%AE%BD%E9%AB%98)
+  - [flex 的属性有哪些](#flex-%E7%9A%84%E5%B1%9E%E6%80%A7%E6%9C%89%E5%93%AA%E4%BA%9B)
+  - [`visibility: hidden`, `opacity: 0`, `display: none`](#visibility-hidden-opacity-0-display-none)
+  - [了解重绘和重排吗，知道怎么去减少重绘和重排吗，让文档脱离文档流有哪些方法](#%E4%BA%86%E8%A7%A3%E9%87%8D%E7%BB%98%E5%92%8C%E9%87%8D%E6%8E%92%E5%90%97%E7%9F%A5%E9%81%93%E6%80%8E%E4%B9%88%E5%8E%BB%E5%87%8F%E5%B0%91%E9%87%8D%E7%BB%98%E5%92%8C%E9%87%8D%E6%8E%92%E5%90%97%E8%AE%A9%E6%96%87%E6%A1%A3%E8%84%B1%E7%A6%BB%E6%96%87%E6%A1%A3%E6%B5%81%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B9%E6%B3%95)
+  - [z-index 是干什么用的？默认值是什么？与 z-index: 0 的区别](#z-index-%E6%98%AF%E5%B9%B2%E4%BB%80%E4%B9%88%E7%94%A8%E7%9A%84%E9%BB%98%E8%AE%A4%E5%80%BC%E6%98%AF%E4%BB%80%E4%B9%88%E4%B8%8E-z-index-0-%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [vw 和 vh 的概念](#vw-%E5%92%8C-vh-%E7%9A%84%E6%A6%82%E5%BF%B5)
+  - [经常遇到的浏览器的兼容性有哪些？原因，解决方法是什么，常用 hack 的技巧](#%E7%BB%8F%E5%B8%B8%E9%81%87%E5%88%B0%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%85%BC%E5%AE%B9%E6%80%A7%E6%9C%89%E5%93%AA%E4%BA%9B%E5%8E%9F%E5%9B%A0%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%98%AF%E4%BB%80%E4%B9%88%E5%B8%B8%E7%94%A8-hack-%E7%9A%84%E6%8A%80%E5%B7%A7)
+  - [简单介绍使用图片 base64 编码的优点和缺点](#%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D%E4%BD%BF%E7%94%A8%E5%9B%BE%E7%89%87-base64-%E7%BC%96%E7%A0%81%E7%9A%84%E4%BC%98%E7%82%B9%E5%92%8C%E7%BC%BA%E7%82%B9)
+  - [如果需要手动写动画，你认为最小时间间隔是多久，为什么](#%E5%A6%82%E6%9E%9C%E9%9C%80%E8%A6%81%E6%89%8B%E5%8A%A8%E5%86%99%E5%8A%A8%E7%94%BB%E4%BD%A0%E8%AE%A4%E4%B8%BA%E6%9C%80%E5%B0%8F%E6%97%B6%E9%97%B4%E9%97%B4%E9%9A%94%E6%98%AF%E5%A4%9A%E4%B9%85%E4%B8%BA%E4%BB%80%E4%B9%88)
+  - [阐述一下 CSSSprites](#%E9%98%90%E8%BF%B0%E4%B8%80%E4%B8%8B-csssprites)
+  - [画一条 0.5px 的线](#%E7%94%BB%E4%B8%80%E6%9D%A1-05px-%E7%9A%84%E7%BA%BF)
+  - [transition 和 animation 的区别](#transition-%E5%92%8C-animation-%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [如何实现单行／多行文本溢出的省略（...）](#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%8D%95%E8%A1%8C%EF%BC%8F%E5%A4%9A%E8%A1%8C%E6%96%87%E6%9C%AC%E6%BA%A2%E5%87%BA%E7%9A%84%E7%9C%81%E7%95%A5)
+  - [常见的元素隐藏方式](#%E5%B8%B8%E8%A7%81%E7%9A%84%E5%85%83%E7%B4%A0%E9%9A%90%E8%97%8F%E6%96%B9%E5%BC%8F)
+  - [CSS3 @font-face 有用过吗](#css3-font-face-%E6%9C%89%E7%94%A8%E8%BF%87%E5%90%97)
+  - [CSS 实现隔行变色](#css-%E5%AE%9E%E7%8E%B0%E9%9A%94%E8%A1%8C%E5%8F%98%E8%89%B2)
+  - [一个满屏品字布局如何设计](#%E4%B8%80%E4%B8%AA%E6%BB%A1%E5%B1%8F%E5%93%81%E5%AD%97%E5%B8%83%E5%B1%80%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1)
+  - [CSS 画三角形](#css-%E7%94%BB%E4%B8%89%E8%A7%92%E5%BD%A2)
+  - [CSS 画扇形](#css-%E7%94%BB%E6%89%87%E5%BD%A2)
+  - [CSS 画正方体](#css-%E7%94%BB%E6%AD%A3%E6%96%B9%E4%BD%93)
+  - [CSS 实现一个硬币旋转的效果](#css-%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%A1%AC%E5%B8%81%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%88%E6%9E%9C)
+  - [CSS 实现垂直居中](#css-%E5%AE%9E%E7%8E%B0%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD)
+  - [CSS 实现两列固定，中间自适应的布局](#css-%E5%AE%9E%E7%8E%B0%E4%B8%A4%E5%88%97%E5%9B%BA%E5%AE%9A%E4%B8%AD%E9%97%B4%E8%87%AA%E9%80%82%E5%BA%94%E7%9A%84%E5%B8%83%E5%B1%80)
+  - [实现自适应九宫格](#%E5%AE%9E%E7%8E%B0%E8%87%AA%E9%80%82%E5%BA%94%E4%B9%9D%E5%AE%AB%E6%A0%BC)
+  - [屏幕里面内容未占满的时候 footer 固定在屏幕可视区域的底部。占满的时候显示在网页的最底端](#%E5%B1%8F%E5%B9%95%E9%87%8C%E9%9D%A2%E5%86%85%E5%AE%B9%E6%9C%AA%E5%8D%A0%E6%BB%A1%E7%9A%84%E6%97%B6%E5%80%99-footer-%E5%9B%BA%E5%AE%9A%E5%9C%A8%E5%B1%8F%E5%B9%95%E5%8F%AF%E8%A7%86%E5%8C%BA%E5%9F%9F%E7%9A%84%E5%BA%95%E9%83%A8%E5%8D%A0%E6%BB%A1%E7%9A%84%E6%97%B6%E5%80%99%E6%98%BE%E7%A4%BA%E5%9C%A8%E7%BD%91%E9%A1%B5%E7%9A%84%E6%9C%80%E5%BA%95%E7%AB%AF)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # CSS
 
 - [CSS](#css)
@@ -21,7 +72,7 @@
   - [float 的元素，display 是什么](#float-的元素display-是什么)
   - [inline-block、inline 和 block 的区别；为什么 img 是 inline 还可以设置宽高](#inline-blockinline-和-block-的区别为什么-img-是-inline-还可以设置宽高)
   - [flex 的属性有哪些](#flex-的属性有哪些)
-  - [`visibility: hidden`, `opacity: 0`，`display: none`](#visibility-hidden-opacity-0display-none)
+  - [`visibility: hidden`, `opacity: 0`, `display: none`](#visibility-hidden-opacity-0-display-none)
   - [了解重绘和重排吗，知道怎么去减少重绘和重排吗，让文档脱离文档流有哪些方法](#了解重绘和重排吗知道怎么去减少重绘和重排吗让文档脱离文档流有哪些方法)
   - [z-index 是干什么用的？默认值是什么？与 z-index: 0 的区别](#z-index-是干什么用的默认值是什么与-z-index-0-的区别)
   - [vw 和 vh 的概念](#vw-和-vh-的概念)
@@ -50,17 +101,41 @@
 [参考链接](https://www.cnblogs.com/xkweb/p/5862612.html)
 
 1. 伪类和伪元素选择器：
-   > :first-child, :last-child, :nth-child(1), :link, :visited, :hover, :active
-   > ::before, ::after, :first-letter, :first-line, ::selection
+
+   > :first-child
+   > :last-child
+   > :nth-child(n)
+   > :link,
+   > :visited
+   > :hover
+   > :active
+
+   > ::before
+   > ::after
+   > :first-letter
+   > :first-line
+   > ::selection
+
 2. 背景、边框和颜色透明度：
-   > background-size, background-origin, border-radius
-   > box-shadow, border-image
+   > background-size
+   > background-origin
+   > border-radius
+   > box-shadow
+   > border-image
    > rgba
 3. 文字效果：
-   > text-shadow, word-wrap
+   > text-shadow
+   > word-wrap
 4. 2D 转换和 3D 转换：
-   > transform, translate(), rotate(), scale(), skew(), matrix()
-   > rotateX(), rotateY(), perspective
+   > transform
+   > translate()
+   > rotate()
+   > scale()
+   > skew()
+   > matrix()
+   > rotateX()
+   > rotateY()
+   > perspective
 5. 动画、过渡：animation, transition
 6. 多列：column-count, column-gap, column-rule
 7. 用户界面：resize, box-sizing, outline-offset
@@ -222,7 +297,7 @@ a标签有四种状态：链接访问前、链接访问后、鼠标滑过、激�
    ```css
    .clearfix:after {
      /*正常浏览器 清除浮动*/
-     content: '';
+     content: "";
      display: block;
      height: 0;
      clear: both;
@@ -604,7 +679,7 @@ p {
 }
 
 p:after {
-  content: '...';
+  content: "...";
   position: absolute;
   bottom: 0;
   right: 0;
@@ -639,7 +714,7 @@ p:after {
 ```css
 @font-face {
   font-family: myFirstFont;
-  src: url('Sansation_Light.ttf'), url('Sansation_Light.eot'); /* IE9 */
+  src: url("Sansation_Light.ttf"), url("Sansation_Light.eot"); /* IE9 */
 }
 ```
 

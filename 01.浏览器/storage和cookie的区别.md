@@ -2,15 +2,11 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [HTTP 请求的方式](#http-%E8%AF%B7%E6%B1%82%E7%9A%84%E6%96%B9%E5%BC%8F)
-- [GET 和 POST 的区别](#get-%E5%92%8C-post-%E7%9A%84%E5%8C%BA%E5%88%AB)
-- [什么是浏览器的同源政策](#%E4%BB%80%E4%B9%88%E6%98%AF%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%90%8C%E6%BA%90%E6%94%BF%E7%AD%96)
 - [localStorage，sessionStorage，cookie 的区别](#localstoragesessionstoragecookie-%E7%9A%84%E5%8C%BA%E5%88%AB)
 - [cookie 和 session 的区别](#cookie-%E5%92%8C-session-%E7%9A%84%E5%8C%BA%E5%88%AB)
 - [能设置或读取子域的 cookie 吗?](#%E8%83%BD%E8%AE%BE%E7%BD%AE%E6%88%96%E8%AF%BB%E5%8F%96%E5%AD%90%E5%9F%9F%E7%9A%84-cookie-%E5%90%97)
 - [客户端设置 cookie 与服务端设置 cookie 有什么区别?](#%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AE%BE%E7%BD%AE-cookie-%E4%B8%8E%E6%9C%8D%E5%8A%A1%E7%AB%AF%E8%AE%BE%E7%BD%AE-cookie-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
 - [同域/跨域 ajax 请求到底会不会带上 cookie?](#%E5%90%8C%E5%9F%9F%E8%B7%A8%E5%9F%9F-ajax-%E8%AF%B7%E6%B1%82%E5%88%B0%E5%BA%95%E4%BC%9A%E4%B8%8D%E4%BC%9A%E5%B8%A6%E4%B8%8A-cookie)
-- [浏览器输入 URL 之后发生了什么](#%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BE%93%E5%85%A5-url-%E4%B9%8B%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88)
-- [DNS 的具体过程](#dns-%E7%9A%84%E5%85%B7%E4%BD%93%E8%BF%87%E7%A8%8B)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -25,59 +21,31 @@
 7. OPTIONS：允许客户端查看服务器的支持的通信方式；CORS 中的预检请求（检测某个接口是否支持跨域）。
 8. TRACE：回显服务器收到的请求，主要用于测试或诊断。
 
-## GET 和 POST 的区别
-
-两者本质上都是 TCP 链接
-
-1. get 参数通过 url 传递，post 放在请求体 (request body) 中。
-2. get 请求在 url 中传递的参数是有长度限制的（该限制是由浏览器和服务器限制的），而 post 没有。
-3. get 请求只能进行 url 编码，而 post 支持多种编码方式。
-4. get 请求参数会被完整保留在浏览历史记录里，而 post 中的参数不会被保留。
-5. get 产生一个 TCP 数据包；post 产生两个 TCP 数据包。
-   对于 get 方式的请求，浏览器会把 http header 和 data 一并发送出去，服务器响应 200（返回数据）；
-   而对于 post，浏览器先发送 header，服务器响应 100 continue，浏览器再发送 data，服务器响应 200 ok（返回数据）。
-
-## 什么是浏览器的同源政策
-
-我对浏览器的同源政策的理解是，一个域下的 js 脚本在未经允许的情况下，不能够访问另一个域的内容。这里的同源的指的是两个
-域的协议、域名、端口号必须相同，否则则不属于同一个域。
-
-同源政策主要限制了三个方面
-
-第一个是当前域下的 js 脚本不能够访问其他域下的 cookie、localStorage 和 indexDB。
-
-第二个是当前域下的 js 脚本不能够操作访问其他域下的 DOM。
-
-第三个是当前域下 ajax 无法发送跨域请求。
-
-同源政策的目的主要是为了保证用户的信息安全，它只是对 js 脚本的一种限制，并不是对浏览器的限制，对于一般的 img、或者
-script 脚本请求都不会有跨域的限制，这是因为这些操作都不会通过响应结果来进行可能出现安全问题的操作。
-
 ## localStorage，sessionStorage，cookie 的区别
 
 共同点：都是保存在浏览器端。
 
 区别：
 
-(1). cookie 数据始终在同源的 http 请求中携带（即使不需要）
+(1) cookie 数据始终在同源的 http 请求中携带（即使不需要）
 
     即cookie在浏览器和服务器间来回传递
     sessionStorage和localStorage不会自动把数据发给服务器，仅在本地保存
 
-(2). 存储大小限制也不同
+(2) 存储大小限制也不同
 
     cookie数据不能超过4k
     sessionStorage和localStorage 虽然也有存储大小的限制，但比cookie大得多，可以达到5M或更大
 
-(3). 数据有效期不同
+(3) 数据有效期不同
 
     sessionStorage：仅在当前浏览器窗口关闭前有效，自然也就不可能持久保持；
     localStorage：始终有效，窗口或浏览器关闭也一直保存，因此用作持久数据；
     cookie只在设置的cookie过期时间之前一直有效，即使窗口或浏览器关闭;
 
-(4). 作用域不同
+(4) 作用域不同
 
-    sessionStorage不在不同的浏览器窗口中共享，即使是同一个页面；
+    sessionStorage不同的浏览器窗口中不共享，即使是同一个页面；
     localStorage 在所有同源窗口中都是共享的；
     cookie也是在所有同源窗口中都是共享的
 
@@ -85,14 +53,13 @@ script 脚本请求都不会有跨域的限制，这是因为这些操作都不�
 
 1. 存储位置不同：
 
-   > cookie 数据存放在客户的浏览器上
+   > cookie 存放在客户的浏览器
    >
-   > session 数据放在服务器上。
+   > session 存放在服务器上。
 
 2. 存储容量不同：
 
    > 单个 cookie 保存的数据不能超过 4K，一个站点最多保存 20 个 cookie。
-   >
    > 对于 session 来说并没有上限，但出于对服务器端的性能考虑，session 内不要存放过多的东西，并且设置 session 删除机制。
 
 3. 存储方式不同：
@@ -104,13 +71,11 @@ script 脚本请求都不会有跨域的限制，这是因为这些操作都不�
 4. 隐私策略不同
 
    > cookie 对客户端是可见的，别有用心的人可以分析存放在本地的 cookie 并进行 cookie 欺骗，所以它是不安全的。
-   >
    > session 存储在服务器上，不存在敏感信息泄漏的风险。
 
 5. 有效期不同
 
    > cookie 保管在客户端，不占用服务器资源。对于并发用户十分多的网站，cookie 是很好的选择。cookie 的有效期（expire/max-age）
-   >
    > session 是保管在服务器端的，每个用户都会产生一个 session。假如并发访问的用户十分多，会产生十分多的 session，耗费大量的内存。
 
 ## 能设置或读取子域的 cookie 吗?
@@ -160,23 +125,3 @@ axios 和 jQuery 在同域 ajax 请求时会带上 cookie, 跨域请求不会, �
     },
   });
   ```
-
-## 浏览器输入 URL 之后发生了什么
-
-> 参考链接：[在浏览器输入 URL 回车之后发生了什么（超详细版）](https://4ark.me/post/b6c7c0a2.html)
-
-1. DNS 解析
-2. TCP 连接
-3. 发送 HTTP 请求
-4. 服务器处理请求并返回 HTTP 报文
-5. 浏览器解析渲染页面
-6. 连接结束
-
-## DNS 的具体过程
-
-1. 输入 IP，此时电脑发送一个 DNS 请求到本地 DNS 服务器（一般是网络接入服务商提供 eg:电信，移动）
-2. 本地 DNS 服务器会首先查询它的缓存记录，若有，则直接返回结果，若没有，本地 DNS 服务器还要向 DNS 根服务器进行查询；
-3. DNS 根服务器没有记录具体域名和 IP 地址的对应关系，而是告诉本地 DNS 服务器，可到域服务器上继续查询，并给出域服务器地址
-4. 本地服务器继续向域服务器发出请求，返回域名的解析服务器地址
-5. 本地 DNS 向域名解析服务器发出请求，收到域名与 IP 地址对应关系
-6. 本地 DNS 服务器将 IP 地址返回电脑，且保存副本到缓存已备下次查询

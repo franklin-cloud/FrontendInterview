@@ -1,3 +1,8 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
+
 - [webpack](#webpack)
   - [什么是 webpack](#什么是-webpack)
   - [webpack 的作用是什么](#webpack-的作用是什么)
@@ -12,6 +17,8 @@
   - [source map 是什么？生产环境怎么用？](#source-map-是什么生产环境怎么用)
   - [为什么要代码分割，本质是什么？](#为什么要代码分割本质是什么)
   - [webpack 打包优化方案](#webpack-打包优化方案)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # webpack
 
@@ -303,9 +310,9 @@ webpack-bundle-analyzer 生成 bundle 的模块组成图，显示所占体积
     module: {
       rules: {
         test: /\.js$/,
-        include: path.resolve(__dirname, './src'),
+        include: path.resolve(__dirname, "./src"),
         exclude: /node_modules/,
-        use: [{ loader: 'babel-loader?cacheDirectory=true' }],
+        use: [{ loader: "babel-loader?cacheDirectory=true" }],
       },
     },
   };
@@ -320,8 +327,8 @@ webpack-bundle-analyzer 生成 bundle 的模块组成图，显示所占体积
   ```js
   const config = {
     resolve: {
-      extensions: ['.tsx', '.ts', '.js'],
-      alias: { '@': path.join(__dirname, './src') },
+      extensions: [".tsx", ".ts", ".js"],
+      alias: { "@": path.join(__dirname, "./src") },
     },
   };
   ```
@@ -394,23 +401,23 @@ npm run build:dll 运行这个配置文件，dist 里会出现 vendors_manage.dl
 受限于 Node 是单线程运行的，所以 Webpack 在打包的过程中也是单线程的，特别是在执行 Loader 的时候，长时间编译的任务很多，这样就会导致等待的情况。
 
 ```js
-const webpack = require('webpack');
-const HappyPack = require('happypack');
+const webpack = require("webpack");
+const HappyPack = require("happypack");
 
 module.exports = {
   plugins: [
     new HappyPack({
       // id标识happypack处理那一类文件
-      id: 'happyBabel',
+      id: "happyBabel",
       // 配置loader
-      loaders: ['babel-loader?cacheDirectory=true'],
+      loaders: ["babel-loader?cacheDirectory=true"],
     }),
   ],
   module: {
     rules: [
       {
         test: /\.js$/,
-        loader: 'happypack/loader?id=happyBabel',
+        loader: "happypack/loader?id=happyBabel",
         // 将.js文件交给id为happyBabel的happypack实例来执行
       },
     ],

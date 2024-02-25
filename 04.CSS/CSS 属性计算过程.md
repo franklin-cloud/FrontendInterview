@@ -1,3 +1,19 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [CSS 属性计算过程](#css-%E5%B1%9E%E6%80%A7%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B)
+  - [确定声明值](#%E7%A1%AE%E5%AE%9A%E5%A3%B0%E6%98%8E%E5%80%BC)
+  - [层叠冲突](#%E5%B1%82%E5%8F%A0%E5%86%B2%E7%AA%81)
+    - [比较源的重要性](#%E6%AF%94%E8%BE%83%E6%BA%90%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7)
+    - [比较优先级](#%E6%AF%94%E8%BE%83%E4%BC%98%E5%85%88%E7%BA%A7)
+    - [比较次序](#%E6%AF%94%E8%BE%83%E6%AC%A1%E5%BA%8F)
+  - [使用继承](#%E4%BD%BF%E7%94%A8%E7%BB%A7%E6%89%BF)
+  - [使用默认值](#%E4%BD%BF%E7%94%A8%E9%BB%98%E8%AE%A4%E5%80%BC)
+  - [一道面试题](#%E4%B8%80%E9%81%93%E9%9D%A2%E8%AF%95%E9%A2%98)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # CSS 属性计算过程
 
 你是否了解 CSS 的属性计算过程呢？

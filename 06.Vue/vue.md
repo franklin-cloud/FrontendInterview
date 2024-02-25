@@ -1,50 +1,55 @@
-# Vue
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
 
 - [Vue](#vue)
-  - [MVVM 和 MVC的区别](#mvvm-和-mvc的区别)
-  - [vue 的优点](#vue-的优点)
-  - [vue 的响应式原理](#vue-的响应式原理)
-  - [vue 双向数据绑定原理](#vue-双向数据绑定原理)
-  - [Object.defineProperty 介绍](#objectdefineproperty-介绍)
-  - [使用 Object.defineProperty() 来进行数据劫持有什么缺点](#使用-objectdefineproperty-来进行数据劫持有什么缺点)
-  - [v-if 和 v-show 的区别](#v-if-和-v-show-的区别)
-  - [为什么 vue 组件中的 data 必须是函数](#为什么-vue-组件中的-data-必须是函数)
-  - [vue 的生命周期函数](#vue-的生命周期函数)
-  - [vue 的 activated 和 deactivated 钩子函数](#vue-的-activated-和-deactivated-钩子函数)
-  - [Vue中父子组件生命周期执行顺序](#vue中父子组件生命周期执行顺序)
-  - [nextTick 用法](#nexttick-用法)
-  - [vue中key属性的作用](#vue中key属性的作用)
-  - [Vue中key属性用index为什么不行](#vue中key属性用index为什么不行)
-  - [Vue的路由模式](#vue的路由模式)
-  - [vue中\$router和\$route的区别](#vue中router和route的区别)
-  - [Vue diff算法详解](#vue-diff算法详解)
-  - [移动端适配的方法](#移动端适配的方法)
-  - [rem 原理](#rem-原理)
-  - [rem 和 em 的区别](#rem-和-em-的区别)
-  - [移动端 300ms 延迟的原因以及解决方案](#移动端-300ms-延迟的原因以及解决方案)
-  - [Vue 和 React 数据驱动的区别](#vue-和-react-数据驱动的区别)
+  - [MVVM 和 MVC 的区别](#mvvm-%E5%92%8C-mvc%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [vue 的优点](#vue-%E7%9A%84%E4%BC%98%E7%82%B9)
+  - [vue 的响应式原理](#vue-%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86)
+  - [vue 双向数据绑定原理](#vue-%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A%E5%8E%9F%E7%90%86)
+  - [Object.defineProperty 介绍](#objectdefineproperty-%E4%BB%8B%E7%BB%8D)
+  - [使用 Object.defineProperty() 来进行数据劫持有什么缺点](#%E4%BD%BF%E7%94%A8-objectdefineproperty-%E6%9D%A5%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%8A%AB%E6%8C%81%E6%9C%89%E4%BB%80%E4%B9%88%E7%BC%BA%E7%82%B9)
+  - [v-if 和 v-show 的区别](#v-if-%E5%92%8C-v-show-%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [为什么 vue 组件中的 data 必须是函数](#%E4%B8%BA%E4%BB%80%E4%B9%88-vue-%E7%BB%84%E4%BB%B6%E4%B8%AD%E7%9A%84-data-%E5%BF%85%E9%A1%BB%E6%98%AF%E5%87%BD%E6%95%B0)
+  - [vue 的生命周期函数](#vue-%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0)
+  - [vue 的 activated 和 deactivated 钩子函数](#vue-%E7%9A%84-activated-%E5%92%8C-deactivated-%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0)
+  - [Vue 中父子组件生命周期执行顺序](#vue%E4%B8%AD%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F)
+  - [nextTick 用法](#nexttick-%E7%94%A8%E6%B3%95)
+  - [vue 中 key 属性的作用](#vue%E4%B8%ADkey%E5%B1%9E%E6%80%A7%E7%9A%84%E4%BD%9C%E7%94%A8)
+  - [Vue 中 key 属性用 index 为什么不行](#vue%E4%B8%ADkey%E5%B1%9E%E6%80%A7%E7%94%A8index%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%A1%8C)
+  - [Vue 的路由模式](#vue%E7%9A%84%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8F)
+  - [vue 中\$router 和\$route 的区别](#vue%E4%B8%AD%5Crouter%E5%92%8C%5Croute%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [Vue diff 算法详解](#vue-diff%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3)
+  - [移动端适配的方法](#%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E7%9A%84%E6%96%B9%E6%B3%95)
+  - [rem 原理](#rem-%E5%8E%9F%E7%90%86)
+  - [rem 和 em 的区别](#rem-%E5%92%8C-em-%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [移动端 300ms 延迟的原因以及解决方案](#%E7%A7%BB%E5%8A%A8%E7%AB%AF-300ms-%E5%BB%B6%E8%BF%9F%E7%9A%84%E5%8E%9F%E5%9B%A0%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88)
+  - [Vue 和 React 数据驱动的区别](#vue-%E5%92%8C-react-%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%8C%BA%E5%88%AB)
 
-## MVVM 和 MVC的区别
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-- MVC: MVC是应用最广泛的软件架构之一,一般MVC分为:Model(模型),View(视图),Controller(控制器)。 这主要是基于分层的目的,让彼此的职责分开.View一般用过Controller来和Model进行联系。Controller是Model和View的协调者,View和Model不直接联系。基本都是单向联系。
+## MVVM 和 MVC 的区别
+
+- MVC: MVC 是应用最广泛的软件架构之一,一般 MVC 分为:Model(模型),View(视图),Controller(控制器)。 这主要是基于分层的目的,让彼此的职责分开.View 一般用过 Controller 来和 Model 进行联系。Controller 是 Model 和 View 的协调者,View 和 Model 不直接联系。基本都是单向联系。
 
 ![MVC](./../images/MVC.png)
 
-1. View传送指令到Controller。
-2. Controller完成业务逻辑后改变Model状态。
-3. Model将新的数据发送至View,用户得到反馈。
+1. View 传送指令到 Controller。
+2. Controller 完成业务逻辑后改变 Model 状态。
+3. Model 将新的数据发送至 View,用户得到反馈。
 
-- MVVM: MVVM是把MVC中的Controller改变成了ViewModel。
+- MVVM: MVVM 是把 MVC 中的 Controller 改变成了 ViewModel。
 
-View的变化会自动更新到ViewModel,ViewModel的变化也会自动同步到View上显示,通过数据来显示视图层。
+View 的变化会自动更新到 ViewModel,ViewModel 的变化也会自动同步到 View 上显示,通过数据来显示视图层。
 
 ![MVVM](./../images/MVVM.png)
 
-MVVM和MVC的区别:
+MVVM 和 MVC 的区别:
 
-- MVC中Controller演变成MVVM中的ViewModel
-- MVVM通过数据来显示视图层而不是节点操作
-- MVVM主要解决了MVC中大量的dom操作使页面渲染性能降低,加载速度变慢,影响用户体验
+- MVC 中 Controller 演变成 MVVM 中的 ViewModel
+- MVVM 通过数据来显示视图层而不是节点操作
+- MVVM 主要解决了 MVC 中大量的 dom 操作使页面渲染性能降低,加载速度变慢,影响用户体验
 
 ## vue 的优点
 
@@ -93,8 +98,8 @@ MVVM和MVC的区别:
 > writable 属性是否可写，
 > enumerable 属性是否可枚举，
 > configurable 属性是否可配置修改。
-> get属性 当访问该属性时，会调用此函数
-> set属性 当属性值被修改时，会调用此函数。
+> get 属性 当访问该属性时，会调用此函数
+> set 属性 当属性值被修改时，会调用此函数。
 
 ## 使用 Object.defineProperty() 来进行数据劫持有什么缺点
 
@@ -123,11 +128,11 @@ MVVM和MVC的区别:
 - beforeCreate:
   > 在实例初始化之后，数据观测 (data observer) 和 event/watcher 事件配置之前被调用。
   >
-  > 在new一个vue实例后，只有一些默认的生命周期钩子和默认事件，其他的东西都还没创建。在beforeCreate生命周期执行的时候，data和methods中的数据都还没有初始化。不能在这个阶段使用data中的数据和methods中的方法
+  > 在 new 一个 vue 实例后，只有一些默认的生命周期钩子和默认事件，其他的东西都还没创建。在 beforeCreate 生命周期执行的时候，data 和 methods 中的数据都还没有初始化。不能在这个阶段使用 data 中的数据和 methods 中的方法
 - created:
   > 在实例创建完成后被立即调用。在这一步，实例已完成以下的配置：数据观测 (data observer)，property 和方法的运算，watch/event 事件回调。然而，挂载阶段还没开始，\$el property 目前尚不可用。
   >
-  > data 和 methods都已经被初始化好了，如果要调用 methods 中的方法，或者操作 data 中的数据，最早可以在这个阶段中操作
+  > data 和 methods 都已经被初始化好了，如果要调用 methods 中的方法，或者操作 data 中的数据，最早可以在这个阶段中操作
 - beforeMount:
   > 在挂载开始之前被调用：相关的 render 函数首次被调用。
   >
@@ -135,13 +140,13 @@ MVVM和MVC的区别:
 - mounted:
   > 实例被挂载后调用，这时 el 被新创建的 vm.\$el 替换了。如果根实例挂载到了一个文档内的元素上，当 mounted 被调用时 vm.\$el 也在文档内。
   >
-  > 执行到这个钩子的时候，就表示Vue实例已经初始化完成了。此时组件脱离了创建阶段，进入到了运行阶段。如果我们想要通过插件操作页面上的DOM节点，最早可以在这个阶段中进行
+  > 执行到这个钩子的时候，就表示 Vue 实例已经初始化完成了。此时组件脱离了创建阶段，进入到了运行阶段。如果我们想要通过插件操作页面上的 DOM 节点，最早可以在这个阶段中进行
 - beforeUpdate:
-  > 当执行这个钩子时，页面中的显示的数据还是旧的，data中的数据是更新后的， 页面还没有和最新的数据保持同步
+  > 当执行这个钩子时，页面中的显示的数据还是旧的，data 中的数据是更新后的， 页面还没有和最新的数据保持同步
 - updated:
-  > 页面显示的数据和data中的数据已经保持同步了，都是最新的
+  > 页面显示的数据和 data 中的数据已经保持同步了，都是最新的
 - beforeDestroy:
-  > Vue实例从运行阶段进入到了销毁阶段，这个时候上所有的 data 和 methods，指令，过滤器……都是处于可用状态，还没有真正被销毁
+  > Vue 实例从运行阶段进入到了销毁阶段，这个时候上所有的 data 和 methods，指令，过滤器……都是处于可用状态，还没有真正被销毁
 - destroyed:
   > 这个时候上所有的 data 和 methods，指令，过滤器……都是处于不可用状态，组件已经被销毁了。
 - activated:
@@ -164,9 +169,9 @@ MVVM和MVC的区别:
 - `activated`在`keep-alive`组件激活时调用，该钩子函数在服务器端渲染期间不被调用。
 - `deactivated`在`keep-alive`组件停用时调用，该钩子函数在服务端渲染期间不被调用。
 
-## Vue中父子组件生命周期执行顺序
+## Vue 中父子组件生命周期执行顺序
 
-在单一组件中，钩子的执行顺序是beforeCreate-> created -> mounted->... ->destroyed
+在单一组件中，钩子的执行顺序是 beforeCreate-> created -> mounted->... ->destroyed
 
 父子组件生命周期执行顺序：
 
@@ -206,35 +211,17 @@ MVVM和MVC的区别:
   <div v-if="msg1">Message got outside $nextTick: {{msg1}}</div>
   <div v-if="msg2">Message got inside $nextTick: {{msg2}}</div>
   <div v-if="msg3">Message got outside $nextTick: {{msg3}}</div>
-  <button @click="changeMsg">
-    Change the Message
-  </button>
+  <button @click="changeMsg">Change the Message</button>
 </div>
 ```
 
 ```vue
-new Vue({
-  el: '.app',
-  data: {
-    msg: 'Hello Vue.',
-    msg1: '',
-    msg2: '',
-    msg3: ''
-  },
-  methods: {
-    changeMsg() {
-      this.msg = "Hello world."
-      this.msg1 = this.$refs.msgDiv.innerHTML
-      this.$nextTick(() => {
-        this.msg2 = this.$refs.msgDiv.innerHTML
-      })
-      this.msg3 = this.$refs.msgDiv.innerHTML
-    }
-  }
-})
+new Vue({ el: '.app', data: { msg: 'Hello Vue.', msg1: '', msg2: '', msg3: '' }, methods: { changeMsg() { this.msg =
+"Hello world." this.msg1 = this.$refs.msgDiv.innerHTML this.$nextTick(() => { this.msg2 = this.$refs.msgDiv.innerHTML })
+this.msg3 = this.$refs.msgDiv.innerHTML } } })
 ```
 
-## vue中key属性的作用
+## vue 中 key 属性的作用
 
 一句话 key 的作用主要是为了高效的更新虚拟 DOM
 
@@ -242,67 +229,64 @@ key 的特殊 attribute 主要用在 Vue 的虚拟 DOM 算法，在新旧 nodes 
 
 有相同父元素的子元素必须有独特的 key。重复的 key 会造成渲染错误。
 
-## Vue中key属性用index为什么不行
+## Vue 中 key 属性用 index 为什么不行
 
-这是由于diff算法的机制所决定的，话不多说，直接上反例：
+这是由于 diff 算法的机制所决定的，话不多说，直接上反例：
 
-当我们选中某一个（比如第3个），再添加或删除内容的时候就能发现bug了
+当我们选中某一个（比如第 3 个），再添加或删除内容的时候就能发现 bug 了
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
-</head>
-<body>
+  </head>
+  <body>
     <div id="app">
-        <span>ID:</span><input type="text" v-model="id">
-        <span>Name:</span><input type="text" v-model="name">
-        <button @click="handleClick">添加</button>
+      <span>ID:</span><input type="text" v-model="id" /> <span>Name:</span><input type="text" v-model="name" />
+      <button @click="handleClick">添加</button>
 
-        <div v-for="(item, index) in list" :key="index">
-            <input type="checkbox" />
-            <span @click="handleDelete(index)">{{item.id}} --- {{item.name}}</span>
-        </div>
+      <div v-for="(item, index) in list" :key="index">
+        <input type="checkbox" />
+        <span @click="handleDelete(index)">{{item.id}} --- {{item.name}}</span>
+      </div>
     </div>
     <script>
-        let vm = new Vue({
-            el: '#app',
-            data: {
-                id: '',
-                name: '',
-                list: [
-                    {id: 1, name: '张三'},
-                    {id: 2, name: '李四'},
-                    {id: 3, name: '王五'},
-                    {id: 4, name: '赵六'},
-                ]
-            },
-            methods: {
-                handleClick() {
-                    this.list.unshift({
-                        id: this.id,
-                        name: this.name
-                    })
-                },
-                handleDelete(index) {
-                    this.list.splice(index, 1)
-                }
-            },
-        })
+      let vm = new Vue({
+        el: "#app",
+        data: {
+          id: "",
+          name: "",
+          list: [
+            { id: 1, name: "张三" },
+            { id: 2, name: "李四" },
+            { id: 3, name: "王五" },
+            { id: 4, name: "赵六" },
+          ],
+        },
+        methods: {
+          handleClick() {
+            this.list.unshift({
+              id: this.id,
+              name: this.name,
+            });
+          },
+          handleDelete(index) {
+            this.list.splice(index, 1);
+          },
+        },
+      });
     </script>
-</body>
+  </body>
 </html>
-
 ```
 
-## Vue的路由模式
+## Vue 的路由模式
 
-> hash模式 与 history模式
+> hash 模式 与 history 模式
 
 - hash（即地址栏 URL 中的 # 符号)。
 
@@ -330,13 +314,13 @@ history：可以通过前进 后退控制页面的跳转，刷新是真是的改
 但是在hash模式下是可以刷新的，前端路由修改的是#中的信息，请求时地址是不会变的
 ```
 
-## vue中\$router和\$route的区别
+## vue 中\$router 和\$route 的区别
 
 - this.\$route：当前激活的路由的信息对象。每个对象都是局部的，可以获取当前路由的 path, name, params, query 等属性。
 
 - this.\$router：全局的 router 实例。通过 vue 根实例中注入 router 实例，然后再注入到每个子组件，从而让整个应用都有路由功能。其中包含了很多属性和对象（比如 history 对象），任何页面也都可以调用其 push(), replace(), go() 等方法。
 
-## Vue diff算法详解
+## Vue diff 算法详解
 
 - updateChildren
 
@@ -415,16 +399,16 @@ updateChildren(parentElm, oldCh, newCh) {
 
 ## 移动端适配的方法
 
-> 起因:手机设备屏幕尺寸不一，做移动端的Web页面，需要考虑安卓/IOS的各种尺寸设备上的兼容，针对移动端设备的页面，设计与前端实现怎样做能更好地适配不同屏幕宽度的移动设备；
+> 起因:手机设备屏幕尺寸不一，做移动端的 Web 页面，需要考虑安卓/IOS 的各种尺寸设备上的兼容，针对移动端设备的页面，设计与前端实现怎样做能更好地适配不同屏幕宽度的移动设备；
 
 1. flex 弹性布局
 2. viewport 适配
 
-    ```html
-    <meta name="viewport" content="width=750,initial-scale=0.5">
-    ```
+   ```html
+   <meta name="viewport" content="width=750,initial-scale=0.5" />
+   ```
 
-    initial-scale = 屏幕的宽度 / 设计稿的宽度
+   initial-scale = 屏幕的宽度 / 设计稿的宽度
 
 3. rem 弹性布局
 4. rem + viewport 缩放
@@ -439,7 +423,7 @@ rem 是（根）字体大小相对单位，也就是说跟当前元素的 font-s
 
 ## rem 和 em 的区别
 
-> 一句话概括：em相对于父元素，rem相对于根元素。
+> 一句话概括：em 相对于父元素，rem 相对于根元素。
 
 - em
 
@@ -465,33 +449,33 @@ rem 是（根）字体大小相对单位，也就是说跟当前元素的 font-s
 
 1. 通过 meta 标签禁用网页的缩放。
 
-    ```html
-    <meta name="viewport" content="user-scalable=no">
-    ```
+   ```html
+   <meta name="viewport" content="user-scalable=no" />
+   ```
 
 2. 更改默认的视口宽度
 
-    ```html
-    <meta name="viewport" content="width=device-width">
-    ```
+   ```html
+   <meta name="viewport" content="width=device-width" />
+   ```
 
 3. 调用一些 js 库，比如 FastClick
 
-    > FastClick 是 FT Labs 专门为解决移动端浏览器 300 毫秒点击延迟问题所开发的一个轻量级的库。FastClick 的实现原理是在检测到 touchend 事件的时候，会通过 DOM 自定义事件立即出发模拟一个 click 事件，并把浏览器在 300ms 之后的 click 事件阻止掉。
+   > FastClick 是 FT Labs 专门为解决移动端浏览器 300 毫秒点击延迟问题所开发的一个轻量级的库。FastClick 的实现原理是在检测到 touchend 事件的时候，会通过 DOM 自定义事件立即出发模拟一个 click 事件，并把浏览器在 300ms 之后的 click 事件阻止掉。
 
 ## Vue 和 React 数据驱动的区别
 
-在数据绑定上来说，vue的特色是双向数据绑定，而在react中是单向数据绑定。
+在数据绑定上来说，vue 的特色是双向数据绑定，而在 react 中是单向数据绑定。
 
-vue中实现数据绑定靠的是数据劫持（Object.defineProperty()）+发布-订阅模式
+vue 中实现数据绑定靠的是数据劫持（Object.defineProperty()）+发布-订阅模式
 
-vue中实现双向绑定
+vue 中实现双向绑定
 
 ```html
 <input v-model="msg" />
 ```
 
-react中实现双向绑定
+react 中实现双向绑定
 
 ```html
 <input value={this.state.msg} onChange={() => this.handleInputChange()} />

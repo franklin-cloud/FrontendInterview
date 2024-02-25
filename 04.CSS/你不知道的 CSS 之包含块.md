@@ -1,3 +1,11 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [你不知道的 CSS 之包含块](#%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84-css-%E4%B9%8B%E5%8C%85%E5%90%AB%E5%9D%97)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # 你不知道的 CSS 之包含块
 
 一说到 CSS 盒模型，这是很多小伙伴耳熟能详的知识，甚至有的小伙伴还能说出 border-box 和 content-box 这两种盒模型的区别。

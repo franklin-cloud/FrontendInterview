@@ -1,42 +1,51 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
+
 - [React](#react)
-  - [什么是 React](#什么是-react)
-  - [react 生命周期(><16.3)](#react-生命周期163)
-  - [react 中发起网络请求应该在哪个生命周期中进行？为什么？](#react-中发起网络请求应该在哪个生命周期中进行为什么)
-  - [state 和 props 触发更新的生命周期分别？](#state-和-props-触发更新的生命周期分别)
-  - [虚拟 dom、更新原理](#虚拟-dom更新原理)
-  - [虚拟 DOM 是怎么对比的、diff 原理](#虚拟-dom-是怎么对比的diff-原理)
-  - [什么是 jsx、渲染原理](#什么是-jsx渲染原理)
-  - [props 和 state](#props-和-state)
-  - [props 为什么是只读的](#props-为什么是只读的)
-  - [react 中怎么检验 props？验证 props 的目的是什么](#react-中怎么检验-props验证-props-的目的是什么)
-  - [react 单向数据流是什么](#react-单向数据流是什么)
-  - [react 组件之间的通信](#react-组件之间的通信)
-  - [setstate 是同步还是异步、setstate 之后的流程、setState 和 replaceState 的区别](#setstate-是同步还是异步setstate-之后的流程setstate-和-replacestate-的区别)
-  - [如何理解 hooks、为什么要用 hooks，解决了哪些问题](#如何理解-hooks为什么要用-hooks解决了哪些问题)
-  - [useEffect 与 useLayoutEffect 的区别](#useeffect-与-uselayouteffect-的区别)
-  - [fiber 架构的理解](#fiber-架构的理解)
-  - [react 性能优化的手段，避免不必要的 render](#react-性能优化的手段避免不必要的-render)
-  - [react 组件中怎么做事件代理？它的原理是什么？SyntheticEvent 层（合成事件层)](#react-组件中怎么做事件代理它的原理是什么syntheticevent-层合成事件层)
-  - [如何解决 react 层级嵌套过深的问题](#如何解决-react-层级嵌套过深的问题)
-  - [react 框架是 mvvm 框架还是 mvc 框架](#react-框架是-mvvm-框架还是-mvc-框架)
-  - [React.Component 和 React.PureComponent 的区别](#reactcomponent-和-reactpurecomponent-的区别)
-  - [类组件与函数组件有什么异同？](#类组件与函数组件有什么异同)
-  - [有受控组件和不受控组件的理解](#有受控组件和不受控组件的理解)
-  - [有状态组件和无状态组件的理解、使用场景](#有状态组件和无状态组件的理解使用场景)
-  - [对 React 中 Fragment 的理解，它的使用场景是什么？](#对-react-中-fragment-的理解它的使用场景是什么)
-  - [对 React 的插槽(Portals)的理解，如何使用，有哪些使用场景](#对-react-的插槽portals的理解如何使用有哪些使用场景)
-  - [React 声明组件有哪几种方法，有什么不同？](#react-声明组件有哪几种方法有什么不同)
-  - [react 高阶组件、纯组件、和普通组件有什么区别，适用什么场景](#react-高阶组件纯组件和普通组件有什么区别适用什么场景)
-  - [refs、react 中可以在 render 访问 refs 吗?](#refsreact-中可以在-render-访问-refs-吗)
-  - [react 路由的实现原理](#react-路由的实现原理)
-  - [如何配置 React-Router 实现路由切换](#如何配置-react-router-实现路由切换)
-  - [React 中遍历的方法有哪些？](#react-中遍历的方法有哪些)
-  - [Vue 和 React 数据驱动的区别](#vue-和-react-数据驱动的区别)
-  - [react 循环列表为什么要使用 key](#react-循环列表为什么要使用-key)
+  - [什么是 React](#%E4%BB%80%E4%B9%88%E6%98%AF-react)
+  - [react 生命周期(><16.3)](#react-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F163)
+  - [react 中发起网络请求应该在哪个生命周期中进行？为什么？](#react-%E4%B8%AD%E5%8F%91%E8%B5%B7%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E5%BA%94%E8%AF%A5%E5%9C%A8%E5%93%AA%E4%B8%AA%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E4%B8%AD%E8%BF%9B%E8%A1%8C%E4%B8%BA%E4%BB%80%E4%B9%88)
+  - [state 和 props 触发更新的生命周期分别？](#state-%E5%92%8C-props-%E8%A7%A6%E5%8F%91%E6%9B%B4%E6%96%B0%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%88%86%E5%88%AB)
+  - [虚拟 dom、更新原理](#%E8%99%9A%E6%8B%9F-dom%E6%9B%B4%E6%96%B0%E5%8E%9F%E7%90%86)
+  - [虚拟 DOM 是怎么对比的、diff 原理](#%E8%99%9A%E6%8B%9F-dom-%E6%98%AF%E6%80%8E%E4%B9%88%E5%AF%B9%E6%AF%94%E7%9A%84diff-%E5%8E%9F%E7%90%86)
+  - [什么是 jsx、渲染原理](#%E4%BB%80%E4%B9%88%E6%98%AF-jsx%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86)
+  - [props 和 state](#props-%E5%92%8C-state)
+  - [props 为什么是只读的](#props-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%AA%E8%AF%BB%E7%9A%84)
+  - [react 中怎么检验 props？验证 props 的目的是什么](#react-%E4%B8%AD%E6%80%8E%E4%B9%88%E6%A3%80%E9%AA%8C-props%E9%AA%8C%E8%AF%81-props-%E7%9A%84%E7%9B%AE%E7%9A%84%E6%98%AF%E4%BB%80%E4%B9%88)
+  - [react 单向数据流是什么](#react-%E5%8D%95%E5%90%91%E6%95%B0%E6%8D%AE%E6%B5%81%E6%98%AF%E4%BB%80%E4%B9%88)
+  - [react 组件之间的通信](#react-%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1)
+  - [setstate 是同步还是异步、setstate 之后的流程、setState 和 replaceState 的区别](#setstate-%E6%98%AF%E5%90%8C%E6%AD%A5%E8%BF%98%E6%98%AF%E5%BC%82%E6%AD%A5setstate-%E4%B9%8B%E5%90%8E%E7%9A%84%E6%B5%81%E7%A8%8Bsetstate-%E5%92%8C-replacestate-%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [如何理解 hooks、为什么要用 hooks，解决了哪些问题](#%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3-hooks%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8-hooks%E8%A7%A3%E5%86%B3%E4%BA%86%E5%93%AA%E4%BA%9B%E9%97%AE%E9%A2%98)
+  - [hooks 使用限制是什么?](#hooks-%E4%BD%BF%E7%94%A8%E9%99%90%E5%88%B6%E6%98%AF%E4%BB%80%E4%B9%88)
+  - [React Hooks 和生命周期的关系？](#react-hooks-%E5%92%8C%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%9A%84%E5%85%B3%E7%B3%BB)
+  - [useEffect 与 useLayoutEffect 的区别](#useeffect-%E4%B8%8E-uselayouteffect-%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [fiber 架构的理解](#fiber-%E6%9E%B6%E6%9E%84%E7%9A%84%E7%90%86%E8%A7%A3)
+  - [react 性能优化的手段，避免不必要的 render](#react-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%9A%84%E6%89%8B%E6%AE%B5%E9%81%BF%E5%85%8D%E4%B8%8D%E5%BF%85%E8%A6%81%E7%9A%84-render)
+  - [react 组件中怎么做事件代理？它的原理是什么？SyntheticEvent 层（合成事件层)](#react-%E7%BB%84%E4%BB%B6%E4%B8%AD%E6%80%8E%E4%B9%88%E5%81%9A%E4%BA%8B%E4%BB%B6%E4%BB%A3%E7%90%86%E5%AE%83%E7%9A%84%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88syntheticevent-%E5%B1%82%E5%90%88%E6%88%90%E4%BA%8B%E4%BB%B6%E5%B1%82)
+  - [如何解决 react 层级嵌套过深的问题](#%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3-react-%E5%B1%82%E7%BA%A7%E5%B5%8C%E5%A5%97%E8%BF%87%E6%B7%B1%E7%9A%84%E9%97%AE%E9%A2%98)
+  - [react 框架是 mvvm 框架还是 mvc 框架](#react-%E6%A1%86%E6%9E%B6%E6%98%AF-mvvm-%E6%A1%86%E6%9E%B6%E8%BF%98%E6%98%AF-mvc-%E6%A1%86%E6%9E%B6)
+  - [React.Component 和 React.PureComponent 的区别](#reactcomponent-%E5%92%8C-reactpurecomponent-%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [类组件与函数组件有什么异同？](#%E7%B1%BB%E7%BB%84%E4%BB%B6%E4%B8%8E%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E6%9C%89%E4%BB%80%E4%B9%88%E5%BC%82%E5%90%8C)
+  - [有受控组件和不受控组件的理解](#%E6%9C%89%E5%8F%97%E6%8E%A7%E7%BB%84%E4%BB%B6%E5%92%8C%E4%B8%8D%E5%8F%97%E6%8E%A7%E7%BB%84%E4%BB%B6%E7%9A%84%E7%90%86%E8%A7%A3)
+  - [有状态组件和无状态组件的理解、使用场景](#%E6%9C%89%E7%8A%B6%E6%80%81%E7%BB%84%E4%BB%B6%E5%92%8C%E6%97%A0%E7%8A%B6%E6%80%81%E7%BB%84%E4%BB%B6%E7%9A%84%E7%90%86%E8%A7%A3%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF)
+  - [对 React 中 Fragment 的理解，它的使用场景是什么？](#%E5%AF%B9-react-%E4%B8%AD-fragment-%E7%9A%84%E7%90%86%E8%A7%A3%E5%AE%83%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%E6%98%AF%E4%BB%80%E4%B9%88)
+  - [对 React 的插槽(Portals)的理解，如何使用，有哪些使用场景](#%E5%AF%B9-react-%E7%9A%84%E6%8F%92%E6%A7%BDportals%E7%9A%84%E7%90%86%E8%A7%A3%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E6%9C%89%E5%93%AA%E4%BA%9B%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF)
+  - [React 声明组件有哪几种方法，有什么不同？](#react-%E5%A3%B0%E6%98%8E%E7%BB%84%E4%BB%B6%E6%9C%89%E5%93%AA%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C)
+  - [react 高阶组件、纯组件、和普通组件有什么区别，适用什么场景](#react-%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6%E7%BA%AF%E7%BB%84%E4%BB%B6%E5%92%8C%E6%99%AE%E9%80%9A%E7%BB%84%E4%BB%B6%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E9%80%82%E7%94%A8%E4%BB%80%E4%B9%88%E5%9C%BA%E6%99%AF)
+  - [refs、react 中可以在 render 访问 refs 吗?](#refsreact-%E4%B8%AD%E5%8F%AF%E4%BB%A5%E5%9C%A8-render-%E8%AE%BF%E9%97%AE-refs-%E5%90%97)
+  - [react 路由的实现原理](#react-%E8%B7%AF%E7%94%B1%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86)
+  - [如何配置 React-Router 实现路由切换](#%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE-react-router-%E5%AE%9E%E7%8E%B0%E8%B7%AF%E7%94%B1%E5%88%87%E6%8D%A2)
+  - [React 中遍历的方法有哪些？](#react-%E4%B8%AD%E9%81%8D%E5%8E%86%E7%9A%84%E6%96%B9%E6%B3%95%E6%9C%89%E5%93%AA%E4%BA%9B)
+  - [Vue 和 React 数据驱动的区别](#vue-%E5%92%8C-react-%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [react 循环列表为什么要使用 key](#react-%E5%BE%AA%E7%8E%AF%E5%88%97%E8%A1%A8%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8-key)
   - [hooks APi](#hooks-api)
-  - [react 与 vue 区别](#react-与-vue-区别)
-    - [相同点](#相同点)
-    - [不同点](#不同点)
+  - [react 与 vue 区别](#react-%E4%B8%8E-vue-%E5%8C%BA%E5%88%AB)
+    - [相同点](#%E7%9B%B8%E5%90%8C%E7%82%B9)
+    - [不同点](#%E4%B8%8D%E5%90%8C%E7%82%B9)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # React
 
@@ -272,7 +281,7 @@ react 为我们提供了 PropsTypes 以供验证使用，当传入的 props 传�
 如果项目汇中使用了 TypeScript，那么就可以不用 PropTypes 来校验，而使用 TypeScript 定义接口来校验 props。
 
 ```js
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 class Greeting extends React.Component {
   render() {
     return <h1>Hello, {this.props.name}</h1>;
@@ -379,7 +388,7 @@ Greeting.propTypes = { name: PropTypes.string };
   ReactComponent.prototype.setState = function (partialState, callback) {
     this.updater.enqueueSetState(this, partialState);
     if (callback) {
-      this.updater.enqueueCallback(this, callback, 'setState');
+      this.updater.enqueueCallback(this, callback, "setState");
     }
   };
   ```
@@ -454,8 +463,8 @@ replaceState(object nextState[, function callback])
 setstate 修改其中的部分状态，只是覆盖，不会减少原来的状态；replaceState 是完全替换原来的状态，相当于赋值，将原来的 state 替换为另一个对象，如果新状态属性减少，那么 state 中就没有这个状态了。
 
 ```js
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 class App extends React.Component {
   state = {
     count: 0,
@@ -464,25 +473,25 @@ class App extends React.Component {
   componentDidMount() {
     // 生命周期中调用
     this.setState({ count: this.state.count + 1 });
-    console.log('lifecycle: ' + this.state.count); // 0
+    console.log("lifecycle: " + this.state.count); // 0
     setTimeout(() => {
       // setTimeout中调用
       this.setState({ count: this.state.count + 1 });
-      console.log('setTimeout: ' + this.state.count); // 2
+      console.log("setTimeout: " + this.state.count); // 2
     }, 0);
-    document.getElementById('div2').addEventListener('click', this.increment2);
+    document.getElementById("div2").addEventListener("click", this.increment2);
   }
 
   increment = () => {
     // 合成事件中调用
     this.setState({ count: this.state.count + 1 });
-    console.log('react event: ' + this.state.count); //
+    console.log("react event: " + this.state.count); //
   };
 
   increment2 = () => {
     // 原生事件中调用
     this.setState({ count: this.state.count + 1 });
-    console.log('dom event: ' + this.state.count);
+    console.log("dom event: " + this.state.count);
   };
 
   render() {
@@ -666,32 +675,32 @@ https://juejin.cn/post/7042197672723218463 https://juejin.cn/post/68449035027291
 - 合成事件和原生事件的执行顺序：
 
 ```js
-import './styles.css';
-import React from 'react';
+import "./styles.css";
+import React from "react";
 
 export default function App() {
-  const h1Click = React.useRef(e => {
-    console.log('h1=> click');
+  const h1Click = React.useRef((e) => {
+    console.log("h1=> click");
   });
 
   const documentClick = React.useRef(() => {
-    console.log('document=> click');
+    console.log("document=> click");
   });
 
   const rootClick = React.useRef(() => {
-    console.log('#root=> click');
+    console.log("#root=> click");
   });
 
   React.useEffect(() => {
-    const h1Ref = document.querySelector('h1');
-    const rootRef = document.getElementById('root');
-    document.addEventListener('click', documentClick.current);
-    rootRef.addEventListener('click', rootClick.current);
-    h1Ref.addEventListener('click', h1Click.current);
+    const h1Ref = document.querySelector("h1");
+    const rootRef = document.getElementById("root");
+    document.addEventListener("click", documentClick.current);
+    rootRef.addEventListener("click", rootClick.current);
+    h1Ref.addEventListener("click", h1Click.current);
   }, []);
 
-  const onReactClick = e => {
-    console.log('react h1=> click');
+  const onReactClick = (e) => {
+    console.log("react h1=> click");
   };
 
   return (

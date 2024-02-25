@@ -1,4 +1,7 @@
-# 2020 年 Lee 的面试记录
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
 
 - [2020 年 Lee 的面试记录](#2020-年-lee-的面试记录)
   - [2020 年春招](#2020-年春招)
@@ -80,6 +83,10 @@
     - [快手(上海) 2020/9/6 投递](#快手上海-202096-投递)
       - [可惜已结束](#可惜已结束)
 
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+# 2020 年 Lee 的面试记录
+
 ## 2020 年春招
 
 > 记录一下，这是 Lee 的 2020 年春招实习的面试复盘记录，双非渣硕，屡屡碰壁 😭😭😭 太心酸了
@@ -153,17 +160,17 @@ function find(arr) {
         map[name] = 1;
       }
     } else {
-      return 'error0.0001';
+      return "error0.0001";
     }
   }
   let a = Object.entries(map).sort((a, b) => b[1] - a[1]);
-  let tmp = a.filter(e => e[1] === a[0][1]);
+  let tmp = a.filter((e) => e[1] === a[0][1]);
   console.log(tmp);
   tmp.sort((a, b) => a[0].charCodeAt() - b[0].charCodeAt());
   console.log(tmp);
   return tmp[0][0];
 }
-console.log(find(['Tom', 'Lily', 'Tom', 'Lucy', 'Lucy', 'Jack']));
+console.log(find(["Tom", "Lily", "Tom", "Lucy", "Lucy", "Jack"]));
 ```
 
 - 第二题
@@ -181,18 +188,18 @@ read read[addr=0x17,mask=0xff,val=0x7],read_his[addr=0xff,mask=0xff,val=0x1],rea
 
 ```js
 function find(str) {
-  let s = str.split(' ')[0];
+  let s = str.split(" ")[0];
   // 注意要写动态的正则的时候，[]是正则的匹配方法，所以如果想要匹配'[]'这个字符的话，需要两个斜杠\\来转义
-  let reg = new RegExp(s + '\\[(addr=0[xX][0-9a-zA-Z]+),mask=(0[xX][0-9a-zA-Z]+),val=(0[xX][0-9a-zA-Z]+)\\]', 'g'); // 全局匹配不能少
+  let reg = new RegExp(s + "\\[(addr=0[xX][0-9a-zA-Z]+),mask=(0[xX][0-9a-zA-Z]+),val=(0[xX][0-9a-zA-Z]+)\\]", "g"); // 全局匹配不能少
   let res = str.match(reg);
-  if (!res.length) return 'FAIL';
-  res.forEach(s => {
-    console.log(s.match(/0[xX][0-9a-zA-Z]+/g).join(' '));
+  if (!res.length) return "FAIL";
+  res.forEach((s) => {
+    console.log(s.match(/0[xX][0-9a-zA-Z]+/g).join(" "));
   });
 }
 
 let str =
-  'read read[addr=0x17,mask=0xff,val=0x7],read_his[addr=0xff,mask=0xff,val=0x1],read[addr=0xf0,mask=0xff,val=0x80]';
+  "read read[addr=0x17,mask=0xff,val=0x7],read_his[addr=0xff,mask=0xff,val=0x1],read[addr=0xf0,mask=0xff,val=0x80]";
 find(str);
 ```
 
@@ -679,13 +686,13 @@ find(str);
 
    ```js
    var arr = [
-     { id: 2, name: 'test', score: 50 },
-     { id: 3, name: 'test', score: 60 },
-     { id: 5, name: 'test1', score: 70 },
+     { id: 2, name: "test", score: 50 },
+     { id: 3, name: "test", score: 60 },
+     { id: 5, name: "test1", score: 70 },
    ];
 
    function solution(arr) {
-     return arr.sort((a, b) => a['id'] - b['id']);
+     return arr.sort((a, b) => a["id"] - b["id"]);
    }
    ```
 
@@ -693,10 +700,10 @@ find(str);
 
    ```js
    var arr = [
-     { id: 2, name: 'test', age: 15, score: 60 },
-     { id: 2, name: 'test', age: 25, score: 60 },
-     { id: 3, name: 'test1', age: 25, score: 60 },
-     { id: 5, name: 'test2', age: 35, score: 60 },
+     { id: 2, name: "test", age: 15, score: 60 },
+     { id: 2, name: "test", age: 25, score: 60 },
+     { id: 3, name: "test1", age: 25, score: 60 },
+     { id: 5, name: "test2", age: 35, score: 60 },
    ];
 
    function solution(arr, attr) {
@@ -704,14 +711,14 @@ find(str);
      for (let i = 0; i < arr.length; i++) {
        var key = arr[i][attr];
        if (!obj[key]) {
-         obj[key] = arr[i]['score'];
+         obj[key] = arr[i]["score"];
        } else {
-         obj[key] += arr[i]['score'];
+         obj[key] += arr[i]["score"];
        }
      }
      return obj;
    }
-   console.log(solution(arr, 'name')); // {test: 120, test1: 60, test2: 60}
+   console.log(solution(arr, "name")); // {test: 120, test1: 60, test2: 60}
    ```
 
    - 问题三：函数的第二个参数是个数组，比如
@@ -722,32 +729,32 @@ find(str);
    ```js
    // 此问关键在于确定一个唯一的key
    var arr = [
-     { id: 2, name: 'test', age: 15, score: 60 },
-     { id: 2, name: 'test', age: 25, score: 60 },
-     { id: 3, name: 'test1', age: 25, score: 60 },
-     { id: 5, name: 'test2', age: 35, score: 60 },
+     { id: 2, name: "test", age: 15, score: 60 },
+     { id: 2, name: "test", age: 25, score: 60 },
+     { id: 3, name: "test1", age: 25, score: 60 },
+     { id: 5, name: "test2", age: 35, score: 60 },
    ];
 
    function solution(arr, attr) {
      var obj = {};
-     var str = attr.join('_'); // 2_test
+     var str = attr.join("_"); // 2_test
 
      for (let i = 0; i < arr.length; i++) {
        var curr = arr[i];
        var a = [];
-       attr.forEach(ele => {
+       attr.forEach((ele) => {
          a.push(curr[ele]);
        });
-       var key = a.join('_');
+       var key = a.join("_");
        if (obj[key]) {
-         obj[key] += curr['score'];
+         obj[key] += curr["score"];
        } else {
-         obj[key] = curr['score'];
+         obj[key] = curr["score"];
        }
      }
      return obj;
    }
-   console.log(solution(arr, ['id', 'name'])); // {2_test: 120, 3_test1: 60, 5_test2: 60}
+   console.log(solution(arr, ["id", "name"])); // {2_test: 120, 3_test1: 60, 5_test2: 60}
    ```
 
 7. 浏览器缓存机制
@@ -1015,42 +1022,42 @@ find(str);
 11. 一段代码确定输出
 
     ```js
-    console.log('1');
+    console.log("1");
     async function fun1() {
-      console.log('2');
+      console.log("2");
       await fun2();
-      console.log('3');
+      console.log("3");
     }
     async function fun2() {
-      console.log('4');
+      console.log("4");
     }
 
     process.nextTick(function () {
-      console.log('5');
+      console.log("5");
     });
 
     setTimeout(function () {
-      console.log('6');
+      console.log("6");
       process.nextTick(function () {
-        console.log('7');
+        console.log("7");
       });
       new Promise(function (resolve) {
-        console.log('8');
+        console.log("8");
         resolve();
       }).then(function () {
-        console.log('9');
+        console.log("9");
       });
     });
 
     fun1();
 
     new Promise(function (resolve) {
-      console.log('10');
+      console.log("10");
       resolve();
     }).then(function () {
-      console.log('11');
+      console.log("11");
     });
-    console.log('12');
+    console.log("12");
 
     // 答案是我的回答
     // 1
@@ -1216,7 +1223,7 @@ find(str);
    ```
 
    ```js
-   let deadline = new Date('2020/11/11 00:00:00').getTime();
+   let deadline = new Date("2020/11/11 00:00:00").getTime();
    window.setInterval(getDeadline, 1000);
 
    function getDeadline() {
@@ -1227,10 +1234,10 @@ find(str);
      let min = parseInt((time - day * 24 * 3600 * 1000 - hour * 3600 * 1000) / 1000 / 60);
      let sec = parseInt((time - day * 24 * 3600 * 1000 - hour * 3600 * 1000 - min * 60 * 1000) / 1000);
      // 都显示成两位数 1 -> 01
-     day = ('00' + day).slice(-2);
-     hour = ('00' + hour).slice(-2);
-     min = ('00' + min).slice(-2);
-     sec = ('00' + sec).slice(-2);
+     day = ("00" + day).slice(-2);
+     hour = ("00" + hour).slice(-2);
+     min = ("00" + min).slice(-2);
+     sec = ("00" + sec).slice(-2);
      console.log(`剩余${day}天${hour}时${min}分${sec}秒`);
    }
    ```
@@ -1318,27 +1325,27 @@ find(str);
 
    ```js
    function findKthBit(n, k) {
-     let s = '0';
-     let reverse = s => {
+     let s = "0";
+     let reverse = (s) => {
        return s
-         .split('')
-         .map(e => 1 - e)
+         .split("")
+         .map((e) => 1 - e)
          .reverse()
-         .join('');
+         .join("");
      };
      for (let i = 1; i < n; i++) {
-       s = s + '1' + reverse(s);
+       s = s + "1" + reverse(s);
      }
      return s[k - 1];
    }
 
    // 优化一下，讲一下思路，递归，比如二分查找知道吗
    var findKthBit = function (n, k) {
-     if (n === 1) return '0';
+     if (n === 1) return "0";
      let mid = 1 << (n - 1); // Math.pow(2, n-1)
-     if (k === mid) return '1';
+     if (k === mid) return "1";
      else if (k < mid) return findKthBit(n - 1, k);
-     else return 1 - findKthBit(n - 1, (1 << n) - k) + ''; // Math.pow(2, n)
+     else return 1 - findKthBit(n - 1, (1 << n) - k) + ""; // Math.pow(2, n)
    };
    ```
 
@@ -1353,7 +1360,7 @@ find(str);
    // 没有什么暴力循环不能解决的事，如果有，那就再暴力点
    function solution(s) {
      let max = 0;
-     let judge = s => {
+     let judge = (s) => {
        let map = {
          a: 0,
          e: 0,
@@ -1421,7 +1428,7 @@ find(str);
    ```js
    function FindNumsAppearOnce(array) {
      let res = [];
-     array.forEach(item => {
+     array.forEach((item) => {
        if (array.indexOf(item) === array.lastIndexOf(item)) {
          res.push(item);
        }
@@ -1575,41 +1582,41 @@ find(str);
     ```js
     Promise.resolve()
       .then(() => {
-        console.log('1');
-        throw 'Error';
+        console.log("1");
+        throw "Error";
       })
       .then(() => {
-        console.log('2');
+        console.log("2");
       })
       .catch(() => {
-        console.log('3');
-        throw 'Error';
+        console.log("3");
+        throw "Error";
       })
       .then(() => {
-        console.log('4');
+        console.log("4");
       })
       .catch(() => {
-        console.log('5');
+        console.log("5");
       })
       .then(() => {
-        console.log('6');
+        console.log("6");
       });
     // 1 3 5 6
     ```
 
     ```js
-    console.log('1');
+    console.log("1");
     setTimeout(() => {
-      console.log('2');
+      console.log("2");
     }, 0);
     Promise.resolve()
       .then(() => {
-        console.log('3');
+        console.log("3");
       })
       .then(() => {
-        console.log('4');
+        console.log("4");
       });
-    console.log('5');
+    console.log("5");
 
     // 1 5 3 4 2
     ```
