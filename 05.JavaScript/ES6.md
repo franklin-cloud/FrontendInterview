@@ -1,7 +1,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [let 和 var 的区别](#let-%E5%92%8C-var-%E7%9A%84%E5%8C%BA%E5%88%AB)
 - [const 对象的属性可以修改吗?](#const-%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B1%9E%E6%80%A7%E5%8F%AF%E4%BB%A5%E4%BF%AE%E6%94%B9%E5%90%97)
 - [箭头函数与普通函数的区别](#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E4%B8%8E%E6%99%AE%E9%80%9A%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%BA%E5%88%AB)
@@ -41,41 +40,52 @@
 
 ## 箭头函数与普通函数的区别
 
-1. 箭头函数是匿名函数，不能作为构造函数，不能使用 new
+1. 箭头函数是匿名函数，不能作为构造函数，那么也没有**原型属性**, 不能使用 new；
+
+   ```
+      const fn = () => {
+        console.log("fn");
+      };
+
+      console.log(fn.name); // fn
+      console.log(fn.prototype); // 原型属性: undefined
+      console.log(fn.__proto__); // 原型对象：f() {[native code]}
+   ```
+
 2. 箭头函数不能绑定 arguments，取而代之用 rest 参数...解决
 
    ```js
-   function A(a) {
+   function fn1(a) {
      console.log(arguments);
    }
-   A(1, 2, 3, 4, 5, 8);
-   // [1, 2, 3, 4, 5, 8, callee: ƒ, Symbol(Symbol.iterator): ƒ]
-   let C = (...c) => {
+
+   const fn2 = (...c) => {
      console.log(c);
    };
-   C(3, 82, 32, 11323);
+
+   fn1(1, 2, 3, 4, 5, 8);
+   // [1, 2, 3, 4, 5, 8, callee: ƒ, Symbol(Symbol.iterator): ƒ]
+
+   fn2(3, 82, 32, 11323);
    // [3, 82, 32, 11323]
    ```
 
-3. 箭头函数没有原型属性
-4. 箭头函数的 this 永远指向其上下文的 this，没有办改变其指向，
-   普通函数的 this 指向调用它的对象
-5. 箭头函数不绑定 this，会捕获其所在的上下文的 this 值，作为自己的 this 值
+3. 箭头函数不绑定`this`，会捕获其所在的上下文的`this`值，作为自己的`this`值, 没有办改变其指向; 普通函数的`this`指向调用它的对象;
 
 ## ES6 中箭头函数 VS 普通函数的 this 指向
 
 **普通函数中 this**
 
-1.  总是指向它的直接调用者，如 obj.fn，fn 里的最外层 this 就是指向 obj
+1.  总是指向它的直接调用者，如 obj.fn，fn 里的最外层 this 就是指向 obj；
 2.  默认情况下，没有直接调用者，fn()，匿名函数自调 this 指向 window
 3.  严格模式下（设置了'use strict'），this 为 undefined
 4.  当使用 call，apply，bind（ES5 新增）绑定的，this 指向绑定对象；
-5.  DOM 事件的处理函数中的 this 指向当前的 DOM 元素对象，button.onclick=function(){}、button.addEventListener(“click”,function(){…})
+5.  DOM 事件的处理函数中的 this 指向当前的 DOM 元素对象，`button.onclick=function(){}`、`button.addEventListener(“click”,function(){…})`
 6.  new 一个构造函数，this 指向 new 出来的新对象
 
 **ES6 箭头函数中 this**
 
-默认指向定义它时指向当前箭头函数之外最近的函数作用域 this；
+默认指向: 定义它时指向当前箭头函数之外**最近的函数作用域**；
 即 ES6 箭头函数里 this 的指向就是上下文里对象 this 指向，偶尔没有上下文对象，this 就指向 window
 
 下面使用例子来加深一下印象：
