@@ -9,11 +9,10 @@ Vue 2.0 中使用了异步更新机制，当数据变化时，Vue 不会立即�
 ### 异步更新流程
 
 1. 当数据变化时，触发依赖收集，收集依赖的发布者调用 notify 通知订阅者 watcher 执行 update 函数，执行 queueWatcher。
-2. queueWatcher 将 watcher 放入一个队列中，如果队列中已经存在相同的 watcher，则不会重复添加。
-3. nextTick 函数会根据当前环境选择合适的异步方法，将 flushSchedulerQueue 函数放入异步队列中。
-4. 当异步队列执行时，flushSchedulerQueue 函数会遍历队列中的 watcher，执行 watcher.run 函数，更新视图。
+2. queueWatcher 将 watcher 放入一个队列中，如果队列中已经存在相同的 watcher，则不会重复添加（去重的依据是 watcher.id）。
+3. nextTick 函数会根据当前环境选择合适的异步方法，nextTick 的入参 flushSchedulerQueue 进行排序，得到 flushCallbacks，flushCallbacks 传入异步方法内部遍历执行。
+4. 当异步队列执行时，flushSchedulerQueue 函数内部会遍历队列中的 watcher，执行 watcher.run 函数，更新视图。
 5. 在更新视图时，Vue 会通过 diff 算法计算出需要更新的节点，然后更新视图。更新完成后，Vue 会清空队列，等待下一次数据变化。
-6. 如果数据变化频繁，Vue 会通过防抖动机制，将多次数据变化合并为一次更新。
 
 ### update
 
@@ -38,7 +37,7 @@ update () {
 
 ### queueWatcher
 
-将需要更新的 watcher 存储于调度队列中
+将 watcher 放入一个队列中，如果队列中已经存在相同的 watcher，则不会重复添加（去重的依据是 watcher.id）。
 
 ```javascript
 /**
@@ -78,7 +77,7 @@ export function queueWatcher(watcher: Watcher) {
 
 ### nextTick
 
-保存更新回调到回到队列 callbacks
+flushSchedulerQueue 根据 watcher.id 进行排序，然后保存整个回调 callbacks
 
 ```javascript
 export function nextTick(cb?: Function, ctx?: Object) {
@@ -103,6 +102,65 @@ export function nextTick(cb?: Function, ctx?: Object) {
     return new Promise((resolve) => {
       _resolve = resolve;
     });
+  }
+}
+
+/**
+ * Flush both queues and run the watchers.
+ */
+function flushSchedulerQueue() {
+  currentFlushTimestamp = getNow();
+  flushing = true;
+  let watcher, id;
+
+  // Sort queue before flush.
+  // This ensures that:
+  // 1. Components are updated from parent to child. (because parent is always
+  //    created before the child)
+  // 2. A component's user watchers are run before its render watcher (because
+  //    user watchers are created before the render watcher)
+  // 3. If a component is destroyed during a parent component's watcher run,
+  //    its watchers can be skipped.
+  queue.sort((a, b) => a.id - b.id);
+
+  // do not cache length because more watchers might be pushed
+  // as we run existing watchers
+  for (index = 0; index < queue.length; index++) {
+    watcher = queue[index];
+    if (watcher.before) {
+      watcher.before();
+    }
+    id = watcher.id;
+    has[id] = null;
+    watcher.run();
+    // in dev build, check and stop circular updates.
+    if (process.env.NODE_ENV !== "production" && has[id] != null) {
+      circular[id] = (circular[id] || 0) + 1;
+      if (circular[id] > MAX_UPDATE_COUNT) {
+        warn(
+          "You may have an infinite update loop " +
+            (watcher.user ? `in watcher with expression "${watcher.expression}"` : `in a component render function.`),
+          watcher.vm
+        );
+        break;
+      }
+    }
+  }
+
+  // keep copies of post queues before resetting state
+  const activatedQueue = activatedChildren.slice();
+  const updatedQueue = queue.slice();
+
+  resetSchedulerState();
+
+  // call component updated and activated hooks
+  callActivatedHooks(activatedQueue);
+  callUpdatedHooks(updatedQueue);
+
+  // devtool hook
+  /* istanbul ignore if */
+  if (devtools && config.devtools) {
+    devtools.emit("flush");
   }
 }
 ```
@@ -179,69 +237,6 @@ function flushCallbacks() {
   callbacks.length = 0;
   for (let i = 0; i < copies.length; i++) {
     copies[i]();
-  }
-}
-```
-
-### 开发环境同时是存在同步配置时调用 flushSchedulerQueue
-
-```javascript
-/**
- * Flush both queues and run the watchers.
- */
-function flushSchedulerQueue() {
-  currentFlushTimestamp = getNow();
-  flushing = true;
-  let watcher, id;
-
-  // Sort queue before flush.
-  // This ensures that:
-  // 1. Components are updated from parent to child. (because parent is always
-  //    created before the child)
-  // 2. A component's user watchers are run before its render watcher (because
-  //    user watchers are created before the render watcher)
-  // 3. If a component is destroyed during a parent component's watcher run,
-  //    its watchers can be skipped.
-  queue.sort((a, b) => a.id - b.id);
-
-  // do not cache length because more watchers might be pushed
-  // as we run existing watchers
-  for (index = 0; index < queue.length; index++) {
-    watcher = queue[index];
-    if (watcher.before) {
-      watcher.before();
-    }
-    id = watcher.id;
-    has[id] = null;
-    watcher.run();
-    // in dev build, check and stop circular updates.
-    if (process.env.NODE_ENV !== "production" && has[id] != null) {
-      circular[id] = (circular[id] || 0) + 1;
-      if (circular[id] > MAX_UPDATE_COUNT) {
-        warn(
-          "You may have an infinite update loop " +
-            (watcher.user ? `in watcher with expression "${watcher.expression}"` : `in a component render function.`),
-          watcher.vm
-        );
-        break;
-      }
-    }
-  }
-
-  // keep copies of post queues before resetting state
-  const activatedQueue = activatedChildren.slice();
-  const updatedQueue = queue.slice();
-
-  resetSchedulerState();
-
-  // call component updated and activated hooks
-  callActivatedHooks(activatedQueue);
-  callUpdatedHooks(updatedQueue);
-
-  // devtool hook
-  /* istanbul ignore if */
-  if (devtools && config.devtools) {
-    devtools.emit("flush");
   }
 }
 ```

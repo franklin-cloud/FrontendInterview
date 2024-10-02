@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>异步更新</title>
+  </head>
+  <body>
+    <div>
+      <p id="msg"></p>
+      <button id="btn">CLICK</button>
+    </div>
+
+    <script>
+      const msg = document.querySelector("#msg");
+      const btn = document.querySelector("#btn");
+
+      // 依赖收集
+      const effectSep = new Set();
+
+      // 当前正在执行的effect
+      let activeEffect;
+      // 定义effect函数，用于收集依赖
+      function effect(fn) {
+        activeEffect = fn; // 保存当前effect
+        fn(); // 执行fn
+        activeEffect = null; // 清空当前effect
+      }
+
+      // 任务队列，类似于vue中的queueWatcher(使用id来防止重复添加任务), 我们使用Set防止重复添加任务
+      const tashQueue = new Set();
+      // 异步执行所有的任务
+      const runTask = (fn) => {
+        Promise.resolve().then(() => {
+          tashQueue.forEach((task) => task());
+          tashQueue.clear();
+        });
+      };
+      // 响应式对象count
+      const count = {
+        _value: 0,
+        get value() {
+          activeEffect && effectSep.add(activeEffect);
+          return this._value;
+        },
+        set value(newValue) {
+          this._value = newValue;
+          // 1.同步更新，响应式变量频繁变更会导致频繁更新，性能问题,
+          // effectSep.forEach((effect) => effect());
+
+          // 2.异步更新，将更新任务放入任务队列中，等待同步任务执行完毕后，再执行更新任务
+          effectSep.forEach((effect) => tashQueue.add(effect));
+          console.log(tashQueue);
+          runTask();
+        },
+      };
+
+      // 使用effect 实现响应式，相当于模板中使用响应式变量
+      effect(() => {
+        console.log("effect"); // 同步更新：按钮每次点击会导致这里触发两次
+        msg.innerHTML = count.value;
+      });
+
+      function nextTick() {
+        Promise.resolve().then(() => {
+          console.log(count.value);
+        });
+      }
+
+      btn.addEventListener("click", () => {
+        count.value++;
+        count.value++;
+        nextTick();
+      });
+    </script>
+  </body>
+</html>
