@@ -1,26 +1,21 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
-
-- [webpack](#webpack)
-  - [什么是 webpack](#什么是-webpack)
-  - [webpack 的作用是什么](#webpack-的作用是什么)
-  - [webpack 核心模块](#webpack-核心模块)
-  - [webpack 常用的 loader? 你用过哪些 loader](#webpack-常用的-loader-你用过哪些-loader)
-  - [webpack 常用的 plugin? 你用过哪些 plugin](#webpack-常用的-plugin-你用过哪些-plugin)
-  - [Loader 和 Plugin 的区别？](#loader-和-plugin-的区别)
-  - [webpack 打包构建流程](#webpack-打包构建流程)
-  - [Webpack 的热更新原理](#webpack-的热更新原理)
-  - [如何对 bundle 体积进行监控和分析？](#如何对-bundle-体积进行监控和分析)
-  - [Babel 原理？](#babel-原理)
-  - [source map 是什么？生产环境怎么用？](#source-map-是什么生产环境怎么用)
-  - [为什么要代码分割，本质是什么？](#为什么要代码分割本质是什么)
-  - [webpack 打包优化方案](#webpack-打包优化方案)
+- [什么是 webpack](#%E4%BB%80%E4%B9%88%E6%98%AF-webpack)
+- [webpack 的作用是什么](#webpack-%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E4%BB%80%E4%B9%88)
+- [webpack 核心模块](#webpack-%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97)
+- [webpack 常用的 loader? 你用过哪些 loader](#webpack-%E5%B8%B8%E7%94%A8%E7%9A%84-loader-%E4%BD%A0%E7%94%A8%E8%BF%87%E5%93%AA%E4%BA%9B-loader)
+- [webpack 常用的 plugin? 你用过哪些 plugin](#webpack-%E5%B8%B8%E7%94%A8%E7%9A%84-plugin-%E4%BD%A0%E7%94%A8%E8%BF%87%E5%93%AA%E4%BA%9B-plugin)
+- [Loader 和 Plugin 的区别？](#loader-%E5%92%8C-plugin-%E7%9A%84%E5%8C%BA%E5%88%AB)
+- [webpack 打包构建流程](#webpack-%E6%89%93%E5%8C%85%E6%9E%84%E5%BB%BA%E6%B5%81%E7%A8%8B)
+- [Webpack 的热更新原理](#webpack-%E7%9A%84%E7%83%AD%E6%9B%B4%E6%96%B0%E5%8E%9F%E7%90%86)
+- [如何对 bundle 体积进行监控和分析？](#%E5%A6%82%E4%BD%95%E5%AF%B9-bundle-%E4%BD%93%E7%A7%AF%E8%BF%9B%E8%A1%8C%E7%9B%91%E6%8E%A7%E5%92%8C%E5%88%86%E6%9E%90)
+- [Babel 原理？](#babel-%E5%8E%9F%E7%90%86)
+- [source map 是什么？生产环境怎么用？](#source-map-%E6%98%AF%E4%BB%80%E4%B9%88%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E6%80%8E%E4%B9%88%E7%94%A8)
+- [为什么要代码分割，本质是什么？](#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BB%A3%E7%A0%81%E5%88%86%E5%89%B2%E6%9C%AC%E8%B4%A8%E6%98%AF%E4%BB%80%E4%B9%88)
+- [webpack 打包优化方案](#webpack-%E6%89%93%E5%8C%85%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-# webpack
 
 ```txt
 https://juejin.cn/post/6844904094281236487

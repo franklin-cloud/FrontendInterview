@@ -1,8 +1,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
-
 - [React](#react)
   - [什么是 React](#%E4%BB%80%E4%B9%88%E6%98%AF-react)
   - [react 生命周期(><16.3)](#react-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F163)

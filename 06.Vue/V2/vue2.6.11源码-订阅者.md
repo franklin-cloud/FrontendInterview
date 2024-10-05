@@ -1,3 +1,12 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [computed 与 watcher 的区别](#computed-%E4%B8%8E-watcher-%E7%9A%84%E5%8C%BA%E5%88%AB)
+- [Watcher 订阅者](#watcher-%E8%AE%A2%E9%98%85%E8%80%85)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ### computed 与 watcher 的区别
 
 首先 computed 与 watcher 都是 Watcher 的实例；

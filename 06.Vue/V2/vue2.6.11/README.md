@@ -1,3 +1,29 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Supporting Vue.js](#supporting-vuejs)
+    - [What's the difference between Patreon and OpenCollective?](#whats-the-difference-between-patreon-and-opencollective)
+  - [Special Sponsors](#special-sponsors)
+  - [Platinum Sponsors](#platinum-sponsors)
+  - [Platinum Sponsors (China)](#platinum-sponsors-china)
+  - [Gold Sponsors](#gold-sponsors)
+  - [Sponsors via Open Collective](#sponsors-via-open-collective)
+    - [Platinum](#platinum)
+    - [Gold](#gold)
+- [Introduction](#introduction)
+    - [Browser Compatibility](#browser-compatibility)
+- [Ecosystem](#ecosystem)
+- [Documentation](#documentation)
+- [Questions](#questions)
+- [Issues](#issues)
+- [Changelog](#changelog)
+- [Stay In Touch](#stay-in-touch)
+- [Contribution](#contribution)
+- [License](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 <p align="center"><a href="https://vuejs.org" target="_blank" rel="noopener noreferrer"><img width="100" src="https://vuejs.org/images/logo.png" alt="Vue logo"></a></p>
 
 <p align="center">

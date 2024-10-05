@@ -1,10 +1,12 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+
 - [let 和 var 的区别](#let-%E5%92%8C-var-%E7%9A%84%E5%8C%BA%E5%88%AB)
 - [const 对象的属性可以修改吗?](#const-%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B1%9E%E6%80%A7%E5%8F%AF%E4%BB%A5%E4%BF%AE%E6%94%B9%E5%90%97)
 - [箭头函数与普通函数的区别](#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E4%B8%8E%E6%99%AE%E9%80%9A%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%BA%E5%88%AB)
 - [ES6 中箭头函数 VS 普通函数的 this 指向](#es6-%E4%B8%AD%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0-vs-%E6%99%AE%E9%80%9A%E5%87%BD%E6%95%B0%E7%9A%84-this-%E6%8C%87%E5%90%91)
+- [es5构造函数实现class](#es5%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%AE%9E%E7%8E%B0class)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -144,3 +146,55 @@ const obj = {
 console.log(obj.diameter()); // 20
 console.log(obj.perimeter()); // NaN
 ```
+
+## es5构造函数实现class
+class 特点
+- **class必须使用new执行，但是构造函数没有new也可以执行**;
+- **类的属性和方法除非显式定义在其本身（定义在 this 对象上）否则都是定义在原型上**；
+- **类的方法不可枚举**；
+- static 静态方法: 不会被实例继承，而是直接通过类来调用，如果静态方法包含 this 关键字，这个 this 指的是类，而不是实例；
+- static 静态方法：父类静态方法可以被子类继承（extends）;
+- #前缀私有属性与私有方法, 仅在类的内部可用；
+
+
+```javascript
+class Person1 {
+ constructor(name) {
+    this.name = name;
+    console.log(new.target);
+  }
+  getName() {
+    console.log(this.name);
+  }
+}
+class Person2 extends Person1 {
+  constructor(name, age) {
+    super(name);
+    this.age = age;
+  }
+}
+const p1 = new Person1("Franklin"); // 会完整打印Person1
+p1.getName(); //Franklin
+const p2 = new Person2("Tom", 26); // 会完整打印Person2
+p2.getName(); // Tom
+console.log(p2.name); // Tom
+console.log(p2.age); // 26
+```
+es5构造函数实现class
+```javascript
+function Person3(name) {
+ if (!(this instanceof Person3)) {
+    throw Error("这是一个构造函数，请使用new关键字进行实例化");
+  }
+  this.name = name;
+}
+Person3.prototype.getName = function () {
+  console.log(this.name);
+};
+const p3 = new Person3("Franklin"); // 构造函数内的this指向实例p3
+p3.getName(); // Franklin
+console.log(p3.name); // Franklin
+Person3("Franklin"); // 构造函数内的this指向Window
+```
+
+[如何确保你的构造函数只能被new调用，而不能被普通调用？](https://developer.aliyun.com/article/904939)

@@ -1,3 +1,11 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [发布者 Dep](#%E5%8F%91%E5%B8%83%E8%80%85-dep)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ### 发布者 Dep
 
 [发布者 Dep](./vue2.6.11/src/core/observer/dep.js) 主要是为了收集依赖，依赖更新时通知所有订阅者 watcher 进行更新。

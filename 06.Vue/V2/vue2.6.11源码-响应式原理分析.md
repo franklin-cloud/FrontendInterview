@@ -1,3 +1,11 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [响应式原理简析](#%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86%E7%AE%80%E6%9E%90)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ### 响应式原理简析
 
 Vue 响应式通过**数据劫持**结合**发布订阅模式**来实现。

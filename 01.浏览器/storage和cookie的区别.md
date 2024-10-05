@@ -1,7 +1,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [HTTP 请求的方式](#http-%E8%AF%B7%E6%B1%82%E7%9A%84%E6%96%B9%E5%BC%8F)
 - [localStorage，sessionStorage，cookie 的区别](#localstoragesessionstoragecookie-%E7%9A%84%E5%8C%BA%E5%88%AB)
 - [cookie 和 session 的区别](#cookie-%E5%92%8C-session-%E7%9A%84%E5%8C%BA%E5%88%AB)
 - [能设置或读取子域的 cookie 吗?](#%E8%83%BD%E8%AE%BE%E7%BD%AE%E6%88%96%E8%AF%BB%E5%8F%96%E5%AD%90%E5%9F%9F%E7%9A%84-cookie-%E5%90%97)
@@ -9,17 +8,6 @@
 - [同域/跨域 ajax 请求到底会不会带上 cookie?](#%E5%90%8C%E5%9F%9F%E8%B7%A8%E5%9F%9F-ajax-%E8%AF%B7%E6%B1%82%E5%88%B0%E5%BA%95%E4%BC%9A%E4%B8%8D%E4%BC%9A%E5%B8%A6%E4%B8%8A-cookie)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-## HTTP 请求的方式
-
-1. GET：请求指定的页面信息，并返回实体主体。
-2. HEAD：类似于 GET 请求，只不过返回的响应中没有具体的内容，用于获取报头
-3. POST：向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST 请求可能会导致新的资源的建立和/或已有资源的修改。
-4. PUT：从客户端向服务器传送的数据取代指定的文档的内容。
-5. DELETE：请求服务器删除指定的页面。
-6. CONNECT：HTTP/1.1 协议中预留给能够将连接改为管道方式的代理服务器。
-7. OPTIONS：允许客户端查看服务器的支持的通信方式；CORS 中的预检请求（检测某个接口是否支持跨域）。
-8. TRACE：回显服务器收到的请求，主要用于测试或诊断。
 
 ## localStorage，sessionStorage，cookie 的区别
 

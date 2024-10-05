@@ -1,3 +1,13 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [observe 函数](#observe-%E5%87%BD%E6%95%B0)
+- [defineReactive 数据劫持函数](#definereactive-%E6%95%B0%E6%8D%AE%E5%8A%AB%E6%8C%81%E5%87%BD%E6%95%B0)
+- [数组的监听](#%E6%95%B0%E7%BB%84%E7%9A%84%E7%9B%91%E5%90%AC)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ### observe 函数
 
 [observe](./vue2.6.11/src/core/observer/index.js#L110) 函数的作用是给对象添加一个观察者实例，返回观察者实例。

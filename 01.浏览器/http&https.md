@@ -1,6 +1,7 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+
 - [OSI 协议七层模型与 TCP/IP 协议五层模型](#osi-%E5%8D%8F%E8%AE%AE%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E4%B8%8E-tcpip-%E5%8D%8F%E8%AE%AE%E4%BA%94%E5%B1%82%E6%A8%A1%E5%9E%8B)
 - [应用层的协议哪些是基于 TCP 协议的，哪些是基于 UDP 协议的](#%E5%BA%94%E7%94%A8%E5%B1%82%E7%9A%84%E5%8D%8F%E8%AE%AE%E5%93%AA%E4%BA%9B%E6%98%AF%E5%9F%BA%E4%BA%8E-tcp-%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%93%AA%E4%BA%9B%E6%98%AF%E5%9F%BA%E4%BA%8E-udp-%E5%8D%8F%E8%AE%AE%E7%9A%84)
   - [基于 TCP 协议的](#%E5%9F%BA%E4%BA%8E-tcp-%E5%8D%8F%E8%AE%AE%E7%9A%84)
@@ -10,12 +11,11 @@
 - [TCP 的三次握手](#tcp-%E7%9A%84%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B)
 - [TCP 的四次挥手](#tcp-%E7%9A%84%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B)
 - [HTTP 状态码](#http-%E7%8A%B6%E6%80%81%E7%A0%81)
-- [HTTP1.0 和 HTTP1.1 和 HTTP2.0 的区别](#http10-%E5%92%8C-http11-%E5%92%8C-http20-%E7%9A%84%E5%8C%BA%E5%88%AB)
-  - [HTTP1.0 和 HTTP1.1](#http10-%E5%92%8C-http11)
-  - [http2.0 与 http1.X 区别](#http20-%E4%B8%8E-http1x-%E5%8C%BA%E5%88%AB)
+- [HTTP1.0 和 HTTP1.1 的区别](#http10-%E5%92%8C-http11-%E7%9A%84%E5%8C%BA%E5%88%AB)
+- [HTTP 1.x 与 HTTP 2.0 区别](#http-1x-%E4%B8%8E-http-20-%E5%8C%BA%E5%88%AB)
 - [HTTP 与 HTTPS 的区别](#http-%E4%B8%8E-https-%E7%9A%84%E5%8C%BA%E5%88%AB)
 - [对称加密和非对称加密的区别](#%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E5%92%8C%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E7%9A%84%E5%8C%BA%E5%88%AB)
-- [Https 的单向认证通信过程](#https-%E7%9A%84%E5%8D%95%E5%90%91%E8%AE%A4%E8%AF%81%E9%80%9A%E4%BF%A1%E8%BF%87%E7%A8%8B)
+- [HTTPS 的单向认证通信过程](#https-%E7%9A%84%E5%8D%95%E5%90%91%E8%AE%A4%E8%AF%81%E9%80%9A%E4%BF%A1%E8%BF%87%E7%A8%8B)
 - [WebSocket 协议](#websocket-%E5%8D%8F%E8%AE%AE)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->

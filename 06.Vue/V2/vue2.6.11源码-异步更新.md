@@ -1,3 +1,17 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [为什么需要异步更新？](#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%BC%82%E6%AD%A5%E6%9B%B4%E6%96%B0)
+- [异步更新机制](#%E5%BC%82%E6%AD%A5%E6%9B%B4%E6%96%B0%E6%9C%BA%E5%88%B6)
+- [异步更新流程](#%E5%BC%82%E6%AD%A5%E6%9B%B4%E6%96%B0%E6%B5%81%E7%A8%8B)
+- [update](#update)
+- [queueWatcher](#queuewatcher)
+- [nextTick](#nexttick)
+- [flushCallbacks](#flushcallbacks)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ### 为什么需要异步更新？
 
 当数据变化时，我们希望视图能尽可能快的更新，但是当数据变化频繁时，视图更新也会变得频繁，导致性能下降。所以我们需要一种机制来控制视图更新的频率，这就是异步更新。

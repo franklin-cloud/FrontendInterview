@@ -1,3 +1,18 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [源码能帮助理解的问题](#%E6%BA%90%E7%A0%81%E8%83%BD%E5%B8%AE%E5%8A%A9%E7%90%86%E8%A7%A3%E7%9A%84%E9%97%AE%E9%A2%98)
+- [Vue 构造函数](#vue-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0)
+- [initMixin 初始化](#initmixin-%E5%88%9D%E5%A7%8B%E5%8C%96)
+  - [initProps](#initprops)
+  - [initMethods](#initmethods)
+  - [initData](#initdata)
+  - [initComputed](#initcomputed)
+  - [initWatch](#initwatch)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## 源码能帮助理解的问题
 
 - 如何让构造函数和 class 一样，不能直接调用只能通过 new 实例化？
