@@ -31,7 +31,7 @@
 
 ## MVVM 和 MVC 的区别
 
-- MVC: MVC 是应用最广泛的软件架构之一,一般 MVC 分为:Model(模型),View(视图),Controller(控制器)。 这主要是基于分层的目的,让彼此的职责分开.View 一般用过 Controller 来和 Model 进行联系。Controller 是 Model 和 View 的协调者,View 和 Model 不直接联系。基本都是单向联系。
+- MVC 是应用最广泛的软件架构之一,一般 MVC 分为:Model(模型),View(视图),Controller(控制器)。 这主要是基于分层的目的,让彼此的职责分开，View 一般用过 Controller 来和 Model 进行联系。Controller 是 Model 和 View 的协调者,View 和 Model 不直接联系。基本都是单向联系。
 
 ![MVC](./../images/MVC.png)
 
@@ -51,27 +51,7 @@ MVVM 和 MVC 的区别:
 - MVVM 通过数据来显示视图层而不是节点操作
 - MVVM 主要解决了 MVC 中大量的 dom 操作使页面渲染性能降低,加载速度变慢,影响用户体验
 
-## vue 的优点
-
-- 轻量级框架
-- 简单易学
-- 双向数据绑定
-- 组件化
-- 视图，数据，结构分离
-- 虚拟 DOM
-- 运行速度更快
-
 ## vue 的响应式原理
-
-数据发生变化后，会重新对页面渲染，这就是 Vue 响应式
-
-想完成这个过程，我们需要：
-
-- 侦测数据的变化
-- 收集视图依赖了哪些数据
-- 数据变化时，自动“通知”需要更新的视图部分，并进行更新
-
-对应专业俗语分别是：
 
 数据劫持 / 数据代理
 依赖收集
@@ -91,9 +71,9 @@ MVVM 和 MVC 的区别:
 
 ## Object.defineProperty 介绍
 
-> Object.defineProperty 函数一共有三个参数，第一个参数是需要定义属性的对象，第二个参数是需要定义的属性，第三个是该属性描述符。
+> Object.defineProperty 函数一共有三个参数，第一个参数是**需要定义属性的对象**，第二个参数是**需要定义的属性**，第三个是**属性描述符**。
 >
-> 一个属性的描述符有一下属性，分别是
+> 属性描述符：
 > value 属性的值，
 > writable 属性是否可写，
 > enumerable 属性是否可枚举，
@@ -123,37 +103,6 @@ MVVM 和 MVC 的区别:
 
 简而言之，就是 data 中数据可能会被复用，要保证不同组件调用的时候数据是相同的。
 
-## vue 的生命周期函数
-
-- beforeCreate:
-  > 在实例初始化之后，数据观测 (data observer) 和 event/watcher 事件配置之前被调用。
-  >
-  > 在 new 一个 vue 实例后，只有一些默认的生命周期钩子和默认事件，其他的东西都还没创建。在 beforeCreate 生命周期执行的时候，data 和 methods 中的数据都还没有初始化。不能在这个阶段使用 data 中的数据和 methods 中的方法
-- created:
-  > 在实例创建完成后被立即调用。在这一步，实例已完成以下的配置：数据观测 (data observer)，property 和方法的运算，watch/event 事件回调。然而，挂载阶段还没开始，\$el property 目前尚不可用。
-  >
-  > data 和 methods 都已经被初始化好了，如果要调用 methods 中的方法，或者操作 data 中的数据，最早可以在这个阶段中操作
-- beforeMount:
-  > 在挂载开始之前被调用：相关的 render 函数首次被调用。
-  >
-  > 执行到这个钩子的时候，在内存中已经编译好了模板了，但是还没有挂载到页面中，此时，页面还是旧的
-- mounted:
-  > 实例被挂载后调用，这时 el 被新创建的 vm.\$el 替换了。如果根实例挂载到了一个文档内的元素上，当 mounted 被调用时 vm.\$el 也在文档内。
-  >
-  > 执行到这个钩子的时候，就表示 Vue 实例已经初始化完成了。此时组件脱离了创建阶段，进入到了运行阶段。如果我们想要通过插件操作页面上的 DOM 节点，最早可以在这个阶段中进行
-- beforeUpdate:
-  > 当执行这个钩子时，页面中的显示的数据还是旧的，data 中的数据是更新后的， 页面还没有和最新的数据保持同步
-- updated:
-  > 页面显示的数据和 data 中的数据已经保持同步了，都是最新的
-- beforeDestroy:
-  > Vue 实例从运行阶段进入到了销毁阶段，这个时候上所有的 data 和 methods，指令，过滤器……都是处于可用状态，还没有真正被销毁
-- destroyed:
-  > 这个时候上所有的 data 和 methods，指令，过滤器……都是处于不可用状态，组件已经被销毁了。
-- activated:
-  > 被 `keep-alive` 缓存的组件激活时调用。
-- deactivated:
-  > 被 `keep-alive` 缓存的组件停用时调用。
-
 ## vue 的 activated 和 deactivated 钩子函数
 
 ```html
@@ -178,7 +127,9 @@ MVVM 和 MVC 的区别:
 - 加载渲染过程
 
   ```txt
-  父beforeCreate->父created->父beforeMount->子beforeCreate->子created->子beforeMount->子mounted->父mounted
+  父beforeCreate->父created->父beforeMount->
+  子beforeCreate->子created->子beforeMount->子mounted->
+  父mounted
   ```
 
 - 更新过程
@@ -199,96 +150,19 @@ MVVM 和 MVC 的区别:
   父create->子created->子mounted->父mounted
   ```
 
-## nextTick 用法
-
-官网解释：
-
-> 将回调延迟到下次 DOM 更新循环之后执行。在修改数据之后立即使用它，然后等待 DOM 更新。
-
-```html
-<div class="app">
-  <div ref="msgDiv">{{msg}}</div>
-  <div v-if="msg1">Message got outside $nextTick: {{msg1}}</div>
-  <div v-if="msg2">Message got inside $nextTick: {{msg2}}</div>
-  <div v-if="msg3">Message got outside $nextTick: {{msg3}}</div>
-  <button @click="changeMsg">Change the Message</button>
-</div>
-```
-
-```vue
-new Vue({ el: '.app', data: { msg: 'Hello Vue.', msg1: '', msg2: '', msg3: '' }, methods: { changeMsg() { this.msg =
-"Hello world." this.msg1 = this.$refs.msgDiv.innerHTML this.$nextTick(() => { this.msg2 = this.$refs.msgDiv.innerHTML })
-this.msg3 = this.$refs.msgDiv.innerHTML } } })
-```
-
 ## vue 中 key 属性的作用
 
-一句话 key 的作用主要是为了高效的更新虚拟 DOM
+key 的作用主要是为了高效的更新虚拟 DOM
 
 key 的特殊 attribute 主要用在 Vue 的虚拟 DOM 算法，在新旧 nodes 对比时辨识 VNodes。如果不使用 key，Vue 会使用一种最大限度减少动态元素并且尽可能的尝试就地修改/复用相同类型元素的算法。而使用 key 时，它会基于 key 的变化重新排列元素顺序，并且会移除 key 不存在的元素。
 
 有相同父元素的子元素必须有独特的 key。重复的 key 会造成渲染错误。
 
-## Vue 中 key 属性用 index 为什么不行
-
-这是由于 diff 算法的机制所决定的，话不多说，直接上反例：
-
-当我们选中某一个（比如第 3 个），再添加或删除内容的时候就能发现 bug 了
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  </head>
-  <body>
-    <div id="app">
-      <span>ID:</span><input type="text" v-model="id" /> <span>Name:</span><input type="text" v-model="name" />
-      <button @click="handleClick">添加</button>
-
-      <div v-for="(item, index) in list" :key="index">
-        <input type="checkbox" />
-        <span @click="handleDelete(index)">{{item.id}} --- {{item.name}}</span>
-      </div>
-    </div>
-    <script>
-      let vm = new Vue({
-        el: "#app",
-        data: {
-          id: "",
-          name: "",
-          list: [
-            { id: 1, name: "张三" },
-            { id: 2, name: "李四" },
-            { id: 3, name: "王五" },
-            { id: 4, name: "赵六" },
-          ],
-        },
-        methods: {
-          handleClick() {
-            this.list.unshift({
-              id: this.id,
-              name: this.name,
-            });
-          },
-          handleDelete(index) {
-            this.list.splice(index, 1);
-          },
-        },
-      });
-    </script>
-  </body>
-</html>
-```
-
 ## Vue 的路由模式
 
 > hash 模式 与 history 模式
 
-- hash（即地址栏 URL 中的 # 符号)。
+hash（即地址栏 URL 中的 # 符号)。
 
 ```txt
 比如这个 URL：www.123.com/#/test，hash 的值为 #/test。
@@ -301,7 +175,7 @@ key 的特殊 attribute 主要用在 Vue 的虚拟 DOM 算法，在新旧 nodes 
 优点：可以随意刷新
 ```
 
-- history（利用了浏览器的历史记录栈）
+history（利用了浏览器的历史记录栈）
 
 ```txt
 特点：利用了 HTML5 History Interface 中新增的 pushState() 和 replaceState() 方法。（需要特定浏览器支持）
@@ -396,72 +270,6 @@ updateChildren(parentElm, oldCh, newCh) {
     }
 }
 ```
-
-## 移动端适配的方法
-
-> 起因:手机设备屏幕尺寸不一，做移动端的 Web 页面，需要考虑安卓/IOS 的各种尺寸设备上的兼容，针对移动端设备的页面，设计与前端实现怎样做能更好地适配不同屏幕宽度的移动设备；
-
-1. flex 弹性布局
-2. viewport 适配
-
-   ```html
-   <meta name="viewport" content="width=750,initial-scale=0.5" />
-   ```
-
-   initial-scale = 屏幕的宽度 / 设计稿的宽度
-
-3. rem 弹性布局
-4. rem + viewport 缩放
-
-> 这也是淘宝使用的方案，根据屏幕宽度设定 rem 值，需要适配的元素都使用 rem 为单位，不需要适配的元素还是使用 px 为单位。（1em = 16px）
-
-## rem 原理
-
-rem 布局的本质是等比缩放
-
-rem 是（根）字体大小相对单位，也就是说跟当前元素的 font-size 没有关系，而是跟整个 body 的 font-size 有关系。
-
-## rem 和 em 的区别
-
-> 一句话概括：em 相对于父元素，rem 相对于根元素。
-
-- em
-
-  ```css
-  子元素字体大小的 em 是相对于父元素字体大小
-  元素的width/height/padding/margin用em的话是相对于该元素的font-size
-  ```
-
-- rem
-
-  ```js
-  rem 是全部的长度都相对于根元素，根元素是谁？<html>元素。
-  通常做法是给html元素设置一个字体大小，然后其他元素的长度单位就为rem。
-  ```
-
-## 移动端 300ms 延迟的原因以及解决方案
-
-[移动端 300ms 点击延迟和点击穿透](https://juejin.im/post/5b3cc9836fb9a04f9a5cb0e0)
-
-> 移动端点击有 300ms 的延迟是因为移动端会有双击缩放的这个操作，因此浏览器在 click 之后要等待 300ms，看用户有没有下一次点击，来判断这次操作是不是双击。
-
-有三种办法来解决这个问题：
-
-1. 通过 meta 标签禁用网页的缩放。
-
-   ```html
-   <meta name="viewport" content="user-scalable=no" />
-   ```
-
-2. 更改默认的视口宽度
-
-   ```html
-   <meta name="viewport" content="width=device-width" />
-   ```
-
-3. 调用一些 js 库，比如 FastClick
-
-   > FastClick 是 FT Labs 专门为解决移动端浏览器 300 毫秒点击延迟问题所开发的一个轻量级的库。FastClick 的实现原理是在检测到 touchend 事件的时候，会通过 DOM 自定义事件立即出发模拟一个 click 事件，并把浏览器在 300ms 之后的 click 事件阻止掉。
 
 ## Vue 和 React 数据驱动的区别
 
