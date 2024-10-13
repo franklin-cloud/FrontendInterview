@@ -1,25 +1,30 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-- [模板渲染的过程](#%E6%A8%A1%E6%9D%BF%E6%B8%B2%E6%9F%93%E7%9A%84%E8%BF%87%E7%A8%8B)
-  - [parse](#parse)
-  - [optimize 函数](#optimize-%E5%87%BD%E6%95%B0)
-  - [generate 函数](#generate-%E5%87%BD%E6%95%B0)
-- [AST 抽象语树](#ast-%E6%8A%BD%E8%B1%A1%E8%AF%AD%E6%A0%91)
-- [VNode 数据结构](#vnode-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84)
+**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
+
+- [模板渲染的过程](#模板渲染的过程)
+  - [$mount](#mount)
+  - [compileToFunctions](#compiletofunctions)
+  - [baseCompile](#basecompile)
+    - [parse](#parse)
+    - [optimize 函数](#optimize-函数)
+    - [generate 函数](#generate-函数)
+- [AST 抽象语树](#ast-抽象语树)
+- [VNode 数据结构](#vnode-数据结构)
 - [render function](#render-function)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-### 模板渲染的过程
+## 模板渲染的过程
 
 [compile 源码](./vue2.6.11/src/compiler/index.js)
 
 ![模板渲染的过程](https://i-blog.csdnimg.cn/blog_migrate/e78d30f7c38cb98983952b9bc710ccc0.png)
 
-[$mount](./vue2.6.11/src/platforms/web/entry-runtime-with-compiler.js#L17-L83)
-根据不同的情况获取 template，然后调用 compileToFunctions。
+### $mount
+
+根据不同的情况获取 template，然后调用 compileToFunctions。[$mount 源码](./vue2.6.11/src/platforms/web/entry-runtime-with-compiler.js#L17-L83)
 
 ```js
 const mount = Vue.prototype.$mount;
@@ -81,13 +86,17 @@ Vue.prototype.$mount = function (el?: string | Element, hydrating?: boolean): Co
 };
 ```
 
-[compileToFunctions](./vue2.6.11/src/compiler/index.js)
-compileToFunctions 内部的调用逻辑如下：
-createCompiler: 提供 baseCompile, baseCompile 函数对模板的处理：parse,optimize,generate；
-createCompilerCreator：自定义的 options 与 baseOptions 进行合并，返回 compileToFunctions 函数（也就是 createCompileToFunctionFn）；
-createCompileToFunctionFn 先读缓存，没有缓存就调用 compile（createCompiler 提供的 baseCompile 函数）方法拿到的抽象语法树和字符串形式的 render 函数(后续详解)，在通过 `new Function` 的方式生成`render`函数。
+### compileToFunctions
 
-createCompiler
+[compileToFunctions 源码](./vue2.6.11/src/compiler/index.js)
+
+```
+const { compile, compileToFunctions } = createCompiler(baseOptions)
+```
+
+**createCompiler**
+
+createCompilerCreator 的调用结果就是 createCompiler，createCompilerCreator 的入参 baseCompile, baseCompile 函数对模板的处理：parse,optimize,generate；
 
 ```js
 export const createCompiler = createCompilerCreator(function baseCompile(
@@ -107,7 +116,32 @@ export const createCompiler = createCompilerCreator(function baseCompile(
 });
 ```
 
-createCompileToFunctionFn
+**createCompilerCreator**
+
+createCompilerCreator 将自定义的 options 与 baseOptions 进行合并，定义 compile 函数(内部调用还是 baseCompile 函数), 最终返回 `compile` 和`compileToFunctions` 函数；
+
+```js
+export function createCompilerCreator(baseCompile: Function): Function {
+  return function createCompiler(baseOptions: CompilerOptions) {
+    // 定义compile函数
+    function compile(template: string, options?: CompilerOptions): CompiledResult {
+      const finalOptions = Object.create(baseOptions);
+      // options 合并到 finalOptions
+      const compiled = baseCompile(template.trim(), finalOptions);
+      return compiled;
+    }
+
+    return {
+      compile,
+      compileToFunctions: createCompileToFunctionFn(compile),
+    };
+  };
+}
+```
+
+**createCompileToFunctionFn**
+
+`createCompileToFunctionFn` 先读缓存，没有缓存就调用 compile 函数方法拿到的抽象语法树和字符串形式的 render 函数，在通过 `new Function` 的方式生成`render`函数。
 
 ```js
 export function createCompileToFunctionFn(compile: Function): Function {
@@ -116,7 +150,6 @@ export function createCompileToFunctionFn(compile: Function): Function {
   if (cache[key]) {
     return cache[key];
   }
-
   // compile 将template 编译成 render 函数的字符串形式
   const compiled = compile(template, options);
   // turn code into functions
@@ -137,6 +170,8 @@ function createFunction(code, errors) {
   }
 }
 ```
+
+### baseCompile
 
 #### parse
 
@@ -248,7 +283,7 @@ Vue.prototype._update = function (vnode: VNode, hydrating?: boolean) {
 };
 ```
 
-### AST 抽象语树
+## AST 抽象语树
 
 AST 的全称是 Abstract Syntax Tree（抽象语法树），是源代码的抽象语法结构的树状表现形式，计算机学科中编译原理的概念。Vue 源码中借鉴 jQuery 作者 John Resig 的 HTML Parser 对模板进行解析，得到的就是 AST 代码。
 Vue2 源码中 [AST 数据结构](https://github.com/vuejs/vue/blob/v2.6.14/flow/compiler.js#L97-L204) 的定义
@@ -279,7 +314,7 @@ declare type ASTText = {
 
 我们看到 ASTNode 有三种类型：ASTElement，ASTText，ASTExpression。用属性 type 区分。当然还有很多其他的抽象语法类型，不一一列举。
 
-### VNode 数据结构
+## VNode 数据结构
 
 VNode 是 VDOM 中的概念，是真实 DOM 元素的简化版，与真实 DOM 元素是一一对应的关系。后面的 `render function` 的生成跟这些属性相关。
 
@@ -311,7 +346,7 @@ constructor {
 虚拟 DOM 与真是 DOM(document.createElement) 的区别？
 `document.createElement` 这个方法创建的真实 DOM 元素会带来性能上的损失，属性多达 228 个，而这些属性有 90% 多对我们来说都是无用的。VNode 就是简化版的真实 DOM 元素，只将我们需要的属性拿过来，并新增了一些在 diff 过程中需要使用的属性，例如 isStatic。
 
-### render function
+## render function
 
 `render function` 顾名思义就是渲染函数，这个函数通过解析模板得到，其运行结果是 VNode。`render function` 与 `JSX `类似，Vue 2 中除了 Template 也支持 JSX 的写法。大家可以使用 Vue.compile(template) 方法编译模板。
 
