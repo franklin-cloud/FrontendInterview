@@ -1,12 +1,13 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-- [git常用命令](#git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4)
+**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
+
+- [git 常用命令](#git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4)
   - [下载安装](#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85)
   - [全局配置环境](#%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83)
   - [查看工作区状态](#%E6%9F%A5%E7%9C%8B%E5%B7%A5%E4%BD%9C%E5%8C%BA%E7%8A%B6%E6%80%81)
-  - [添加文件到git仓库](#%E6%B7%BB%E5%8A%A0%E6%96%87%E4%BB%B6%E5%88%B0git%E4%BB%93%E5%BA%93)
+  - [添加文件到 git 仓库](#%E6%B7%BB%E5%8A%A0%E6%96%87%E4%BB%B6%E5%88%B0git%E4%BB%93%E5%BA%93)
   - [本地同步更新远程分支](#%E6%9C%AC%E5%9C%B0%E5%90%8C%E6%AD%A5%E6%9B%B4%E6%96%B0%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF)
   - [把缓存中的代码推送到远程分支](#%E6%8A%8A%E7%BC%93%E5%AD%98%E4%B8%AD%E7%9A%84%E4%BB%A3%E7%A0%81%E6%8E%A8%E9%80%81%E5%88%B0%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF)
   - [撤销修改](#%E6%92%A4%E9%94%80%E4%BF%AE%E6%94%B9)
@@ -15,17 +16,17 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# git常用命令
+# GIT 使用介绍
+
+![git](.//images/git.jpg)
 
 ## 下载安装
 
-从git官网下载安装包，安装完毕后就可以使用命令行的 git 工具，在开始菜单里找到"Git"->"Git Bash"，会弹出 Git 命令窗口，你可以在该窗口进行 Git 相关命令行的操作。
+从 git 官网下载安装包，安装完毕后就可以使用命令行的 git 工具，在开始菜单里找到"Git"->"Git Bash"，会弹出 Git 命令窗口，你可以在该窗口进行 Git 相关命令行的操作。
 
-```git
-具体可参考https://www.runoob.com/git/git-install-setup.html
-```
+## git config
 
-## 全局配置环境
+全局配置
 
 配置个人用户名和电子邮箱
 
@@ -34,7 +35,7 @@ git config –globle user.name “runoob”
 git config –globle user.email text@runoob.com
 ```
 
-配置完毕后，可以通过$ git config –list命令查看所有的配置信息。
+配置完毕后，可以通过`git config –list` 命令查看所有的配置信息。
 也可直接查询某个环境变量的信息。
 
 ```git
@@ -42,54 +43,155 @@ git config user.name
 git config user.email
 ```
 
-## 查看工作区状态
+## git clone
+
+克隆项目
 
 ```git
-git status
+git clone <git地址> -b <分支名>
 ```
 
-- 状态一：修改了没有添加到缓存区（红色），此时可以通过git diff 查看修改了的内容，“-”号是修改前，“+”号是修改后，第一个加号后修改的前一行。第二个加号是修改的内容。
-- 状态二：修改了添加到缓存区（绿色）
-- 状态三：On branch master nothing to commit, work tree clean 表明无修改内容
+## git add
 
-## 添加文件到git仓库
-
-分两步：
-把修改的修改添加到版本库里的暂存区，可以单独添加某个文件，可多次使用
+把修改的文件添加到暂存区，可以单独添加某个文件，也可以添加所有文件
 
 ```git
+//添加某个文件
 git add <file>
+//添加所有文件
+git add .
 ```
 
-把暂存区的所有内容提交到当前分支，提交的说明一定要写（字符串加双引号）
+## git commit
+
+把暂存区的所有内容提交到当前分支(本地仓库)，提交的说明一定要写（字符串加双引号）
 
 ```git
 git commit -m <message>
 ```
 
-如果 commit 的注释写错了，想要修改注释
+如果 commit 的注释写错了，想要修改注释（仅支持最后一次的修改）
 
 ```git
 git commit --amend
 ```
 
-## 本地同步更新远程分支
+## git status
+
+查看工作区状态
 
 ```git
-git pull
+git status
 ```
 
-如果项目是多人合作的，那么就需要在拉去别人更新的代码合并到本地。Git会自动合并本地代码。
+- 状态一：修改了没有添加到缓存区（红色），此时可以通过 git diff 查看修改了的内容，“-”号是修改前，“+”号是修改后，第一个加号后修改的前一行。第二个加号是修改的内容。
+- 状态二：修改了添加到缓存区（绿色）
+- 状态三：On branch master nothing to commit, work tree clean 表明无修改内容
 
-## 把缓存中的代码推送到远程分支
+## git pull
+
+更新远程分支到本地, 如果项目是多人合作的，那么就需要在拉去别人更新的代码合并到本地。Git 会自动合并本地代码。如果合并失败，需要手动解决冲突。
 
 ```git
-git push
+git pull origin <分支名>
 ```
 
-## 撤销修改
+## git push
 
-- 场景一：修改了文件但是未被add
+本地提交推送到远程仓库
+
+```git
+git push origin <分支名>
+```
+
+## git branch
+
+分支管理
+
+```git
+1) 查看分支：git branch
+2) 创建分支：git branch <name>
+3) 切换分支：git checkout <name>
+4) 创建+切换分支：git checkout -b <name>
+5) 合并某分支到当前分支：git merge <name>
+6) 删除分支git branch -d <name>
+```
+
+## git stash
+
+暂存修改
+
+```git
+1) 暂存分支工作状态： git stash
+2) 查看分支存储的工作状态： git stash list
+3) 恢复分支工作状态： git stash apply
+4) 删除分支存储的工作状态：git stash drop
+5) 恢复并删除分支存储工作状态：git stash pop
+```
+
+## git rebase
+
+### 合并多个`commit`操作
+
+- 1、`git log` 显示 commit 记录
+
+  ![git log](.//images/rebase/rebase1.png)
+
+- 2、`git rebase -i 2cd1a7` **-i** 参数表示要合并提交的前一个 commit 或者执行 `git rebase -i HEAD~3`
+
+  ![git log](.//images/rebase/rebase2.png)
+
+- 3、 第二步完成后显示所有的合并的 commit，进入 vi 模式进行合并操作。
+  - pick 的 commit 会执行提交。
+  - squash 的 commit 会被合并到前一个 commit。
+    修改完后 ESC 退出 vi 模式，:wq 保存退出，再次进入 vi 模式编写合并的信息提示，退出 vi 模式，保存退出即可。
+    ![git log](.//images/rebase/rebase3.png)
+- 4、`git log` 进行验证合并结果
+
+  ![git log](.//images/rebase/rebase4.png)
+
+## git reset
+
+`git reset`: 回退，修改 HEAD 的位置，即将 HEAD 指向的位置改变为之前存在的某个版本。
+
+![git log](.//images/reset.jpeg)
+
+常用命令：
+
+`git reset commit`：回退到某个 commit
+
+`git reset origin/分支` ：回退到某个分支
+
+三种模式：
+
+- --hard：直接将工作目录、暂存区(index)及版本库(repository)都重置成目标 Reset 节点的內容。
+
+- --mixed（默认）：只保留工作目录的內容，但会将暂存区(Index)和版本库中的內容更改和 reset 目标节点一致。
+
+- --soft：保留工作目录和暂存区(index)的内容，只让版本木中的内容和 reset 目标节点保持一致。
+
+**适用场景：操作未提交到远程库的撤销操作**
+
+## git revert
+
+`git revert commit`: 返回,想要撤销版本二，但又不想影响撤销版本三的提交，就可以用 `git revert` 命令来反做版本二，生成新的版本四，
+这个版本四里会保留版本三的东西，但撤销了版本二的东西。
+
+![git log](.//images/revert.jpeg)
+
+**适用场景：操作已经提交到远程库**
+
+## git rm
+
+`git rm --cached “文件路径”` : 将该文件从缓存中删除，不删除物理文件
+
+`git rm --f “文件路径”`: 将该文件从缓存中删除，还会删除物理文件（不会回收到垃圾桶）
+
+`git rm -r 文件夹`: 递归删除，删除文件夹内的所有文件
+
+## 撤销修改的三种场景
+
+- 场景一：修改了文件但是未被 add
 
 ```git
 git checkout -- <file>
@@ -102,45 +204,8 @@ git reset HEAD <file> 就回到了场景一
 git checkout -- <file>
 ```
 
-- 场景三：修改文件已被commit,但是没有推送到远程库，想要撤销本次提交，只能切换版本
+- 场景三：修改文件已被 commit,但是没有推送到远程库，想要撤销本次提交，只能切换版本
 
 ```git
 git reset --hard HEAD^
-```
-
-## 从远程分支拉取项目
-
-```git
-git clone SSH/HTTPS地址 -b <分支名>
-```
-
-## 分支管理
-
-当前分支作业时
-
-```git
-1)查看分支：git branch
-2)创建分支：git branch <name>
-3)切换分支：git checkout <name>
-4)创建+切换分支：git checkout -b <name>
-5)合并某分支到当前分支：git merge <name>
-6)删除分支git branch -d <name>
-```
-
-临时切换分支作业时
-
-```git
-1)暂存分支工作状态： git stash
-2)查看分支存储的工作状态： git stash list
-3)恢复分支工作状态： git stash apply
-4)删除分支存储的工作状态：git stash drop
-5)恢复并删除分支存储工作状态：git stash pop
-```
-
-切换远程分支
-：当前分支branch1工作，现在需要在分支branch2上工作，则需要切换
-
-```git
-git fetch origin branch2(分支名)
-git checkout branch2
 ```
