@@ -1,10 +1,11 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-- [源码能帮助理解的问题](#%E6%BA%90%E7%A0%81%E8%83%BD%E5%B8%AE%E5%8A%A9%E7%90%86%E8%A7%A3%E7%9A%84%E9%97%AE%E9%A2%98)
-- [Vue 构造函数](#vue-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0)
-- [initMixin 初始化](#initmixin-%E5%88%9D%E5%A7%8B%E5%8C%96)
+**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
+
+- [源码能帮助理解的问题](#源码能帮助理解的问题)
+- [Vue 构造函数](#vue-构造函数)
+- [initMixin 初始化](#initmixin-初始化)
   - [initProps](#initprops)
   - [initMethods](#initmethods)
   - [initData](#initdata)
@@ -25,7 +26,7 @@
 > **A**：为了防止构造函数被当成普通函数调用，可以根据构造函数内的 `this` 来进行判断。
 > 通过 `new` 实例化调用时, `this` 指向实例，可以通过`this instanceof Vue` 来进行判断; 而以普通函数调用构造函数时，`this`指向调用者，一般是全局。
 
-[Vue 其实就是一个构造函数](vue2.6.11/src/core/instance/index.js#L8)
+[Vue 其实就是一个构造函数](https://github.com/vuejs/vue/tree/v2.6.11/src/core/instance/index.js#L8)
 
 ```js
 import { initMixin } from "./init";
@@ -66,7 +67,7 @@ export default Vue;
 > callHook(vm, 'beforeCreate') -> initState -> callHook(vm, 'created') ，
 > 我们发现 initState 发生在 beforeCreate 和 created 两个钩子函数之间，initSate 方法中依次初始化 props,methods,data,computed,watch，这就是为什么我们在 beforeCreate 钩子中无法获取到 data 的原因，但是我们能获取到 this 对象。
 
-[initMixin 代码](vue2.6.11/src/core/instance/init.js#L51)
+[initMixin 代码](https://github.com/vuejs/vue/tree/v2.6.11/src/core/instance/init.js#L15)
 
 ```javascript
 export function initMixin(Vue: Class<Component>) {
@@ -115,7 +116,7 @@ export function initState(vm: Component) {
 - 同时将 props 的属性都调用自定义的 proxy 方法进行劫持 get 和 set;
 - 当我们通过 this.xx 获取某个属性时，会返回 vm.\_props.xx（下面有自定义的 proxy 函数）；
 
-[initProps](vue2.6.11/src/core/instance/state.js#L64)
+[initProps](https://github.com/vuejs/vue/tree/v2.6.11/src/core/instance/state.js#L64)
 
 ```javascript
 function initProps(vm: Component, propsOptions: Object) {
@@ -171,7 +172,7 @@ function initProps(vm: Component, propsOptions: Object) {
 - 遍历 methods，将所有方法绑定到 vm 上，`vm[key] = typeof methods[key] !== 'function' ? noop : bind(methods[key], vm)`, 这就是**Q3**为什么 methods 属性，我们可以直接通过 this.xx 访问的原因。
 - 同时验证 methods 的名字是否重名；
 
-[initMethods](vue2.6.11/src/core/instance/state.js#L262)
+[initMethods](https://github.com/vuejs/vue/tree/v2.6.11/src/core/instance/state.js#L262)
 
 ```javascript
 function initMethods(vm: Component, methods: Object) {
@@ -207,7 +208,7 @@ function initMethods(vm: Component, methods: Object) {
 - 将 data 内的属性都调用自定义的 proxy 方法重定义 get 和 set; 当我们通过 this.xx 获取某个属性时，会返回 vm.\_data.xx
 - 遍历 data 内的属性，进行劫持监听 observe；
 
-[initData](vue2.6.11/src/core/instance/state.js#L112)
+[initData](https://github.com/vuejs/vue/tree/v2.6.11/src/core/instance/state.js#L112)
 
 ```javascript
 function initData(vm: Component) {
@@ -271,7 +272,7 @@ export function proxy(target: Object, sourceKey: string, key: string) {
 - 遍历 computed 的 key，对每个计算属性创建一个 Watcher 实例，以便在数据依赖发生变化时，计算属性能够自动更新；
 - 然后再调用 defineComputed 方法，为每一个计算属性重新定义调用函数 get 和 set，以便在使用计算属性的；
 
-[initComputed](vue2.6.11/src/core/instance/state.js#L169)
+[initComputed](https://github.com/vuejs/vue/tree/v2.6.11/src/core/instance/state.js#L169)
 
 ```javascript
 const computedWatcherOptions = { lazy: true };
@@ -356,7 +357,7 @@ function createComputedGetter(key) {
 
 ### initWatch
 
-[initWatch](vue2.6.11/src/core/instance/state.js#L290)
+[initWatch](https://github.com/vuejs/vue/tree/v2.6.11/src/core/instance/state.js#L290)
 
 ```javascript
 function initWatch(vm: Component, watch: Object) {
@@ -383,37 +384,4 @@ function createWatcher(vm: Component, expOrFn: string | Function, handler: any, 
   }
   return vm.$watch(expOrFn, handler, options);
 }
-```
-
-监听器的使用示例
-
-```js
-watch: {
-    a: function (val, oldVal) {
-      console.log('new: %s, old: %s', val, oldVal)
-    },
-    // 方法名
-    b: 'someMethod',
-    // 该回调会在任何被侦听的对象的 property 改变时被调用，不论其被嵌套多深
-    c: {
-      handler: function (val, oldVal) { /* ... */ },
-      deep: true
-    },
-    // 该回调将会在侦听开始之后被立即调用
-    d: {
-      handler: 'someMethod',
-      immediate: true
-    },
-    // 你可以传入回调数组，它们会被逐一调用
-    e: [
-      'handle1',
-      function handle2 (val, oldVal) { /* ... */ },
-      {
-        handler: function handle3 (val, oldVal) { /* ... */ },
-        /* ... */
-      }
-    ],
-    // watch vm.e.f's value: {g: 5}
-    'e.f': function (val, oldVal) { /* ... */ }
-  }
 ```

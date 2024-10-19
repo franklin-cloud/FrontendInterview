@@ -1,6 +1,7 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
 
 - [observe 函数](#observe-%E5%87%BD%E6%95%B0)
 - [defineReactive 数据劫持函数](#definereactive-%E6%95%B0%E6%8D%AE%E5%8A%AB%E6%8C%81%E5%87%BD%E6%95%B0)
@@ -10,7 +11,7 @@
 
 ### observe 函数
 
-[observe](./vue2.6.11/src/core/observer/index.js#L110) 函数的作用是给对象添加一个观察者实例，返回观察者实例。
+[observe](./https://github.com/vuejs/vue/tree/v2.6.11/src/core/observer/index.js#L110) 函数的作用是给对象添加一个观察者实例，返回观察者实例。
 
 ```js
 export function observe(value: any, asRootData: ?boolean): Observer | void {
@@ -95,7 +96,7 @@ function copyAugment(target: Object, src: Object, keys: Array<string>) {
 
 ### defineReactive 数据劫持函数
 
-[defineReactive](./vue2.6.11/src/core/observer/index.js#L135) 函数是数据劫持的核心函数，它通过 Object.defineProperty() 方法给对象添加 getter 和 setter，从而实现数据的劫持。具体实现如下：
+[defineReactive](./https://github.com/vuejs/vue/tree/v2.6.11/src/core/observer/index.js#L135) 函数是数据劫持的核心函数，它通过 Object.defineProperty() 方法给对象添加 getter 和 setter，从而实现数据的劫持。具体实现如下：
 
 ```javascript
 export function defineReactive(obj: Object, key: string, val: any, customSetter?: ?Function, shallow?: boolean) {
@@ -161,7 +162,7 @@ export function defineReactive(obj: Object, key: string, val: any, customSetter?
 
 ### 数组的监听
 
-[methodsToPatch](./vue2.6.11/src/core/observer/array.js) 对象内的数组操作方法都会改变原数组，在这里对这几个方法进行改写
+[methodsToPatch](./https://github.com/vuejs/vue/tree/v2.6.11/src/core/observer/array.js) 对象内的数组操作方法都会改变原数组，在这里对这几个方法进行改写
 
 ```javascript
 const arrayProto = Array.prototype;

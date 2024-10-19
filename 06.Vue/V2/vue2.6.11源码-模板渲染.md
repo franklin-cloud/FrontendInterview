@@ -18,13 +18,14 @@
 
 ## 模板渲染的过程
 
-[compile 源码](./vue2.6.11/src/compiler/index.js)
+[compile 源码](https://github.com/vuejs/vue/tree/v2.6.11/src/compiler/index.js)
 
 ![模板渲染的过程](https://i-blog.csdnimg.cn/blog_migrate/e78d30f7c38cb98983952b9bc710ccc0.png)
 
 ### $mount
 
-根据不同的情况获取 template，然后调用 compileToFunctions。[$mount 源码](./vue2.6.11/src/platforms/web/entry-runtime-with-compiler.js#L17-L83)
+根据不同的情况获取 template，然后调用 compileToFunctions。
+[$mount 源码](https://github.com/vuejs/vue/tree/v2.6.11/src/platforms/web/entry-runtime-with-compiler.js#L17-L83)
 
 ```js
 const mount = Vue.prototype.$mount;
@@ -88,7 +89,7 @@ Vue.prototype.$mount = function (el?: string | Element, hydrating?: boolean): Co
 
 ### compileToFunctions
 
-[compileToFunctions 源码](./vue2.6.11/src/compiler/index.js)
+[compileToFunctions 源码](https://github.com/vuejs/vue/tree/v2.6.11/src/compiler/index.js)
 
 ```
 const { compile, compileToFunctions } = createCompiler(baseOptions)
@@ -175,12 +176,12 @@ function createFunction(code, errors) {
 
 #### parse
 
-[parse](vue2.6.11/src/compiler/parser/index.js#L79)
+[parse](https://github.com/vuejs/vue/tree/v2.6.11/src/compiler/parser/index.js#L79)
 parse 函数就是将 template 里的结构（指令，属性，标签等）转换为 AST 形式存进 ASTElement 中，最后解析生成 AST。采用了 jQuery 作者 John Resig 的 [HTML Parser](https://johnresig.com/blog/pure-javascript-html-parser/)。 ASTElement 的数据结构后续会详细说明。
 
 #### optimize 函数
 
-[optimize](vue2.6.11/src/compiler/optimizer.js)
+[optimize](https://github.com/vuejs/vue/tree/v2.6.11/src/compiler/optimizer.js)
 主要功能就是标记静态节点，为后面 patch 过程中对比新旧 VNode 树形结构做优化。被标记为 static 的节点在后面的 diff 算法中会被直接忽略，不做详细的比较。
 
 ```
@@ -198,7 +199,7 @@ export function optimize (root: ?ASTElement, options: CompilerOptions) {
 
 #### generate 函数
 
-[optimize](vue2.6.11/src/compiler/codegen/index.js)
+[optimize](https://github.com/vuejs/vue/tree/v2.6.11/src/compiler/codegen/index.js)
 根据 AST 结构拼接生成 render 函数的字符串。
 
 ```js
@@ -318,7 +319,7 @@ declare type ASTText = {
 
 VNode 是 VDOM 中的概念，是真实 DOM 元素的简化版，与真实 DOM 元素是一一对应的关系。后面的 `render function` 的生成跟这些属性相关。
 
-[源码中 VNode 数据结构](./vue2.6.11/src/core/vdom/vnode.js) 的定义
+[源码中 VNode 数据结构](https://github.com/vuejs/vue/tree/v2.6.11/src/core/vdom/vnode.js) 的定义
 
 ```js
 constructor {
@@ -388,9 +389,9 @@ constructor {
 });
 ```
 
-要看懂上面的 render function，只需要了解 \_c，\_m，\_v，\_s 这几个函数的定义，其中 \_c 是 createElement，\_m 是 renderStatic，\_v 是 createTextVNode，\_s 是 toString。除了这个 4 个函数，还有另外 10 个函数，我们可以在源码 [vue2.6.11\src\core\instance\render.js](vue2.6.11\src\core\instance\render.js) 中可以查看这些函数的定义。
+要看懂上面的 render function，只需要了解 \_c，\_m，\_v，\_s 这几个函数的定义，其中 \_c 是 createElement，\_m 是 renderStatic，\_v 是 createTextVNode，\_s 是 toString。除了这个 4 个函数，还有另外 10 个函数，我们可以在源码 [initRender](https://github.com/vuejs/vue/tree/v2.6.11/src/core/instance/render.js#L19) 中可以查看这些函数的定义。
 
-[installRenderHelpers](vue2.6.11\src\core\instance\render-helpers\index.js)
+[installRenderHelpers](https://github.com/vuejs/vue/tree/v2.6.11/src/core/instance/render-helpers/index.js)
 
 ```js
 export function installRenderHelpers(target: any) {

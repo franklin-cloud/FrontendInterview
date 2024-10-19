@@ -1,61 +1,17 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-- [computed 与 watcher 的区别](#computed-%E4%B8%8E-watcher-%E7%9A%84%E5%8C%BA%E5%88%AB)
-- [Watcher 订阅者](#watcher-%E8%AE%A2%E9%98%85%E8%80%85)
+**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
+
+- [Watcher 订阅者](#watcher-订阅者)
+- [computed 与 watcher 的区别](#computed-与-watcher-的区别)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-### computed 与 watcher 的区别
-
-首先 computed 与 watcher 都是 Watcher 的实例；
-实例化 computed 比实例化 watcher 多传一个参数`computedWatcherOptions: { lazy: true }` 来标识这是一个 computed，watcher 内部属性 dirty 与 lazy 进行关联(this.dirty = this.lazy)，计算属性是否更新就是根据这个 dirty 字段来进行控制。
-
-`createComputedGetter`函数中判断 watcher.dirty 是否为 true，dirty 为 true 则执行 watcher.evaluate()得到计算属性的 value, 同时将 dirty 设为 false, dirty 为 false 时不在执行 watcher.evaluate()就无法更新计算属性的值。当依赖更新触发 dep.notify，进而出发 watcher 的 update 方法，在 update 方法中将 dirty 置为 true，此时 createComputedGetter 又可以执行 watcher.evaluate()得到计算属性的 valu，实现更新。
-
-```js
-const computedWatcherOptions = { lazy: true }
-
-function initComputed (vm: Component, computed: Object) {
-  const watchers = vm._computedWatchers = Object.create(null
-  const isSSR = isServerRendering()
-  for (const key in computed) {
-    const userDef = computed[key]
-    const getter = typeof userDef === 'function' ? userDef : userDef.get
-    if (!isSSR) {
-      // create internal watcher for the computed property.
-      watchers[key] = new Watcher(
-        vm,
-        getter || noop,
-        noop,
-        computedWatcherOptions
-      )
-    }
-    if (!(key in vm)) {
-      defineComputed(vm, key, userDef)
-    }
-  }
-}
-function createComputedGetter (key) {
-  return function computedGetter () {
-    const watcher = this._computedWatchers && this._computedWatchers[key]
-    if (watcher) {
-      if (watcher.dirty) {
-        watcher.evaluate()
-      }
-      if (Dep.target) {
-        watcher.depend()
-      }
-      return watcher.value
-    }
-  }
-}
-```
-
 ### Watcher 订阅者
 
-[订阅者 Watcher](./vue2.6.11/src/core/observer/watcher.js)分析表达式，收集依赖关系，并在表达式值更改时激发回调，它同时用于$watch 的 api 和指令。
+分析表达式，收集依赖关系，并在表达式值更改时激发回调，它同时用于$watch 的 api 和指令。
+[订阅者 Watcher](https://github.com/vuejs/vue/tree/v2.6.11/src/core/observer/watcher.js)
 
 ```javascript
 /**
@@ -273,6 +229,52 @@ export default class Watcher {
         this.deps[i].removeSub(this);
       }
       this.active = false;
+    }
+  }
+}
+```
+
+### computed 与 watcher 的区别
+
+首先 computed 与 watcher 都是 Watcher 的实例；
+实例化 computed 比实例化 watcher 多传一个参数`computedWatcherOptions: { lazy: true }` 来标识这是一个 computed，watcher 内部属性 dirty 与 lazy 进行关联(this.dirty = this.lazy)，计算属性是否更新就是根据这个 dirty 字段来进行控制。
+
+`createComputedGetter`函数中判断 watcher.dirty 是否为 true，dirty 为 true 则执行 watcher.evaluate()得到计算属性的 value, 同时将 dirty 设为 false, dirty 为 false 时不在执行 watcher.evaluate()就无法更新计算属性的值。当依赖更新触发 dep.notify，进而出发 watcher 的 update 方法，在 update 方法中将 dirty 置为 true，此时 createComputedGetter 又可以执行 watcher.evaluate()得到计算属性的 valu，实现更新。
+
+```js
+const computedWatcherOptions = { lazy: true }
+
+function initComputed (vm: Component, computed: Object) {
+  const watchers = vm._computedWatchers = Object.create(null
+  const isSSR = isServerRendering()
+  for (const key in computed) {
+    const userDef = computed[key]
+    const getter = typeof userDef === 'function' ? userDef : userDef.get
+    if (!isSSR) {
+      // create internal watcher for the computed property.
+      watchers[key] = new Watcher(
+        vm,
+        getter || noop,
+        noop,
+        computedWatcherOptions
+      )
+    }
+    if (!(key in vm)) {
+      defineComputed(vm, key, userDef)
+    }
+  }
+}
+function createComputedGetter (key) {
+  return function computedGetter () {
+    const watcher = this._computedWatchers && this._computedWatchers[key]
+    if (watcher) {
+      if (watcher.dirty) {
+        watcher.evaluate()
+      }
+      if (Dep.target) {
+        watcher.depend()
+      }
+      return watcher.value
     }
   }
 }
