@@ -1,7 +1,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [OSI 协议七层模型与 TCP/IP 协议五层模型](#osi-%E5%8D%8F%E8%AE%AE%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E4%B8%8E-tcpip-%E5%8D%8F%E8%AE%AE%E4%BA%94%E5%B1%82%E6%A8%A1%E5%9E%8B)
 - [应用层的协议哪些是基于 TCP 协议的，哪些是基于 UDP 协议的](#%E5%BA%94%E7%94%A8%E5%B1%82%E7%9A%84%E5%8D%8F%E8%AE%AE%E5%93%AA%E4%BA%9B%E6%98%AF%E5%9F%BA%E4%BA%8E-tcp-%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%93%AA%E4%BA%9B%E6%98%AF%E5%9F%BA%E4%BA%8E-udp-%E5%8D%8F%E8%AE%AE%E7%9A%84)
   - [基于 TCP 协议的](#%E5%9F%BA%E4%BA%8E-tcp-%E5%8D%8F%E8%AE%AE%E7%9A%84)
@@ -138,6 +137,17 @@ https://juejin.cn/post/6844903834708344840
    - 502 错误网关
    - 503 服务器暂时处于超负载或正在进行停机维护，现在无法处理请求。
    - 504 响应超时
+
+## HTTP 请求的方式
+
+1. GET：请求指定的页面信息，并返回实体主体。
+2. HEAD：类似于 GET 请求，只不过返回的响应中没有具体的内容，用于获取报头
+3. POST：向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST 请求可能会导致新的资源的建立和/或已有资源的修改。
+4. PUT：从客户端向服务器传送的数据取代指定的文档的内容。
+5. DELETE：请求服务器删除指定的页面。
+6. CONNECT：HTTP/1.1 协议中预留给能够将连接改为管道方式的代理服务器。
+7. OPTIONS：允许客户端查看服务器的支持的通信方式；CORS 中的预检请求（检测某个接口是否支持跨域）。
+8. TRACE：回显服务器收到的请求，主要用于测试或诊断。
 
 ## HTTP1.0 和 HTTP1.1 的区别
 

@@ -1,9 +1,10 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-- [JavaScript 脚本延迟加载的方式有哪些？](#javascript-%E8%84%9A%E6%9C%AC%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD%E7%9A%84%E6%96%B9%E5%BC%8F%E6%9C%89%E5%93%AA%E4%BA%9B)
-- [js 脚本 defer 和 async 的区别](#js-%E8%84%9A%E6%9C%AC-defer-%E5%92%8C-async-%E7%9A%84%E5%8C%BA%E5%88%AB)
+**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
+
+- [JavaScript 脚本延迟加载的方式有哪些？](#javascript-脚本延迟加载的方式有哪些)
+- [defer 和 async 的区别](#defer-和-async-的区别)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -32,13 +33,14 @@
 5. 让 JS 最后加载：将 js 脚本放在文档的底部，来使 js 脚本尽可能
    的在最后来加载执行。
 
-## js 脚本 defer 和 async 的区别
+## defer 和 async 的区别
 
 - defer 属性表示延迟执行引入的 JavaScript，即这段 JavaScript 加载时 HTML 并未停止解析，这两个过程是并行的。当整个 document 解析完毕后再执行脚本文件，在 DOMContentLoaded 事件触发之前完成。多个脚本按顺序执行。
 
 - async 属性表示异步执行引入的 JavaScript，与 defer 的区别在于，如果已经加载好，就会开始执行，也就是说它的执行仍然会阻塞文档的解析，只是它的加载过程不会阻塞。多个脚本的执行顺序无法保证。
 
 defer
+
 ```html
 <!DOCTYPE html>
 <html lang="zh">
@@ -51,10 +53,11 @@ defer
     <script defer src="https://unpkg.com/vue-router@4.1.5/dist/vue-router.global.js"></script>
   </head>
   <body>
-    Hello  ~
+    Hello ~
   </body>
 </html>
 ```
+
 他的执行顺序是：
 
 在控制台打印：Howdy ~
@@ -64,6 +67,7 @@ defer
 触发 DOMContentLoaded 事件
 
 async
+
 ```html
 <!DOCTYPE html>
 <html lang="zh">
@@ -76,12 +80,12 @@ async
     <script async src="https://ads.google.cn/ad.js"></script>
   </head>
   <body>
-    Hello  ~
+    Hello ~
   </body>
 </html>
 ```
 
- 他的执行顺序是：
+他的执行顺序是：
 在控制台打印：Howdy ~
 并行请求 analytics.js 和 ad.js
 在页面中展示：Hello ~

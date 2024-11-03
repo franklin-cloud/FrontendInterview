@@ -63,18 +63,39 @@ var()函数还可以使用第二个参数，表示变量的默认值。如果该
 
 响应式布局的 media 命令里面声明变量，使得不同的屏幕宽度有不同的变量值。
 
-```html
-:root { --main-color: #4d4e53; --main-bg: rgb(255, 255, 255); } body { } @media screen and (min-width: 768px) { :root {
---main-color: #ffffff; --main-bg: rgb(255, 134, 255); } body { } }
+```css
+:root {
+  --main-color: #4d4e53;
+  --main-bg: rgb(255, 255, 255);
+}
+body {
+}
+@media screen and (min-width: 768px) {
+  :root {
+    --main-color: #ffffff;
+    --main-bg: rgb(255, 134, 255);
+  }
+  body {
+  }
+}
 ```
 
 ## 六、兼容性处理
 
 使用@support 命令进行检测。
 
-```html
-a { color: #7F583F; color: var(--primary); } @supports ( (--a: 0)) { /* supported */ } @supports ( not (--a: 0)) { /*
-not supported */ }
+```css
+a {
+  color: #7f583f;
+  color: var(--primary);
+}
+@supports ((--a: 0)) {
+  /* supported */
+}
+@supports (not (--a: 0)) {
+  /*
+not supported */
+}
 ```
 
 ## 七、JavaScript 操作

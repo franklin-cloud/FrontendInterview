@@ -131,7 +131,7 @@ git push origin <分支名>
 
 ## git rebase
 
-### 合并多个`commit`操作
+**合并多个 commit 操作**
 
 - 1、`git log` 显示 commit 记录
 
@@ -188,24 +188,3 @@ git push origin <分支名>
 `git rm --f “文件路径”`: 将该文件从缓存中删除，还会删除物理文件（不会回收到垃圾桶）
 
 `git rm -r 文件夹`: 递归删除，删除文件夹内的所有文件
-
-## 撤销修改的三种场景
-
-- 场景一：修改了文件但是未被 add
-
-```git
-git checkout -- <file>
-```
-
-- 场景二：修改了工作区内容，还添加到了暂存区时，想丢弃修改，分两步
-
-```git
-git reset HEAD <file> 就回到了场景一
-git checkout -- <file>
-```
-
-- 场景三：修改文件已被 commit,但是没有推送到远程库，想要撤销本次提交，只能切换版本
-
-```git
-git reset --hard HEAD^
-```
