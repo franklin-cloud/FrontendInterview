@@ -1,6 +1,6 @@
 ## es5 构造函数实现 class
 
-class 特点
+### class 特点
 
 - **class 必须使用 new 执行，但是构造函数没有 new 也可以执行**;
 - **类的属性和方法除非显式定义在其本身（定义在 this 对象上）否则都是定义在原型上**；
@@ -33,7 +33,7 @@ console.log(p2.name); // Tom
 console.log(p2.age); // 26
 ```
 
-es5 构造函数实现 class
+### 构造函数实现 class
 
 ```javascript
 function Person3(name) {
