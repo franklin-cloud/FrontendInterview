@@ -1,3 +1,17 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [render 的作用](#render-%E7%9A%84%E4%BD%9C%E7%94%A8)
+- [render 阶段函数调用流程](#render-%E9%98%B6%E6%AE%B5%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B)
+- [整体流程图](#%E6%95%B4%E4%BD%93%E6%B5%81%E7%A8%8B%E5%9B%BE)
+  - [捕获阶段](#%E6%8D%95%E8%8E%B7%E9%98%B6%E6%AE%B5)
+  - [冒泡阶段](#%E5%86%92%E6%B3%A1%E9%98%B6%E6%AE%B5)
+  - [beginWork](#beginwork)
+  - [completeWork](#completework)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ### render 的作用
 
 render 阶段的主要工作是构建 `Fiber` 树和生成 `effectList`

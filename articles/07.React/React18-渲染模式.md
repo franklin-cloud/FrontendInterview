@@ -1,3 +1,15 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [渲染模式](#%E6%B8%B2%E6%9F%93%E6%A8%A1%E5%BC%8F)
+- [legacy 模式](#legacy-%E6%A8%A1%E5%BC%8F)
+- [concurrent 模式](#concurrent-%E6%A8%A1%E5%BC%8F)
+  - [时间分片](#%E6%97%B6%E9%97%B4%E5%88%86%E7%89%87)
+  - [更新优先级](#%E6%9B%B4%E6%96%B0%E4%BC%98%E5%85%88%E7%BA%A7)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ### 渲染模式
 
 主体函数的入口有 3 种模式：

@@ -1,31 +1,20 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
-
-- [Vue](#vue)
-  - [MVVM 和 MVC 的区别](#mvvm-%E5%92%8C-mvc%E7%9A%84%E5%8C%BA%E5%88%AB)
-  - [vue 的优点](#vue-%E7%9A%84%E4%BC%98%E7%82%B9)
-  - [vue 的响应式原理](#vue-%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86)
-  - [vue 双向数据绑定原理](#vue-%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A%E5%8E%9F%E7%90%86)
-  - [Object.defineProperty 介绍](#objectdefineproperty-%E4%BB%8B%E7%BB%8D)
-  - [使用 Object.defineProperty() 来进行数据劫持有什么缺点](#%E4%BD%BF%E7%94%A8-objectdefineproperty-%E6%9D%A5%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%8A%AB%E6%8C%81%E6%9C%89%E4%BB%80%E4%B9%88%E7%BC%BA%E7%82%B9)
-  - [v-if 和 v-show 的区别](#v-if-%E5%92%8C-v-show-%E7%9A%84%E5%8C%BA%E5%88%AB)
-  - [为什么 vue 组件中的 data 必须是函数](#%E4%B8%BA%E4%BB%80%E4%B9%88-vue-%E7%BB%84%E4%BB%B6%E4%B8%AD%E7%9A%84-data-%E5%BF%85%E9%A1%BB%E6%98%AF%E5%87%BD%E6%95%B0)
-  - [vue 的生命周期函数](#vue-%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0)
-  - [vue 的 activated 和 deactivated 钩子函数](#vue-%E7%9A%84-activated-%E5%92%8C-deactivated-%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0)
-  - [Vue 中父子组件生命周期执行顺序](#vue%E4%B8%AD%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F)
-  - [nextTick 用法](#nexttick-%E7%94%A8%E6%B3%95)
-  - [vue 中 key 属性的作用](#vue%E4%B8%ADkey%E5%B1%9E%E6%80%A7%E7%9A%84%E4%BD%9C%E7%94%A8)
-  - [Vue 中 key 属性用 index 为什么不行](#vue%E4%B8%ADkey%E5%B1%9E%E6%80%A7%E7%94%A8index%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%A1%8C)
-  - [Vue 的路由模式](#vue%E7%9A%84%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8F)
-  - [vue 中\$router 和\$route 的区别](#vue%E4%B8%AD%5Crouter%E5%92%8C%5Croute%E7%9A%84%E5%8C%BA%E5%88%AB)
-  - [Vue diff 算法详解](#vue-diff%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3)
-  - [移动端适配的方法](#%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E7%9A%84%E6%96%B9%E6%B3%95)
-  - [rem 原理](#rem-%E5%8E%9F%E7%90%86)
-  - [rem 和 em 的区别](#rem-%E5%92%8C-em-%E7%9A%84%E5%8C%BA%E5%88%AB)
-  - [移动端 300ms 延迟的原因以及解决方案](#%E7%A7%BB%E5%8A%A8%E7%AB%AF-300ms-%E5%BB%B6%E8%BF%9F%E7%9A%84%E5%8E%9F%E5%9B%A0%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88)
-  - [Vue 和 React 数据驱动的区别](#vue-%E5%92%8C-react-%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%8C%BA%E5%88%AB)
+- [MVVM 和 MVC 的区别](#mvvm-%E5%92%8C-mvc-%E7%9A%84%E5%8C%BA%E5%88%AB)
+- [vue 的响应式原理](#vue-%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86)
+- [vue 双向数据绑定原理](#vue-%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A%E5%8E%9F%E7%90%86)
+- [Object.defineProperty 介绍](#objectdefineproperty-%E4%BB%8B%E7%BB%8D)
+- [使用 Object.defineProperty() 来进行数据劫持有什么缺点](#%E4%BD%BF%E7%94%A8-objectdefineproperty-%E6%9D%A5%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%8A%AB%E6%8C%81%E6%9C%89%E4%BB%80%E4%B9%88%E7%BC%BA%E7%82%B9)
+- [v-if 和 v-show 的区别](#v-if-%E5%92%8C-v-show-%E7%9A%84%E5%8C%BA%E5%88%AB)
+- [为什么 vue 组件中的 data 必须是函数](#%E4%B8%BA%E4%BB%80%E4%B9%88-vue-%E7%BB%84%E4%BB%B6%E4%B8%AD%E7%9A%84-data-%E5%BF%85%E9%A1%BB%E6%98%AF%E5%87%BD%E6%95%B0)
+- [vue 的 activated 和 deactivated 钩子函数](#vue-%E7%9A%84-activated-%E5%92%8C-deactivated-%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0)
+- [Vue 中父子组件生命周期执行顺序](#vue-%E4%B8%AD%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F)
+- [vue 中 key 属性的作用](#vue-%E4%B8%AD-key-%E5%B1%9E%E6%80%A7%E7%9A%84%E4%BD%9C%E7%94%A8)
+- [Vue 的路由模式](#vue-%E7%9A%84%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8F)
+- [vue 中\$router 和\$route 的区别](#vue-%E4%B8%AD%5Crouter-%E5%92%8C%5Croute-%E7%9A%84%E5%8C%BA%E5%88%AB)
+- [Vue diff 算法详解](#vue-diff-%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3)
+- [Vue 和 React 数据驱动的区别](#vue-%E5%92%8C-react-%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%8C%BA%E5%88%AB)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -33,7 +22,7 @@
 
 - MVC 是应用最广泛的软件架构之一,一般 MVC 分为:Model(模型),View(视图),Controller(控制器)。 这主要是基于分层的目的,让彼此的职责分开，View 一般用过 Controller 来和 Model 进行联系。Controller 是 Model 和 View 的协调者,View 和 Model 不直接联系。基本都是单向联系。
 
-![MVC](./../images/MVC.png)
+![MVC](./images/MVC.png)
 
 1. View 传送指令到 Controller。
 2. Controller 完成业务逻辑后改变 Model 状态。
@@ -43,7 +32,7 @@
 
 View 的变化会自动更新到 ViewModel,ViewModel 的变化也会自动同步到 View 上显示,通过数据来显示视图层。
 
-![MVVM](./../images/MVVM.png)
+![MVVM](./images/MVVM.png)
 
 MVVM 和 MVC 的区别:
 

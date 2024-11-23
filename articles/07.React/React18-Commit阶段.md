@@ -1,3 +1,15 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [commit 阶段](#commit-%E9%98%B6%E6%AE%B5)
+- [前置阶段](#%E5%89%8D%E7%BD%AE%E9%98%B6%E6%AE%B5)
+- [mutation 阶段](#mutation-%E9%98%B6%E6%AE%B5)
+- [mutation 后](#mutation-%E5%90%8E)
+- [React 的 useLayoutEffect 和 useEffect 执行时机有什么不同?](#react-%E7%9A%84-uselayouteffect-%E5%92%8C-useeffect-%E6%89%A7%E8%A1%8C%E6%97%B6%E6%9C%BA%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ### commit 阶段
 
 render 阶段的末尾会调用`commitRoot(root)`进入**commit 阶段**，这里的 root 指的就是 fiberRoot，然后会遍历**render 阶段**生成的 effectList，effectList 上的 Fiber 节点保存着对应的 props 变化，之后会遍历 effectList 进行对应的 dom 操作和生命周期、hooks 回调或销毁函数。

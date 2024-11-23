@@ -1,3 +1,11 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [monerepo 的实现（推荐 pnpm）](#monerepo-%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%8E%A8%E8%8D%90-pnpm)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## monerepo 的实现（推荐 pnpm）
 
 1.  项目根目录下创建一个 `package.json` 文件，并设置`"private": true `以表示该项目是私有的。添加一个`"workspaces"`字段，并设置为一个包含子项目目录的数组, 例如：

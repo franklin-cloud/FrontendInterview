@@ -1,7 +1,8 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [let 和 var 的区别](#let-%E5%92%8C-var-%E7%9A%84%E5%8C%BA%E5%88%AB)
+
+- [var 和 let const 的区别](#var-%E5%92%8C-let-const-%E7%9A%84%E5%8C%BA%E5%88%AB)
 - [const 对象的属性可以修改吗?](#const-%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B1%9E%E6%80%A7%E5%8F%AF%E4%BB%A5%E4%BF%AE%E6%94%B9%E5%90%97)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->

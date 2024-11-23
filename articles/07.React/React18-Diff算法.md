@@ -1,3 +1,18 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Diff 算法](#diff-%E7%AE%97%E6%B3%95)
+- [单节点 diff](#%E5%8D%95%E8%8A%82%E7%82%B9-diff)
+- [多节点 diff](#%E5%A4%9A%E8%8A%82%E7%82%B9-diff)
+  - [属性变化](#%E5%B1%9E%E6%80%A7%E5%8F%98%E5%8C%96)
+  - [type 变化](#type-%E5%8F%98%E5%8C%96)
+  - [新增节点](#%E6%96%B0%E5%A2%9E%E8%8A%82%E7%82%B9)
+  - [节点删除](#%E8%8A%82%E7%82%B9%E5%88%A0%E9%99%A4)
+  - [节点位置变化](#%E8%8A%82%E7%82%B9%E4%BD%8D%E7%BD%AE%E5%8F%98%E5%8C%96)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ### Diff 算法
 
 在 render 阶段更新 Fiber 节点时，我们会调用 reconcileChildFibers 对比 current Fiber 树和 workInProgress Fiber 树。

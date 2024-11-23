@@ -1,6 +1,7 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+
 - [OSI 协议七层模型与 TCP/IP 协议五层模型](#osi-%E5%8D%8F%E8%AE%AE%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E4%B8%8E-tcpip-%E5%8D%8F%E8%AE%AE%E4%BA%94%E5%B1%82%E6%A8%A1%E5%9E%8B)
 - [应用层的协议哪些是基于 TCP 协议的，哪些是基于 UDP 协议的](#%E5%BA%94%E7%94%A8%E5%B1%82%E7%9A%84%E5%8D%8F%E8%AE%AE%E5%93%AA%E4%BA%9B%E6%98%AF%E5%9F%BA%E4%BA%8E-tcp-%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%93%AA%E4%BA%9B%E6%98%AF%E5%9F%BA%E4%BA%8E-udp-%E5%8D%8F%E8%AE%AE%E7%9A%84)
   - [基于 TCP 协议的](#%E5%9F%BA%E4%BA%8E-tcp-%E5%8D%8F%E8%AE%AE%E7%9A%84)
@@ -10,6 +11,7 @@
 - [TCP 的三次握手](#tcp-%E7%9A%84%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B)
 - [TCP 的四次挥手](#tcp-%E7%9A%84%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B)
 - [HTTP 状态码](#http-%E7%8A%B6%E6%80%81%E7%A0%81)
+- [HTTP 请求的方式](#http-%E8%AF%B7%E6%B1%82%E7%9A%84%E6%96%B9%E5%BC%8F)
 - [HTTP1.0 和 HTTP1.1 的区别](#http10-%E5%92%8C-http11-%E7%9A%84%E5%8C%BA%E5%88%AB)
 - [HTTP 1.x 与 HTTP 2.0 区别](#http-1x-%E4%B8%8E-http-20-%E5%8C%BA%E5%88%AB)
 - [HTTP 与 HTTPS 的区别](#http-%E4%B8%8E-https-%E7%9A%84%E5%8C%BA%E5%88%AB)
@@ -43,7 +45,7 @@
   物理层
   ```
 
-  ![7层协议](../images/browser/7层协议.gif)
+  ![7层协议](./images/7层协议.gif)
 
 ## 应用层的协议哪些是基于 TCP 协议的，哪些是基于 UDP 协议的
 
@@ -304,6 +306,6 @@ WebSocket 使得客户端和服务器之间的数据交换变得更加简单，�
 
 现在，很多网站为了实现推送技术，所用的技术都是 Ajax 轮询。轮询是在特定的的时间间隔（如每 1 秒），由浏览器对服务器发出 HTTP 请求，然后由服务器返回最新的数据给客户端的浏览器。这种传统的模式带来很明显的缺点，即浏览器需要不断的向服务器发出请求，然而 HTTP 请求可能包含较长的头部，其中真正有效的数据可能只是很小的一部分，显然这样会浪费很多的带宽等资源。
 
-![websocket和ajax轮询的对比图](../images/websocket.png)
+![websocket和ajax轮询的对比图](./images/websocket.png)
 
 应用场景:实现即时通讯:如股票交易行情分析、聊天室、在线游戏等，替代轮询和长轮询

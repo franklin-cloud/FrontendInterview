@@ -1,10 +1,8 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
-
-- [JavaScript 脚本延迟加载的方式有哪些？](#javascript-脚本延迟加载的方式有哪些)
-- [defer 和 async 的区别](#defer-和-async-的区别)
+- [JavaScript 脚本延迟加载的方式有哪些？](#javascript-%E8%84%9A%E6%9C%AC%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD%E7%9A%84%E6%96%B9%E5%BC%8F%E6%9C%89%E5%93%AA%E4%BA%9B)
+- [defer 和 async 的区别](#defer-%E5%92%8C-async-%E7%9A%84%E5%8C%BA%E5%88%AB)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

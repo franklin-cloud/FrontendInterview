@@ -1,6 +1,5 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [CSS3 新特性](#css3-%E6%96%B0%E7%89%B9%E6%80%A7)
 - [CSS 盒模型](#css-%E7%9B%92%E6%A8%A1%E5%9E%8B)
@@ -47,7 +46,6 @@
 - [屏幕里面内容未占满的时候 footer 固定在屏幕可视区域的底部。占满的时候显示在网页的最底端](#%E5%B1%8F%E5%B9%95%E9%87%8C%E9%9D%A2%E5%86%85%E5%AE%B9%E6%9C%AA%E5%8D%A0%E6%BB%A1%E7%9A%84%E6%97%B6%E5%80%99-footer-%E5%9B%BA%E5%AE%9A%E5%9C%A8%E5%B1%8F%E5%B9%95%E5%8F%AF%E8%A7%86%E5%8C%BA%E5%9F%9F%E7%9A%84%E5%BA%95%E9%83%A8%E5%8D%A0%E6%BB%A1%E7%9A%84%E6%97%B6%E5%80%99%E6%98%BE%E7%A4%BA%E5%9C%A8%E7%BD%91%E9%A1%B5%E7%9A%84%E6%9C%80%E5%BA%95%E7%AB%AF)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 
 ## CSS3 新特性
 
@@ -125,7 +123,7 @@ div {
 ```
 
 效果图：
-![效果图](./../images/border.png)
+![效果图](./images/border.png)
 
 ## margin/padding 设置百分比是相对谁的
 
@@ -461,13 +459,13 @@ DOM 的变化影响到了预算内宿的几何属性比如宽高，浏览器重�
 </div>
 ```
 
-![z-index1](../images/z-index1.png)
+![z-index1](./images/z-index1.png)
 
 > 上图中 div 的`z-index`均为整数的时候 div(a)的`z-index`虽然比 div(B)大，但是 div(A)和 div(a)是在一个堆叠上下文，而 div(B)和 div(b)是在一个堆叠上下文，这两个堆叠上下文是通过父级也就是 div(A)和 div(B)的`z-index`来决定层叠顺序的。
 
 ---
 
-![z-index1](../images/z-index2.png)
+![z-index1](./images/z-index2.png)
 
 > 上图将 div(A)的 z-index 设置为 auto，这时候因为`z-index: auto` 不会创建新的堆叠上下文，因而 div(a)的`z-index`比 div(B)大，所以 div(a)会在 div(B)的上面
 
@@ -730,7 +728,7 @@ div {
 ```
 
 效果图：
-![扇形](./../images/扇形.png)
+![扇形](./images/扇形.png)
 
 ## CSS 画正方体
 
@@ -795,7 +793,7 @@ div {
 ```
 
 效果图：
-![正方体](./../images/正方体.png)
+![正方体](./images/正方体.png)
 
 ## CSS 实现一个硬币旋转的效果
 
@@ -885,7 +883,7 @@ div {
 
 ## CSS 实现两列固定，中间自适应的布局
 
-![三栏布局效果图](../images/三栏布局效果图.png)
+![三栏布局效果图](./images/三栏布局效果图.png)
 
 > 左右各占 200px，中间随着窗口的调整自适应
 

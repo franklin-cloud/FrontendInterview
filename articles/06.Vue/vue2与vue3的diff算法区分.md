@@ -1,3 +1,26 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Vue2、Vue3 的 diff 对比](#vue2vue3-%E7%9A%84-diff-%E5%AF%B9%E6%AF%94)
+  - [前言](#%E5%89%8D%E8%A8%80)
+  - [Vue2 的 diff 算法核心](#vue2-%E7%9A%84-diff-%E7%AE%97%E6%B3%95%E6%A0%B8%E5%BF%83)
+    - [基本原理](#%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86)
+    - [diff 流程](#diff-%E6%B5%81%E7%A8%8B)
+      - [第一步：初始化](#%E7%AC%AC%E4%B8%80%E6%AD%A5%E5%88%9D%E5%A7%8B%E5%8C%96)
+      - [第二步：循环遍历节点](#%E7%AC%AC%E4%BA%8C%E6%AD%A5%E5%BE%AA%E7%8E%AF%E9%81%8D%E5%8E%86%E8%8A%82%E7%82%B9)
+      - [第三步：新增或删除节点](#%E7%AC%AC%E4%B8%89%E6%AD%A5%E6%96%B0%E5%A2%9E%E6%88%96%E5%88%A0%E9%99%A4%E8%8A%82%E7%82%B9)
+  - [Vue3 的 diff 算法核心](#vue3-%E7%9A%84-diff-%E7%AE%97%E6%B3%95%E6%A0%B8%E5%BF%83)
+    - [基本原理](#%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86-1)
+    - [diff 流程](#diff-%E6%B5%81%E7%A8%8B-1)
+    - [第一步：初始化](#%E7%AC%AC%E4%B8%80%E6%AD%A5%E5%88%9D%E5%A7%8B%E5%8C%96-1)
+    - [第二步：头部节点开始对比](#%E7%AC%AC%E4%BA%8C%E6%AD%A5%E5%A4%B4%E9%83%A8%E8%8A%82%E7%82%B9%E5%BC%80%E5%A7%8B%E5%AF%B9%E6%AF%94)
+    - [第三步：尾部节点开始对比](#%E7%AC%AC%E4%B8%89%E6%AD%A5%E5%B0%BE%E9%83%A8%E8%8A%82%E7%82%B9%E5%BC%80%E5%A7%8B%E5%AF%B9%E6%AF%94)
+    - [第四步：剩余节点对比](#%E7%AC%AC%E5%9B%9B%E6%AD%A5%E5%89%A9%E4%BD%99%E8%8A%82%E7%82%B9%E5%AF%B9%E6%AF%94)
+  - [diff 差别总结](#diff-%E5%B7%AE%E5%88%AB%E6%80%BB%E7%BB%93)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Vue2、Vue3 的 diff 对比
 
 ## 前言

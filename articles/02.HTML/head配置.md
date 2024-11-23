@@ -1,3 +1,50 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [HEAD](#head)
+  - [目录](#%E7%9B%AE%E5%BD%95)
+  - [最小推荐](#%E6%9C%80%E5%B0%8F%E6%8E%A8%E8%8D%90)
+  - [网页元素](#%E7%BD%91%E9%A1%B5%E5%85%83%E7%B4%A0)
+  - [Meta 标签](#meta-%E6%A0%87%E7%AD%BE)
+  - [链接](#%E9%93%BE%E6%8E%A5)
+  - [网站图标](#%E7%BD%91%E7%AB%99%E5%9B%BE%E6%A0%87)
+  - [社交](#%E7%A4%BE%E4%BA%A4)
+    - [Facebook Open Graph](#facebook-open-graph)
+    - [Twitter Card](#twitter-card)
+    - [Google+ / Schema.org](#google--schemaorg)
+    - [Pinterest](#pinterest)
+    - [Facebook Instant Articles](#facebook-instant-articles)
+    - [OEmbed](#oembed)
+  - [浏览器 / 平台](#%E6%B5%8F%E8%A7%88%E5%99%A8--%E5%B9%B3%E5%8F%B0)
+    - [Apple iOS](#apple-ios)
+    - [Apple Safari](#apple-safari)
+    - [Google Android](#google-android)
+    - [Google Chrome](#google-chrome)
+    - [Google Chrome Mobile (只针对 Android)](#google-chrome-mobile-%E5%8F%AA%E9%92%88%E5%AF%B9-android)
+    - [Microsoft Internet Explorer](#microsoft-internet-explorer)
+  - [国内的浏览器](#%E5%9B%BD%E5%86%85%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8)
+    - [360 浏览器](#360-%E6%B5%8F%E8%A7%88%E5%99%A8)
+    - [QQ 移动浏览器](#qq-%E7%A7%BB%E5%8A%A8%E6%B5%8F%E8%A7%88%E5%99%A8)
+    - [UC 移动浏览器](#uc-%E7%A7%BB%E5%8A%A8%E6%B5%8F%E8%A7%88%E5%99%A8)
+  - [应用链接](#%E5%BA%94%E7%94%A8%E9%93%BE%E6%8E%A5)
+  - [注意](#%E6%B3%A8%E6%84%8F)
+    - [性能](#%E6%80%A7%E8%83%BD)
+  - [其他资源](#%E5%85%B6%E4%BB%96%E8%B5%84%E6%BA%90)
+  - [相关项目](#%E7%9B%B8%E5%85%B3%E9%A1%B9%E7%9B%AE)
+  - [其他格式](#%E5%85%B6%E4%BB%96%E6%A0%BC%E5%BC%8F)
+  - [翻译](#%E7%BF%BB%E8%AF%91)
+  - [贡献](#%E8%B4%A1%E7%8C%AE)
+    - [指南](#%E6%8C%87%E5%8D%97)
+      - [1、`master`](#1master)
+      - [2. `gh-pages`](#2-gh-pages)
+    - [贡献者](#%E8%B4%A1%E7%8C%AE%E8%80%85)
+  - [作者](#%E4%BD%9C%E8%80%85)
+    - [翻译者](#%E7%BF%BB%E8%AF%91%E8%80%85)
+  - [协议](#%E5%8D%8F%E8%AE%AE)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # HEAD
 
 [![CC0](https://img.shields.io/badge/license-CC0-green.svg)](https://creativecommons.org/publicdomain/zero/1.0/)

@@ -1,3 +1,15 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [webpack 的打包配置 vue.config.js](#webpack-%E7%9A%84%E6%89%93%E5%8C%85%E9%85%8D%E7%BD%AE-vueconfigjs)
+- [多页面 main.js](#%E5%A4%9A%E9%A1%B5%E9%9D%A2-mainjs)
+- [多页面 Store](#%E5%A4%9A%E9%A1%B5%E9%9D%A2-store)
+- [多页面路由 Router](#%E5%A4%9A%E9%A1%B5%E9%9D%A2%E8%B7%AF%E7%94%B1-router)
+- [项目结构说明](#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E8%AF%B4%E6%98%8E)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ​
 Vue-cli3 多页面配置
 

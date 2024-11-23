@@ -1,3 +1,12 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [查询 find({查询条件}，{输出条件})](#%E6%9F%A5%E8%AF%A2-find%E6%9F%A5%E8%AF%A2%E6%9D%A1%E4%BB%B6%E8%BE%93%E5%87%BA%E6%9D%A1%E4%BB%B6)
+- [数据更新 update()](#%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0-update)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 假设数据库 admin 集合里有三个文档：
 
 ```javascript

@@ -1,3 +1,12 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [虚拟 DOM](#%E8%99%9A%E6%8B%9F-dom)
+- [jsx&createElement](#jsxcreateelement)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ### 虚拟 DOM
 
 virtual Dom 是一种编程方式，它以对象的形式保存在内存中，它描述了我们 dom 的必要信息，并且用类似 react-dom 等模块与真实 dom 同步，这一过程也叫协调(reconciler)，这种方式可以声明式的渲染相应的 ui 状态，让我们从 dom 操作中解放出来，在 react 中是以 fiber 树的形式存放组件树的相关信息，在更新时可以增量渲染相关 dom，所以 fiber 也是 virtual Dom 实现的一部分。

@@ -1,3 +1,14 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [合成事件](#%E5%90%88%E6%88%90%E4%BA%8B%E4%BB%B6)
+  - [优点](#%E4%BC%98%E7%82%B9)
+  - [合成事件和原生事件的区别](#%E5%90%88%E6%88%90%E4%BA%8B%E4%BB%B6%E5%92%8C%E5%8E%9F%E7%94%9F%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [图解](#%E5%9B%BE%E8%A7%A3)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## 合成事件
 
 https://juejin.cn/post/7042197672723218463

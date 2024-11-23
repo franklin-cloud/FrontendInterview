@@ -1,24 +1,18 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [react 中怎么检验 props](#react-%E4%B8%AD%E6%80%8E%E4%B9%88%E6%A3%80%E9%AA%8C-props)
-- [react 组件之间的通信](#react-%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1)
+- [组件之间的通信](#%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1)
 - [hooks 使用限制是什么?](#hooks-%E4%BD%BF%E7%94%A8%E9%99%90%E5%88%B6%E6%98%AF%E4%BB%80%E4%B9%88)
 - [React Hooks 和生命周期的关系？](#react-hooks-%E5%92%8C%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%9A%84%E5%85%B3%E7%B3%BB)
 - [useEffect 与 useLayoutEffect 的区别](#useeffect-%E4%B8%8E-uselayouteffect-%E7%9A%84%E5%8C%BA%E5%88%AB)
-- [react 性能优化的手段，避免不必要的 render](#react-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%9A%84%E6%89%8B%E6%AE%B5%E9%81%BF%E5%85%8D%E4%B8%8D%E5%BF%85%E8%A6%81%E7%9A%84-render)
-- [react 组件中怎么做事件代理, 它的原理是什么, SyntheticEvent 层（合成事件层)](#react-%E7%BB%84%E4%BB%B6%E4%B8%AD%E6%80%8E%E4%B9%88%E5%81%9A%E4%BA%8B%E4%BB%B6%E4%BB%A3%E7%90%86-%E5%AE%83%E7%9A%84%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88-syntheticevent-%E5%B1%82%E5%90%88%E6%88%90%E4%BA%8B%E4%BB%B6%E5%B1%82)
-- [如何解决 react 层级嵌套过深的问题](#%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3-react-%E5%B1%82%E7%BA%A7%E5%B5%8C%E5%A5%97%E8%BF%87%E6%B7%B1%E7%9A%84%E9%97%AE%E9%A2%98)
+- [性能优化的手段，避免不必要的 render](#%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%9A%84%E6%89%8B%E6%AE%B5%E9%81%BF%E5%85%8D%E4%B8%8D%E5%BF%85%E8%A6%81%E7%9A%84-render)
 - [react 框架是 mvvm 框架还是 mvc 框架](#react-%E6%A1%86%E6%9E%B6%E6%98%AF-mvvm-%E6%A1%86%E6%9E%B6%E8%BF%98%E6%98%AF-mvc-%E6%A1%86%E6%9E%B6)
 - [类组件与函数组件有什么异同？](#%E7%B1%BB%E7%BB%84%E4%BB%B6%E4%B8%8E%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E6%9C%89%E4%BB%80%E4%B9%88%E5%BC%82%E5%90%8C)
 - [有受控组件和不受控组件的理解](#%E6%9C%89%E5%8F%97%E6%8E%A7%E7%BB%84%E4%BB%B6%E5%92%8C%E4%B8%8D%E5%8F%97%E6%8E%A7%E7%BB%84%E4%BB%B6%E7%9A%84%E7%90%86%E8%A7%A3)
 - [有状态组件和无状态组件的理解、使用场景](#%E6%9C%89%E7%8A%B6%E6%80%81%E7%BB%84%E4%BB%B6%E5%92%8C%E6%97%A0%E7%8A%B6%E6%80%81%E7%BB%84%E4%BB%B6%E7%9A%84%E7%90%86%E8%A7%A3%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF)
 - [对 React 的插槽(Portals)的理解，如何使用，有哪些使用场景](#%E5%AF%B9-react-%E7%9A%84%E6%8F%92%E6%A7%BDportals%E7%9A%84%E7%90%86%E8%A7%A3%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E6%9C%89%E5%93%AA%E4%BA%9B%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF)
-- [React 声明组件有哪几种方法，有什么不同？](#react-%E5%A3%B0%E6%98%8E%E7%BB%84%E4%BB%B6%E6%9C%89%E5%93%AA%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C)
-- [refs、react 中可以在 render 访问 refs 吗?](#refsreact-%E4%B8%AD%E5%8F%AF%E4%BB%A5%E5%9C%A8-render-%E8%AE%BF%E9%97%AE-refs-%E5%90%97)
 - [react 路由的实现原理](#react-%E8%B7%AF%E7%94%B1%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86)
-- [如何配置 React-Router 实现路由切换](#%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE-react-router-%E5%AE%9E%E7%8E%B0%E8%B7%AF%E7%94%B1%E5%88%87%E6%8D%A2)
-- [react 循环列表为什么要使用 key](#react-%E5%BE%AA%E7%8E%AF%E5%88%97%E8%A1%A8%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8-key)
+- [循环列表为什么要使用 key](#%E5%BE%AA%E7%8E%AF%E5%88%97%E8%A1%A8%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8-key)
 - [react 与 vue 区别](#react-%E4%B8%8E-vue-%E5%8C%BA%E5%88%AB)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->

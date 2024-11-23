@@ -1,3 +1,12 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [触发条件](#%E8%A7%A6%E5%8F%91%E6%9D%A1%E4%BB%B6)
+- [触发原理](#%E8%A7%A6%E5%8F%91%E5%8E%9F%E7%90%86)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## 触发条件
 
 Vue 提供了 transition 的封装组件，在下列情形中，可以给任何元素和组件添加进入/离开过渡：

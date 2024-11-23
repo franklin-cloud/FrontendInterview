@@ -1,11 +1,9 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
-
-- [this 指向](#this-指向)
-- [作用域](#作用域)
-- [作用域链](#作用域链)
+- [this 指向](#this-%E6%8C%87%E5%90%91)
+- [作用域](#%E4%BD%9C%E7%94%A8%E5%9F%9F)
+- [作用域链](#%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

@@ -22,7 +22,7 @@ const getAllDirs = (dirPath) => {
 
 // 写入文件
 const writeJsFile = (path, content) => {
-  const fileContent = `export default ${JSON.stringify(content)}`;
+  const fileContent = `module.exports = ${JSON.stringify(content)}`;
   fs.writeFileSync(path, fileContent, "utf-8");
   console.log("写入成功:", path);
 };

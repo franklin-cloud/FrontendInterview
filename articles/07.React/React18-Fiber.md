@@ -1,3 +1,18 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Fiber 简介](#fiber-%E7%AE%80%E4%BB%8B)
+- [Fiber 的数据信息](#fiber-%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BF%A1%E6%81%AF)
+- [Fiber 双缓存链表结构](#fiber-%E5%8F%8C%E7%BC%93%E5%AD%98%E9%93%BE%E8%A1%A8%E7%BB%93%E6%9E%84)
+- [Fiber 在 mount 和 update 时的构建与替换流程](#fiber-%E5%9C%A8-mount-%E5%92%8C-update-%E6%97%B6%E7%9A%84%E6%9E%84%E5%BB%BA%E4%B8%8E%E6%9B%BF%E6%8D%A2%E6%B5%81%E7%A8%8B)
+  - [mount 阶段](#mount-%E9%98%B6%E6%AE%B5)
+  - [render 阶段](#render-%E9%98%B6%E6%AE%B5)
+  - [commit 阶段](#commit-%E9%98%B6%E6%AE%B5)
+  - [update 阶段](#update-%E9%98%B6%E6%AE%B5)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ### Fiber 简介
 
 React15 在 render 阶段的 reconcile 是不可打断的，这会在进行大量节点的 reconcile 时可能产生卡顿，因为浏览器所有的时间都交给了 js 执行，并且 js 的执行是单线程。

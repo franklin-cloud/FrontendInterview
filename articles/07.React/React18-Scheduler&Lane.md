@@ -1,3 +1,17 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Scheduler](#scheduler)
+- [Lane](#lane)
+- [时间切片 5ms](#%E6%97%B6%E9%97%B4%E5%88%87%E7%89%87-5ms)
+- [任务暂停判断](#%E4%BB%BB%E5%8A%A1%E6%9A%82%E5%81%9C%E5%88%A4%E6%96%AD)
+- [Scheduler 的两个核心 API](#scheduler-%E7%9A%84%E4%B8%A4%E4%B8%AA%E6%A0%B8%E5%BF%83-api)
+  - [runWithPriority](#runwithpriority)
+  - [scheduleCallback](#schedulecallback)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Scheduler
 
 Scheduler 是 React 16 引入的一个新的调度器，用于实现任务的优先级调度。Scheduler 的主要功能是：

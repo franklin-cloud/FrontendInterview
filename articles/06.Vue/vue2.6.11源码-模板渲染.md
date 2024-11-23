@@ -1,17 +1,16 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
 
-- [模板渲染的过程](#模板渲染的过程)
+- [模板渲染的过程](#%E6%A8%A1%E6%9D%BF%E6%B8%B2%E6%9F%93%E7%9A%84%E8%BF%87%E7%A8%8B)
   - [$mount](#mount)
   - [compileToFunctions](#compiletofunctions)
   - [baseCompile](#basecompile)
     - [parse](#parse)
-    - [optimize 函数](#optimize-函数)
-    - [generate 函数](#generate-函数)
-- [AST 抽象语树](#ast-抽象语树)
-- [VNode 数据结构](#vnode-数据结构)
+    - [optimize 函数](#optimize-%E5%87%BD%E6%95%B0)
+    - [generate 函数](#generate-%E5%87%BD%E6%95%B0)
+- [AST 抽象语树](#ast-%E6%8A%BD%E8%B1%A1%E8%AF%AD%E6%A0%91)
+- [VNode 数据结构](#vnode-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84)
 - [render function](#render-function)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->

@@ -1,7 +1,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
 
 - [observe 函数](#observe-%E5%87%BD%E6%95%B0)
 - [defineReactive 数据劫持函数](#definereactive-%E6%95%B0%E6%8D%AE%E5%8A%AB%E6%8C%81%E5%87%BD%E6%95%B0)

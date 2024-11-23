@@ -1,3 +1,13 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [es5 构造函数实现 class](#es5-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%AE%9E%E7%8E%B0-class)
+  - [class 特点](#class-%E7%89%B9%E7%82%B9)
+  - [构造函数实现 class](#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%AE%9E%E7%8E%B0-class)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## es5 构造函数实现 class
 
 ### class 特点

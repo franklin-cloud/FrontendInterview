@@ -1,3 +1,17 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [一、变量的声明](#%E4%B8%80%E5%8F%98%E9%87%8F%E7%9A%84%E5%A3%B0%E6%98%8E)
+- [二、var() 函数](#%E4%BA%8Cvar-%E5%87%BD%E6%95%B0)
+- [三、变量值的类型](#%E4%B8%89%E5%8F%98%E9%87%8F%E5%80%BC%E7%9A%84%E7%B1%BB%E5%9E%8B)
+- [四、作用域](#%E5%9B%9B%E4%BD%9C%E7%94%A8%E5%9F%9F)
+- [五、响应式布局](#%E4%BA%94%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80)
+- [六、兼容性处理](#%E5%85%AD%E5%85%BC%E5%AE%B9%E6%80%A7%E5%A4%84%E7%90%86)
+- [七、JavaScript 操作](#%E4%B8%83javascript-%E6%93%8D%E4%BD%9C)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 CSS 变量（CSS variable）又叫做"CSS 自定义属性"（CSS custom properties），可以通过 JS 动态改变。
 
 ## 一、变量的声明
