@@ -48,7 +48,7 @@ const getFiles = (dirPath, dirItamPath) => {
       // 读取文件内容
       let contentStr = fs.readFileSync(subPath, "utf-8");
       // 图片地址替换
-      let content = contentStr.replace("./images", `${giteeUrl}/${dirItamPath}/images`);
+      let content = contentStr.replace(/\.\/images/g, `${giteeUrl}/${dirItamPath}/images`);
       // 输出路径: outputDir目录下平铺展示
       const fileOutputPath = outputDir + "/" + fileName.replace(/\//g, "=").replace(/\.(md|html)$/, ".js");
       writeJsFile(fileOutputPath, content);
