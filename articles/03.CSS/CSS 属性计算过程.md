@@ -1,6 +1,7 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
 
 - [CSS 属性计算过程](#css-%E5%B1%9E%E6%80%A7%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B)
   - [确定声明值](#%E7%A1%AE%E5%AE%9A%E5%A3%B0%E6%98%8E%E5%80%BC)
@@ -18,11 +19,11 @@
 
 你是否了解 CSS 的属性计算过程呢？
 
-有的同学可能会讲，CSS属性我倒是知道，例如：
+有的同学可能会讲，CSS 属性我倒是知道，例如：
 
 ```css
-p{
-  color : red;
+p {
+  color: red;
 }
 ```
 
@@ -31,8 +32,6 @@ p{
 但是要说 CSS 属性的计算过程，还真的不是很清楚。
 
 没关系，通过此篇文章，能够让你彻底明白什么是 CSS 属性的计算流程。
-
-<img src="https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-08-13-060434.png" alt="image-20220813140434032" style="zoom:50%;" />
 
 首先，不知道你有没有考虑过这样的一个问题，假设在 HTML 中有这么一段代码：
 
@@ -50,8 +49,6 @@ p{
 
 那么问题来了，我们这个 h1 元素上面除了有默认字体大小、默认颜色等属性以外，究竟还有哪些属性呢？
 
-<img src="https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-08-15-014216.png" alt="image-20220815094215982" style="zoom:30%;" />
-
 答案是**该元素上面会有 CSS 所有的属性。**你可以打开浏览器的开发者面板，选择【元素】，切换到【计算样式】，之后勾选【全部显示】，此时你就能看到在此 h1 上面所有 CSS 属性对应的值。
 
 ![image-20220813141516153](https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-08-13-061516.png)
@@ -59,8 +56,8 @@ p{
 换句话说，**我们所书写的任何一个 HTML 元素，实际上都有完整的一整套 CSS 样式**。这一点往往是让初学者比较意外的，因为我们平时在书写 CSS 样式时，往往只会书写必要的部分，例如前面的：
 
 ```css
-p{
-  color : red;
+p {
+  color: red;
 }
 ```
 
@@ -68,26 +65,22 @@ p{
 
 但是注意，我这里强调的是“大概率可能”，难道还有我们“没有设置值，但是不使用默认值”的情况么？
 
-<img src="https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-08-15-014459.png" alt="image-20220815094458940" style="zoom:25%;" />
-
 嗯，确实有的，所以我才强调你要了解“CSS 属性的计算过程”。
 
-总的来讲，属性值的计算过程，分为如下这么 *4* 个步骤：
+总的来讲，属性值的计算过程，分为如下这么 _4_ 个步骤：
 
 - 确定声明值
 - 层叠冲突
 - 使用继承
 - 使用默认值
 
-
-
 ## 确定声明值
 
 首先第一步，是确定声明值。所谓声明值就是作者自己所书写的 CSS 样式，例如前面的：
 
 ```css
-p{
-  color : red;
+p {
+  color: red;
 }
 ```
 
@@ -101,8 +94,6 @@ p{
 
 这些值目前来讲也没有什么冲突，因此最终就会应用这些属性值。
 
-
-
 ## 层叠冲突
 
 在确定声明值时，可能出现一种情况，那就是声明的样式规则发生了冲突。
@@ -114,8 +105,6 @@ p{
 - 比较次序
 
 来来来，我们一步一步来看。
-
-
 
 ### 比较源的重要性
 
@@ -133,17 +122,15 @@ p{
 
 对应的重要性顺序依次为：页面作者样式 > 用户样式 > 用户代理样式
 
-更详细的来源重要性比较，可以参阅 *MDN*：*https://developer.mozilla.org/zh-CN/docs/Web/CSS/Cascade*
-
-
+更详细的来源重要性比较，可以参阅 _MDN_：*https://developer.mozilla.org/zh-CN/docs/Web/CSS/Cascade*
 
 我们来看一个示例。
 
 例如现在有**页面作者样式表**和**用户代理样式表**中存在属性的冲突，那么会以作者样式表优先。
 
 ```css
-p{
-  color : red;
+p {
+  color: red;
   display: inline-block;
 }
 ```
@@ -151,8 +138,6 @@ p{
 ![image-20220813144222152](https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-08-13-064222.png)
 
 可以明显的看到，作者样式表和用户代理样式表中同时存在的 display 属性的设置，最终作者样式表干掉了用户代理样式表中冲突的属性。这就是第一步，根据不同源的重要性来决定应用哪一个源的样式。
-
-
 
 ### 比较优先级
 
@@ -167,7 +152,7 @@ p{
 ```
 
 ```css
-.test h1{
+.test h1 {
   font-size: 50px;
 }
 
@@ -178,15 +163,13 @@ h1 {
 
 在上面的代码中，同属于**页面作者样式**，源的重要性是相同的，此时会以选择器的权重来比较重要性。
 
-很明显，上面的选择器的权重要大于下面的选择器，因此最终标题呈现为 *50px*。
+很明显，上面的选择器的权重要大于下面的选择器，因此最终标题呈现为 _50px_。
 
 <img src="https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2021-09-16-071546.png" alt="image-20210916151546500" style="zoom: 40%;" />
 
-可以看到，落败的作者样式在 *Elements>Styles* 中会被划掉。
+可以看到，落败的作者样式在 _Elements>Styles_ 中会被划掉。
 
 有关选择器权重的计算方式，不清楚的同学，可以进入此传送门：*https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity*
-
-
 
 ### 比较次序
 
@@ -206,15 +189,11 @@ h1 {
 }
 ```
 
-在上面的代码中，同样都是**页面作者样式**，**选择器的权重也相同**，此时位于下面的样式声明会层叠掉上面的那一条样式声明，最终会应用 *20px* 这一条属性值。
+在上面的代码中，同样都是**页面作者样式**，**选择器的权重也相同**，此时位于下面的样式声明会层叠掉上面的那一条样式声明，最终会应用 _20px_ 这一条属性值。
 
 ![image-20220823183928330](https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-08-23-103928.png)
 
-
-
 至此，样式声明中存在冲突的所有情况，就全部被解决了。
-
-
 
 ## 使用继承
 
@@ -222,7 +201,7 @@ h1 {
 
 那么如果没有声明的属性呢？此时就使用默认值么？
 
-*No、No、No*，别急，此时还有第三个步骤，那就是使用继承而来的值。
+_No、No、No_，别急，此时还有第三个步骤，那就是使用继承而来的值。
 
 例如：
 
@@ -258,7 +237,7 @@ div {
 div {
   color: red;
 }
-.test{
+.test {
   color: blue;
 }
 ```
@@ -267,17 +246,11 @@ div {
 
 因为这里并不涉及到选中 p 元素声明 color 值，而是从父元素上面继承到 color 对应的值，因此这里是**谁近就听谁**的，初学者往往会产生混淆，又去比较权重，但是这里根本不会涉及到权重比较，因为压根儿就没有选中到 p 元素。
 
-
-
 第二个就是哪些属性能够继承？
 
 关于这一点的话，大家可以在 MDN 上面很轻松的查阅到。例如我们以 text-align 为例，如下图所示：
 
 ![image-20220813150147885](https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-08-13-070148.png)
-
-
-
-
 
 ## 使用默认值
 
@@ -292,8 +265,6 @@ div {
 好了，这就是关于 CSS 属性计算过程的所有知识了。
 
 <img src="https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-08-14-154655.png" alt="image-20220814234654914" style="zoom:33%;" />
-
-
 
 ## 一道面试题
 
@@ -322,11 +293,8 @@ div {
 
 实际上原因很简单，因为 a 元素在用户代理样式表中已经设置了 color 属性对应的值，因此会应用此声明值。而在 p 元素中无论是作者样式表还是用户代理样式表，都没有对此属性进行声明，然而由于 color 属性是可以继承的，因此最终 p 元素的 color 属性值通过继承来自于父元素。
 
-
-
 你答对了么？-）
 
 ---
 
--*EOF*-
-
+-_EOF_-

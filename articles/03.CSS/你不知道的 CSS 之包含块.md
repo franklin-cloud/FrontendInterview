@@ -1,8 +1,9 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-- [你不知道的 CSS 之包含块](#%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84-css-%E4%B9%8B%E5%8C%85%E5%90%AB%E5%9D%97)
+**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
+
+- [你不知道的 CSS 之包含块](#你不知道的-css-之包含块)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -16,8 +17,6 @@
 
 好吧，如果你对包含块的知识一无所知，那么系好安全带，咱们准备出发了。
 
-<img src="https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-08-13-060434.png" alt="image-20220813140434032" style="zoom:50%;" />
-
 包含块英语全称为**containing block**，实际上平时你在书写 CSS 时，大多数情况下你是感受不到它的存在，因此你不知道这个知识点也是一件很正常的事情。但是这玩意儿是确确实实存在的，在 CSS 规范中也是明确书写了的：
 
 *https://drafts.csswg.org/css2/#containing-block-details*
@@ -30,10 +29,6 @@
 
 说起来也简单，**就是元素的尺寸和位置，会受它的包含块所影响。对于一些属性，例如 width, height, padding, margin，绝对定位元素的偏移值（比如 position 被设置为 absolute 或 fixed），当我们对其赋予百分比值时，这些值的计算值，就是通过元素的包含块计算得来。**
 
-来吧，少年，让我们从最简单的 case 开始看。
-
-<img src="https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-08-14-143153.png" alt="image-20220814223152726" style="zoom: 50%;" />
-
 ```html
 <body>
   <div class="container">
@@ -43,12 +38,12 @@
 ```
 
 ```css
-.container{
+.container {
   width: 500px;
   height: 300px;
   background-color: skyblue;
 }
-.item{
+.item {
   width: 50%;
   height: 50%;
   background-color: red;
@@ -67,28 +62,24 @@
 
 因此正如我前面所说，**很多时候你都感受不到包含块的存在。**
 
-
-
 包含块分为两种，一种是根元素（HTML 元素）所在的包含块，被称之为初始包含块（**initial containing block**）。对于浏览器而言，初始包含块的的大小等于视口 viewport 的大小，基点在画布的原点（视口左上角）。它是作为元素绝对定位和固定定位的参照物。
-
-
 
 另外一种是对于非根元素，对于非根元素的包含块判定就有几种不同的情况了。大致可以分为如下几种：
 
 - 如果元素的 positiion 是 relative 或 static ，那么包含块由离它最近的块容器（block container）的内容区域（content area）的边缘建立。
 - 如果 position 属性是 fixed，那么包含块由视口建立。
-- 如果元素使用了 absolute 定位，则包含块由它的最近的 position 的值不是 static （也就是值为fixed、absolute、relative 或 sticky）的祖先元素的内边距区的边缘组成。
+- 如果元素使用了 absolute 定位，则包含块由它的最近的 position 的值不是 static （也就是值为 fixed、absolute、relative 或 sticky）的祖先元素的内边距区的边缘组成。
 
 前面两条实际上都还比较好理解，第三条往往是初学者容易比较忽视的，我们来看一个示例：
 
 ```html
 <body>
-    <div class="container">
-      <div class="item">
-        <div class="item2"></div>
-      </div>
+  <div class="container">
+    <div class="item">
+      <div class="item2"></div>
     </div>
-  </body>
+  </div>
+</body>
 ```
 
 ```css
@@ -129,8 +120,8 @@
 实际上对于非根元素来讲，包含块还有一种可能，那就是如果 position 属性是 absolute 或 fixed，包含块也可能是由满足以下条件的最近父级元素的内边距区的边缘组成的：
 
 - transform 或 perspective 的值不是 none
--  will-change 的值是 transform 或 perspective 
-- filter 的值不是 none 或 will-change 的值是 filter(只在 Firefox 下生效). 
+- will-change 的值是 transform 或 perspective
+- filter 的值不是 none 或 will-change 的值是 filter(只在 Firefox 下生效).
 - contain 的值是 paint (例如: contain: paint;)
 
 我们还是来看一个示例：
@@ -227,9 +218,10 @@
 接下来添加如下的 CSS：
 
 ```css
-#div1 { 
-  position: absolute; 
-  left: 50px; top: 50px 
+#div1 {
+  position: absolute;
+  left: 50px;
+  top: 50px;
 }
 ```
 
@@ -250,22 +242,22 @@
 可以看到，这里 div1 的包含块就发生了变化，变为了初始包含块。这里你可以参考前文中的这两句话：
 
 - 初始包含块（**initial containing block**）。对于浏览器而言，初始包含块的的大小等于视口 viewport 的大小，基点在画布的原点（视口左上角）。它是作为元素绝对定位和固定定位的参照物。
-- 如果元素使用了 absolute 定位，则包含块由它的最近的 position 的值不是 static （也就是值为fixed、absolute、relative 或 sticky）的祖先元素的内边距区的边缘组成。
+- 如果元素使用了 absolute 定位，则包含块由它的最近的 position 的值不是 static （也就是值为 fixed、absolute、relative 或 sticky）的祖先元素的内边距区的边缘组成。
 
-是不是一下子就理解了。没错，因为我们对 div1 进行了定位，因此它会应用非根元素包含块计算规则的第三条规则，寻找离它最近的  position 的值不是 static 的祖先元素，不过显然 body 的定位方式为 static，因此 div1 的包含块最终就变成了初始包含块。
+是不是一下子就理解了。没错，因为我们对 div1 进行了定位，因此它会应用非根元素包含块计算规则的第三条规则，寻找离它最近的 position 的值不是 static 的祖先元素，不过显然 body 的定位方式为 static，因此 div1 的包含块最终就变成了初始包含块。
 
 接下来我们继续修改我们的 CSS：
 
 ```css
-#div1 { 
-  position: absolute; 
-  left: 50px; 
-  top: 50px 
+#div1 {
+  position: absolute;
+  left: 50px;
+  top: 50px;
 }
-#em1  { 
-  position: absolute; 
-  left: 100px; 
-  top: 100px 
+#em1 {
+  position: absolute;
+  left: 100px;
+  top: 100px;
 }
 ```
 
@@ -275,14 +267,14 @@
 
 如下表所示：
 
-| 元素    | 包含块                                                       |
-| ------- | ------------------------------------------------------------ |
-| html    | initial C.B. (UA-dependent)                                  |
-| body    | html                                                         |
-| div1    | initial C.B. (UA-dependent)                                  |
-| p1      | div1                                                         |
-| p2      | div1                                                         |
-| em1     | div1（因为定位了，参阅非根元素包含块确定规则的第三条）       |
+| 元素    | 包含块                                                           |
+| ------- | ---------------------------------------------------------------- |
+| html    | initial C.B. (UA-dependent)                                      |
+| body    | html                                                             |
+| div1    | initial C.B. (UA-dependent)                                      |
+| p1      | div1                                                             |
+| p2      | div1                                                             |
+| em1     | div1（因为定位了，参阅非根元素包含块确定规则的第三条）           |
 | strong1 | em1（因为 em1 变为了块容器，参阅非根元素包含块确定规则的第一条） |
 
 好了，这就是 CSS 规范中所举的例子。如果你全都能看明白，以后你还能跟别人说你是看过这一块知识对应的 CSS 规范的人。
@@ -293,17 +285,8 @@
 
 具体你可以移步到：*https://developer.mozilla.org/zh-CN/docs/Web/CSS/Containing_block*
 
-
-
 好了，这就是有关包含块的所有内容了，你学会了么？-）
 
 ---
 
--*EOF*-
-
-
-
-
-
-
-
+-_EOF_-
