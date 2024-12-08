@@ -11,6 +11,8 @@ const outputDir = "D:/MySpace/Work/wx_interview/articles";
 // 所有文件名
 const allFileNames = [];
 
+const giteeUrl = "https://gitee.com/franklin-cloud/FrontendInterview/raw/main/articles";
+
 // 获取目录
 const getAllDirs = (dirPath) => {
   const dirs = fs.readdirSync(dirPath);
@@ -28,7 +30,7 @@ const writeJsFile = (path, content) => {
 };
 
 // 获取的文件
-const getFiles = (dirPath) => {
+const getFiles = (dirPath, dirItamPath) => {
   const allFiles = fs.readdirSync(dirPath);
   // 过滤掉images文件夹
   const files = allFiles.filter((file) => {
@@ -44,12 +46,15 @@ const getFiles = (dirPath) => {
       // console.log("fileName:", fileName);
       allFileNames.push(fileName);
       // 读取文件内容
-      const contentStr = fs.readFileSync(subPath, "utf-8");
+      let contentStr = fs.readFileSync(subPath, "utf-8");
+      // 图片地址替换
+      let content = contentStr.replace("./images", `${giteeUrl}/${dirItamPath}/images`);
       // 输出路径: outputDir目录下平铺展示
       const fileOutputPath = outputDir + "/" + fileName.replace(/\//g, "=").replace(/\.(md|html)$/, ".js");
-      writeJsFile(fileOutputPath, contentStr);
+      writeJsFile(fileOutputPath, content);
     } else if (fileState.isDirectory()) {
-      getFiles(subPath);
+      console.log("三级目录");
+      getFiles(subPath, file);
     }
   });
 };
@@ -63,7 +68,7 @@ const getAllFiles = (allDirs) => {
   // 读取所有文件内容
   allDirs.forEach((dirItamPath) => {
     const dirPath = `${targetPath}/${dirItamPath}`;
-    getFiles(dirPath);
+    getFiles(dirPath, dirItamPath);
   });
 };
 
