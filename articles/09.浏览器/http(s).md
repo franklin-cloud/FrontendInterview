@@ -1,23 +1,18 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
-- [OSI 协议七层模型与 TCP/IP 协议五层模型](#osi-%E5%8D%8F%E8%AE%AE%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E4%B8%8E-tcpip-%E5%8D%8F%E8%AE%AE%E4%BA%94%E5%B1%82%E6%A8%A1%E5%9E%8B)
-- [应用层的协议哪些是基于 TCP 协议的，哪些是基于 UDP 协议的](#%E5%BA%94%E7%94%A8%E5%B1%82%E7%9A%84%E5%8D%8F%E8%AE%AE%E5%93%AA%E4%BA%9B%E6%98%AF%E5%9F%BA%E4%BA%8E-tcp-%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%93%AA%E4%BA%9B%E6%98%AF%E5%9F%BA%E4%BA%8E-udp-%E5%8D%8F%E8%AE%AE%E7%9A%84)
-  - [基于 TCP 协议的](#%E5%9F%BA%E4%BA%8E-tcp-%E5%8D%8F%E8%AE%AE%E7%9A%84)
-  - [基于 UDP 协议的](#%E5%9F%BA%E4%BA%8E-udp-%E5%8D%8F%E8%AE%AE%E7%9A%84)
-  - [基于 TCP 和 UDP 协议的](#%E5%9F%BA%E4%BA%8E-tcp-%E5%92%8C-udp-%E5%8D%8F%E8%AE%AE%E7%9A%84)
-- [TCP 和 UDP 之间的区别](#tcp-%E5%92%8C-udp-%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB)
-- [TCP 的三次握手](#tcp-%E7%9A%84%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B)
-- [TCP 的四次挥手](#tcp-%E7%9A%84%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B)
-- [HTTP 状态码](#http-%E7%8A%B6%E6%80%81%E7%A0%81)
-- [HTTP 请求的方式](#http-%E8%AF%B7%E6%B1%82%E7%9A%84%E6%96%B9%E5%BC%8F)
-- [HTTP1.0 和 HTTP1.1 的区别](#http10-%E5%92%8C-http11-%E7%9A%84%E5%8C%BA%E5%88%AB)
-- [HTTP 1.x 与 HTTP 2.0 区别](#http-1x-%E4%B8%8E-http-20-%E5%8C%BA%E5%88%AB)
-- [HTTP 与 HTTPS 的区别](#http-%E4%B8%8E-https-%E7%9A%84%E5%8C%BA%E5%88%AB)
-- [对称加密和非对称加密的区别](#%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E5%92%8C%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E7%9A%84%E5%8C%BA%E5%88%AB)
-- [HTTPS 的单向认证通信过程](#https-%E7%9A%84%E5%8D%95%E5%90%91%E8%AE%A4%E8%AF%81%E9%80%9A%E4%BF%A1%E8%BF%87%E7%A8%8B)
-- [WebSocket 协议](#websocket-%E5%8D%8F%E8%AE%AE)
+- [OSI 协议七层模型与 TCP/IP 协议五层模型](#osi-协议七层模型与-tcpip-协议五层模型)
+- [TCP 和 UDP 之间的区别](#tcp-和-udp-之间的区别)
+- [TCP 的三次握手](#tcp-的三次握手)
+- [TCP 的四次挥手](#tcp-的四次挥手)
+- [HTTP 状态码](#http-状态码)
+- [HTTP 请求的方式](#http-请求的方式)
+- [HTTP1.0 和 HTTP1.1 的区别](#http10-和-http11-的区别)
+- [HTTP 1.x 与 HTTP 2.0 区别](#http-1x-与-http-20-区别)
+- [HTTP 与 HTTPS 的区别](#http-与-https-的区别)
+- [对称加密和非对称加密的区别](#对称加密和非对称加密的区别)
+- [HTTPS 的单向认证通信过程](#https-的单向认证通信过程)
+- [WebSocket 协议](#websocket-协议)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -46,31 +41,6 @@
   ```
 
   ![7层协议](./images/7层协议.gif)
-
-## 应用层的协议哪些是基于 TCP 协议的，哪些是基于 UDP 协议的
-
-### 基于 TCP 协议的
-
-- FTP（文件传输协议）：定义了文件传输协议，使用 21 端口。
-- TELNET（远程登陆协议）：一种用于远程登陆的端口，使用 23 端口，用户可以以自己的身份远程连接到计算机上，可提供基于 DOS 模式下的通信服务。
-- SMTP（简单邮件传输协议）：邮件传送协议，用于发送邮件。服务器开放的是 25 号端口。
-- POP3（邮件读取协议）：它是和 SMTP 对应，POP3 用于接收邮件。POP3 协议所用的是 110 端口。
-- HTTP（超文本传输协议）：是从 Web 服务器传输超文本到本地浏览器的传送协议。
-- HTTPS（超文本传输安全协议）
-
-### 基于 UDP 协议的
-
-- TFTP（简单文件传输协议）：该协议在熟知端口 69 上使用 UDP 服务。
-- SNMP（简单网络管理协议）：使用 161 号端口，是用来管理网络设备的。由于网络设备很多，无连接的服务就体现出其优势。
-- BOOTP（引导程序协议，DHCP 的前身）：应用于无盘设备
-- DHCP（动态主机配置协议）：是一个局域网的网络协议
-- RIP（路由信息协议）：基于距离矢量算法的路由协议，利用跳数来作为计量标准。
-- IGMP（Internet 组管理协议）
-
-### 基于 TCP 和 UDP 协议的
-
-- DNS（域名系统）：DNS 区域传输的时候使用 TCP 协议。域名解析时使用 UDP 协议。DNS 用的是 53 号端口。
-- ECHO（回绕协议）
 
 ## TCP 和 UDP 之间的区别
 
@@ -195,9 +165,8 @@ https://juejin.cn/post/6844903834708344840
 
 ## HTTP 与 HTTPS 的区别
 
-1. HTTP 传输的数据都是未加密的，也就是明文的，HTTPS 协议是由 HTTP 和 SSL 协议构建的可进行加密传输和身份认证的网络协议，比 HTTP 协议的安全性更高。
-2. HTTPS 协议需要 CA 证书；
-3. 使用不同的链接方式，端口也不同，一般而言，HTTP 协议的端口为 80，HTTPS 的端口为 443；
+1. 安全性：HTTP 传输的数据都是未加密的，也就是明文的，HTTPS 协议是由 HTTP 和 SSL(Secure Socket Layer) 或 TLS(Transport Layer Security) 协议构建的可进行加密传输和身份认证的网络协议，比 HTTP 协议的安全性更高。
+2. 端口：一般而言 HTTP 协议的端口为 80，HTTPS 的端口为 443；
 
 ## 对称加密和非对称加密的区别
 
