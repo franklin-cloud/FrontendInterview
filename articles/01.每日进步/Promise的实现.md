@@ -18,8 +18,8 @@ const statusMap = {
 
 export default class Promise2 {
   constructor(excutor) {
-    // 立即执行
     try {
+      // excutor的执行，保存resolve和reject
       excutor(this.resolve, this.reject);
     } catch (e) {
       this.reject(e);
@@ -27,19 +27,14 @@ export default class Promise2 {
   }
 
   status = "pending"; // 状态
-
-  fulfilledCallbacks = []; // 成功的回调, 可以一直调用
-
-  value = null; // 成功的值
-
-  rejectedCallbacks = []; // 拒绝的回调
-
-  errorInfo = null; // 失败信息
-
+  fulfilledCallbacks = []; // 保存成功的回调
+  value = null; // 成功的结果
+  rejectedCallbacks = []; // 保存拒绝的回调
+  errorInfo = null; // 失败的结果
   /*
-    在异步操作成功时调用，状态 pending -> fulfilled
-    并将异步操作的结果，作为参数传递出去
-  */
+   *在异步操作成功时调用，状态 pending -> fulfilled
+   *并将异步操作的结果，作为参数传递出去
+   */
   resolve = (data) => {
     if (this.status === statusMap.PENDING) {
       this.status = statusMap.FULFILLED;
@@ -52,9 +47,9 @@ export default class Promise2 {
   };
 
   /*
-    在异步操作失败时调用，状态 pending -> rejected
-    并将异步操作的结果，作为参数传递出去
-  */
+   *在异步操作失败时调用，状态 pending -> rejected
+   *并将异步操作的结果，作为参数传递出去
+   */
   reject = (data) => {
     if (this.status === statusMap.PENDING) {
       this.status = statusMap.REJECTED;

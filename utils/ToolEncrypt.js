@@ -102,7 +102,7 @@ function signature(data, key = "") {
 }
 
 // 加解密工具
-const Tool = {
+const ToolEncrypt = {
   secret: "d70469c6-d8d7-4134-994e-5b84693a1b9c", // 私钥，用于防止别人冒充签名
   RSA_KEY: "", // RSA公钥，后端接口获取, 储存在前端
   AES_KEY: getKeyAES(), // AES密钥，在前端生成
@@ -114,9 +114,12 @@ const Tool = {
    */
   encode(data) {
     const { secret, AES_KEY, RSA_KEY } = this;
-    const requestDataEnc = encodeAES(data, AES_KEY); // 所有请求参数进行AES加密
-    const encodeKey = encodeRSA(AES_KEY, RSA_KEY); // AES的密钥进行RSA加密
-    const timestamp = new Date().getValue(); // 当前时间戳
+    // 所有请求参数进行AES加密
+    const requestDataEnc = encodeAES(data, AES_KEY);
+    // AES的密钥进行RSA加密
+    const encodeKey = encodeRSA(AES_KEY, RSA_KEY);
+    // 当前时间戳
+    const timestamp = new Date().getValue();
     const result = {
       secret,
       encodeKey,
@@ -146,4 +149,4 @@ const Tool = {
   },
 };
 
-export default Tool;
+export default ToolEncrypt;

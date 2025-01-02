@@ -1,5 +1,4 @@
 // webSoket2 封装
-
 const wsReadState = {
   CONNECTING: 0,
   OPEN: 1,

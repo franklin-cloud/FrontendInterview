@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>throw&try-catch消除异步感染</title>
+  </head>
+  <body>
+    <a target="_blank" href="https://juejin.cn/post/7272751454497996815?searchId=202401020932431333FD287F9DADF22EEC"
+      >如何消除异步的传染性?</a
+    >
+    <script>
+      const fn = async () => {
+        const res = await fetch("https://cnodejs.org/api/v1/topics");
+        console.log("fn", res); // response
+        return res;
+      };
+
+      const fn2 = () => {
+        const res = fn();
+        console.log("fn2", res); // promise
+        return res;
+      };
+
+      const main = () => {
+        const res = fn2();
+        console.log("main", res); // promise
+      };
+
+      main();
+    </script>
+
+    <script>
+      /**
+       * 当我们把async/await去掉之后，就变成了同步调用，那么m2返回的肯定是pending状态的promise，main得到的也是，
+       * 肯定达不到我们想要的效果。
+       * 那我们能不能等promise变成fulfilled/rejected状态再接着执行main？
+       * 可以，第一次调用main，我们直接throw，第一次调用就会终止，然后等promise变成fulfilled/rejected状态，
+       * 我们将返回结果或错误信息缓存一下，再调用一次main，再次调用时存在缓存，直接返回缓存即可，此时也就变成了同步
+       *
+       *  throw promise
+       *  改写fetch函数，返回一个promise，当调用fetch时，直接返回一个pending状态的promise
+       *  promise状态改变后再次调用任务，返回缓存内的数据
+       */
+      const cache = new Map();
+      function asyncToSyncForFetch(task) {
+        const originalFetch = window.fetch;
+        fetch = (url, ...arg) => {
+          const mapkey = url + JSON.stringify(arg);
+          if (cache.has(mapkey)) {
+            const result = cache.get(mapkey);
+            if (result.status === "fulfilled") {
+              return result.value;
+            } else {
+              throw result.value;
+            }
+          } else {
+            // 执行fetch
+            const prom = originalFetch(url, arg)
+              .then((result) => {
+                cache.set(mapkey, {
+                  status: "fulfilled",
+                  value: result,
+                });
+              })
+              .catch((err) => {
+                cache.set(mapkey, {
+                  status: "rejected",
+                  value: err,
+                });
+              });
+            // 返回一个pending状态的promise,下次调用任务时，直接返回缓存数据
+            throw prom;
+          }
+        };
+        // 执行任务
+        try {
+          task();
+        } catch (p) {
+          // console.log(p)
+          if (p instanceof Promise) {
+            p.then(task, task).finally(() => (window.fetch = originalFetch));
+          }
+        }
+      }
+
+      const _fn = () => {
+        const res = fetch("https://cnodejs.org/api/v1/topics");
+        console.log("_fn");
+        return res;
+      };
+
+      const _fn2 = () => {
+        const res = _fn();
+        console.log("_fn2");
+        return res;
+      };
+
+      const _main = () => {
+        const res = _fn2();
+        console.log("_main", res);
+      };
+
+      asyncToSyncForFetch(_main);
+    </script>
+  </body>
+</html>

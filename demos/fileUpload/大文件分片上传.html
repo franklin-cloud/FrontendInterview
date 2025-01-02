@@ -17,17 +17,14 @@
       <h3>文件分片上传</h3>
       <ul>
         <li>
-          File & Blob只是文件的一种储存类型, File存储着文件的name, size, type,
-          lastModified信息, 读取文件内容需要使用FileReader
+          File & Blob只是文件的一种储存类型, File存储着文件的name, size, type, lastModified信息,
+          读取文件内容需要使用FileReader
         </li>
         <li>
           <p>分片上传如何确定文件的唯一性呢？</p>
           分片后递归生成文件哈希（spark-md5）
         </li>
-        <li>
-          文件上传中断续传时,
-          将文件哈希为参数请求得到文件哪些chunks已经上传,然后上传剩余的chunks
-        </li>
+        <li>文件上传中断续传时, 将文件哈希为参数请求得到文件哪些chunks已经上传,然后上传剩余的chunks</li>
       </ul>
     </div>
     <input type="file" id="uploadFile" />
@@ -54,18 +51,18 @@
         const chunks = generateChunks(file);
         console.log(chunks);
         // 分片上传
-        // chunks.forEach((chunk, index) => {
-        //   const formData = new FormData();
-        //   formData.append("chunk", chunk);
-        //   formData.append("index", index);
-        //   formData.append("fileName", file.name);
-        //   formData.append("fileSize", file.size);
-        //   formData.append("totalChunks", chunks.length);
-        //   fetch("http://localhost:3000/upload", {
-        //     method: "POST",
-        //     body: formData,
-        //   });
-        // });
+        chunks.forEach((chunk, index) => {
+          const formData = new FormData();
+          formData.append("chunk", chunk);
+          formData.append("index", index);
+          formData.append("fileName", file.name);
+          formData.append("fileSize", file.size);
+          formData.append("totalChunks", chunks.length);
+          fetch("http://localhost:3000/upload", {
+            method: "POST",
+            body: formData,
+          });
+        });
       });
     </script>
   </body>

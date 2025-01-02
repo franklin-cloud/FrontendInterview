@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>drag demo</title>
+    <style>
+        .drag-comtainer {
+            list-style: none;
+        }
+        .drag-item {
+            height: 40px;
+            width: 400px;
+            background: #fff;
+            border: 1px  solid #ddd;
+            margin-bottom: 8px;
+            border-radius: 4px;
+        }
+        .dragging {
+            opacity: 0.5;
+            border: 2px  solid #398bf7;
+        }
+    </style>
+</head>
+<body>
+    <ul class="drag-comtainer dropzone">
+        <li class="drag-item" draggable="true">1</li>
+        <li class="drag-item" draggable="true">2</li>
+        <li class="drag-item" draggable="true">3</li>
+        <li class="drag-item" draggable="true">4</li>
+        <li class="drag-item" draggable="true">5</li>
+    </ul>
+    <script>
+        const comtainerDOM = document.querySelector('.drag-comtainer')
+        let drapTarget = null
+        comtainerDOM.addEventListener('dragstart', function(e){
+            setTimeout(() => {
+                // 拖动的原理：被拖动的元素会被浏览器复制一个一模一样的节点
+                // 异步：为了仅调整被拖动元素的样式，不改变已经复制的节点样式
+                e.target.classList.add('dragging')
+            },0)
+            drapTarget = e.target
+        })
+        comtainerDOM.addEventListener('dragend', function(e){
+            e.target.classList.remove('dragging')
+            drapTarget = null
+        })
+
+        comtainerDOM.addEventListener('dragover', function(e){
+            // 需要禁止默认事件，防止释放事件不执行
+            e.preventDefault();
+        })
+
+        comtainerDOM.addEventListener('dragenter', function(e){
+            e.preventDefault();
+            // 判断拖拽元素进入的元素等于父元素或拖拽元素本身，不做受任何处理，直接结束
+            if(e.target === this || e.target === drapTarget) {
+                return;
+            }
+            // 所有的子元素
+            const children = [...comtainerDOM.children];
+            // 拖拽元素(drapTarget)在所有子元素里的下标
+            const drapTargetIndex = children.indexOf(drapTarget);
+            // 拖拽进入时的元素（dragEnter）在所有子元素里的下标
+            const enterTargetIndex = children.indexOf(e.target);
+            // 朝下拖动
+            if(drapTargetIndex < enterTargetIndex) {
+                comtainerDOM.insertBefore(drapTarget, e.target.nextElementSibling);
+            } else {// 朝上拖动
+                comtainerDOM.insertBefore(drapTarget, e.target);
+            }
+        })
+    </script>
+</body>
+</html>
